@@ -10,7 +10,7 @@ I controllori di volo sono stanchi di dover utilizzare dei fogli per annotarsi l
 - PHP
 ## Funzionalità
 * Aeroporto
-  * Accesso con <a href="wikipedia.it/ICAO">ICAO</a>
+  * Accesso con <a href="https://wikipedia.it/ICAO">ICAO</a>
   * Uscita
   * Parcheggi
     * Modifica numero
