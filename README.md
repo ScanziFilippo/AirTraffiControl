@@ -21,7 +21,12 @@ I controllori di volo sono stanchi di dover utilizzare dei fogli per annotarsi l
     * Elimina
 * Aereo
   * Aggiunta manuale dei dati
-    * Co
+    * <a href="https://it.wikipedia.org/wiki/Marche_d%27immatricolazione">Immatricolazione aereo</a>
+    * Modello aereo
+    * Compagnia
+    * Passeggeri
+    * Percentuale di carburante
+    * Foto aggiunta automaticamente in base al modello
   * Aggiunta casuale
   * Modifica
   * Eliminazione
