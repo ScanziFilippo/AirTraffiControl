@@ -4,7 +4,10 @@ Applicazione web per il controllo del traffico di uno spazio aereo con aeroporto
 ## Che problema risolve?
 I controllori di volo sono stanchi di dover utilizzare dei fogli per annotarsi le informazioni che vanno spesso aggiornate, come posizione e altitudine, di ogni singolo volo.
 ## Tecnologie usate
-HTML, JavaScript, mySQL
+- HTML
+- JavaScript
+- mySQL
+- PHP
 ## Funzionalità
 * Aeroporto
   * Accesso
