@@ -13,6 +13,7 @@ I controllori di volo sono stanchi di dover utilizzare dei fogli per annotarsi l
   * Registazione del profilo dell'aeroporto con <a href="https://it.wikipedia.org/wiki/Codice_aeroportuale_ICAO">ICAO</a> o <a href="https://en.wikipedia.org/wiki/IATA_airport_code">IATA</a> e password
   * Accesso al profilo 
   * Uscita dal profilo
+  * Recupero profilo se la password è stata smarrita
   * Parcheggi
     * Modifica numero
   * Piste
