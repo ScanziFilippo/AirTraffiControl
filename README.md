@@ -7,7 +7,7 @@ I controllori di volo sono stanchi di dover utilizzare dei fogli per annotarsi l
 HTML, JavaScript, mySQL
 ## Funzionalità
 * Aeroporto
-  *Parcheggi
+  * Parcheggi
     * Modifica
   * Accesso
   * Uscita
