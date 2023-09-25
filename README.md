@@ -7,12 +7,24 @@ I controllori di volo sono stanchi di dover utilizzare dei fogli per annotarsi l
 HTML, JavaScript, mySQL
 ## Funzionalità
 * Aeroporto
-  * Parcheggi
-    * Modifica
   * Accesso
   * Uscita
+  * Parcheggi
+    * Modifica numero
+  * Piste
+    * Aggiungi
+    * Modifica
+    * Elimina
 * Aereo
   * Aggiunta manuale
   * Aggiunta casuale
   * Modifica
   * Eliminazione
+  * Comandi
+    * Decolla su pista XX
+    * Atterra su pista XX
+    * Rulla verso pista XX
+    * Rulla verso parcheggio XX
+    * Rifornisciti di carburante
+    * Fai scendere le persone
+    * Fai salire le persone
