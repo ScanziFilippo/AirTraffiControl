@@ -30,6 +30,7 @@ La lenta velocità che i controllori di volo hanno utilizzando dei fogli per ann
     * Passeggeri
     * Percentuale di carburante
     * Foto aggiunta automaticamente in base al modello
+    * Posizione
   * Aggiunta casuale
   * Modifica
   * Eliminazione
