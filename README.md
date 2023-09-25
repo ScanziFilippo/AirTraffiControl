@@ -10,7 +10,7 @@ I controllori di volo sono stanchi di dover utilizzare dei fogli per annotarsi l
 - PHP
 ## Funzionalità
 * Aeroporto
-  * Registazione del profilo dell'aeroporto con <a href="https://it.wikipedia.org/wiki/Codice_aeroportuale_ICAO">ICAO</a> e password
+  * Registazione del profilo dell'aeroporto con <a href="https://it.wikipedia.org/wiki/Codice_aeroportuale_ICAO">ICAO</a> o <a href="https://en.wikipedia.org/wiki/IATA_airport_code">IATA</a> e password
   * Accesso al profilo 
   * Uscita dal profilo
   * Parcheggi
@@ -20,7 +20,8 @@ I controllori di volo sono stanchi di dover utilizzare dei fogli per annotarsi l
     * Modifica
     * Elimina
 * Aereo
-  * Aggiunta manuale
+  * Aggiunta manuale dei dati
+    * Co
   * Aggiunta casuale
   * Modifica
   * Eliminazione
