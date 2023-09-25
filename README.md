@@ -10,7 +10,9 @@ La lenta velocità che i controllori di volo hanno utilizzando dei fogli per ann
 - PHP
 ## Funzionalità
 * Aeroporto
-  * Registazione del profilo dell'aeroporto con <a href="https://it.wikipedia.org/wiki/Codice_aeroportuale_ICAO">ICAO</a> o <a href="https://en.wikipedia.org/wiki/IATA_airport_code">IATA</a> e password
+  * Registazione del profilo dell'aeroporto
+    * <a href="https://it.wikipedia.org/wiki/Codice_aeroportuale_ICAO">ICAO</a> o <a href="https://en.wikipedia.org/wiki/IATA_airport_code">IATA</a>
+    * Password
   * Accesso al profilo 
   * Uscita dal profilo
   * Recupero profilo se la password è stata smarrita
