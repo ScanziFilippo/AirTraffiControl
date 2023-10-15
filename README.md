@@ -44,3 +44,5 @@ La lenta velocità che hanno i controllori di volo utilizzando dei fogli per ann
     * Fai salire le persone
 ## Interfaccia
 ![alt text](interfacciaWEB.png)
+## Schema ER
+![alt text](ER.png)
