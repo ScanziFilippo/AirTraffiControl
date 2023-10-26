@@ -45,4 +45,4 @@ La lenta velocità che hanno i controllori di volo utilizzando dei fogli per ann
 ## Interfaccia
 ![alt text](interfacciaWEB.png)
 ## Schema ER
-![alt text](ER.jpg)
+![alt text](ERN.jpg)
