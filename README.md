@@ -33,6 +33,7 @@ Alle torri di controllo di qualsiasi tipo di aereporto
     * Percentuale di carburante
     * Foto aggiunta automaticamente in base al modello
     * Posizione
+    * Stato
   * Aggiunta casuale
   * Modifica
   * Eliminazione
@@ -42,8 +43,7 @@ Alle torri di controllo di qualsiasi tipo di aereporto
     * Rulla verso pista XX
     * Rulla verso parcheggio XX
     * Rifornisciti di carburante
-    * Fai scendere le persone
-    * Fai salire le persone
+    * Fai scendere/salire le persone
 ## Interfaccia
 ![alt text](interfacciaWEB.png)
 ## Schema ER
