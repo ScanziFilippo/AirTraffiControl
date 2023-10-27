@@ -48,3 +48,9 @@ Alle torri di controllo di qualsiasi tipo di aereporto
 ![alt text](interfacciaWEB.png)
 ## Schema ER
 ![alt text](ERN.jpg)
+## Relazioni
+AEROPORTO (<ins>ICAO</ins>, IATA, PASSWORD)
+AEREO (<ins>IMMATRICOLAZIONE</ins>, MODELLO, COMPAGNIA, PASSEGGERI, FOTO_AEREO, BANDIERA, FOTO_COMPAGNIA, POSIZIONE, STATO)
+PISTA (<ins>ID</ins>, STATO)
+PARCHEGGIO (<ins>ID</ins>, STATO)
+VOLO (<ins>ID</ins>, PARTENZA, DESTINAZIONE, DATA_PARTENZA, DATA_ARRIVO)
