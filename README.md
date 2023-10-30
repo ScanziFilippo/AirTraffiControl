@@ -46,7 +46,15 @@ Alle torri di controllo di qualsiasi tipo di aereporto
     * Rifornisciti di carburante
     * Fai scendere/salire le persone
 ## Interfaccia
-![alt text](interfacciaWEB.png)
+# Accesso
+![alt text](IMG/ACCESSO.svg)
+# Sala di controllo
+![alt text](IMG/SALACONTROLLO.svg)
+# Aggiunta aereo
+![alt text](IMG/AEREO.svg)
+# Profilo
+![alt text](IMG/PROFILO.svg)
+
 ## Schema ER
 ![alt text](ERN.jpg)
 ## Relazioni
