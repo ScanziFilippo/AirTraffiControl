@@ -31,7 +31,8 @@ Alle torri di controllo di qualsiasi tipo di aereporto
     * Compagnia
     * Passeggeri
     * Percentuale di carburante
-    * Foto aggiunta automaticamente in base al modello
+    * Foto aereo
+    * Foto bandiera
     * Posizione
     * Stato
   * Aggiunta casuale
