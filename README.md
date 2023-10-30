@@ -32,7 +32,7 @@ Alle torri di controllo di qualsiasi tipo di aereporto
     * Passeggeri
     * Percentuale di carburante
     * Foto aereo
-    * Foto bandiera
+    * Foto bandiera (automatico in base all'immatricolazione)
     * Posizione
     * Stato (automatico in base a posizione inizialmente. Poi modificato in base alle azioni utente)
   * Aggiunta casuale
