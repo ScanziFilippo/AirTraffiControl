@@ -34,7 +34,7 @@ Alle torri di controllo di qualsiasi tipo di aereporto
     * Foto aereo
     * Foto bandiera
     * Posizione
-    * Stato
+    * Stato (automatico in base a posizione inizialmente. Poi modificato in base alle azioni utente)
   * Aggiunta casuale
   * Modifica
   * Eliminazione
