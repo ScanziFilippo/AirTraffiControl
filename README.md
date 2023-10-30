@@ -13,7 +13,7 @@ Alle torri di controllo di qualsiasi tipo di aereporto
 ## Funzionalità
 * Aeroporto
   * Registazione del profilo dell'aeroporto
-    * <a href="https://it.wikipedia.org/wiki/Codice_aeroportuale_ICAO">ICAO</a> o <a href="https://en.wikipedia.org/wiki/IATA_airport_code">IATA</a>
+    * <a href="https://it.wikipedia.org/wiki/Codice_aeroportuale_ICAO">ICAO</a> e <a href="https://en.wikipedia.org/wiki/IATA_airport_code">IATA (se esistente)</a>
     * Password
   * Accesso al profilo 
   * Uscita dal profilo
