@@ -65,3 +65,51 @@ PISTA (<ins>ID</ins>, STATO, AEROPORTO_ICAO) <br>
 PARCHEGGIO (<ins>ID</ins>, STATO, AEROPORTO_ICAO) <br>
 VOLO (<ins>ID</ins>, PARTENZA, DESTINAZIONE, DATA_PARTENZA, DATA_ARRIVO, AEREO_ID) <br>
 ## Creazione tabelle
+```sql
+CREATE TABLE `aerei` (
+    immatricolazione varchar(255) NOT NULL PRIMARY KEY,
+    modello varchar(255),
+    compagnia varchar(255),
+    passeggeri int(11),
+    foto_aereo varchar(255),
+    foto_compagnia varchar(255),
+    posizione varchar(255),
+    stato varchar(255),
+    pista_id int(11),
+    parcheggio_id int(11),
+    aeroporto_icao varchar(255)
+)
+CREATE TABLE `aeroporti` (
+    icao varchar(255) NOT NULL PRIMARY KEY,
+    iata varchar(255),
+    nome varchar(255),
+    citta varchar(255),
+    nazione varchar(255)
+)
+CREATE TABLE `controllori` (
+    nome_utente varchar(255) NOT NULL PRIMARY KEY,
+    nome varchar(255),
+    cognome varchar(255),
+    codice varchar(255),
+    ruolo varchar(255),
+    aeroporto_icao varchar(255)
+)
+CREATE TABLE `parcheggi` (
+    id int(11) NOT NULL PRIMARY KEY,
+    stato varchar(255),
+    aereopoto_icao varchar(255)
+)
+CREATE TABLE `piste` (
+    id int(11) NOT NULL PRIMARY KEY,
+    stato varchar(255),
+    aereopoto_icao varchar(255)
+)
+CREATE TABLE `voli` (
+    id int(11) NOT NULL PRIMARY KEY,
+    partenza varchar(255),
+    destinazione varchar(255),
+    data_partenza varchar(255),
+    data_arrivo varchar(255),
+    aereo_immatricolazione varchar(255)
+)
+```
