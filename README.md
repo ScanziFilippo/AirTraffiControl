@@ -113,3 +113,4 @@ CREATE TABLE `voli` (
     aereo_immatricolazione varchar(255)
 )
 ```
+Ciao
