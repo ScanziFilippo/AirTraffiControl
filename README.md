@@ -45,6 +45,15 @@ Alle torri di controllo di qualsiasi tipo di aereporto
     * Rulla verso parcheggio XX
     * Rifornisciti di carburante
     * Fai scendere/salire le persone
+  * Volo
+    * Aggiunta manuale dei dati
+    * Modifica
+    * Elimina
+  * Controllori (utenti)
+    * Aggiunta manuale dei dati
+    * Modifica
+    * Elimina
+
 ## Interfaccia
 ### Accesso
 ![alt text](IMG/ACCESSO.svg)

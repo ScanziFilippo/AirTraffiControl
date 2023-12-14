@@ -13,10 +13,10 @@
         try{
             $registra = "INSERT INTO utenti (username, name, password) VALUES ('$username', '$name', '$password')";
             $risultato = $connessione->query($registra);
+            header("location: profilo.php");
         }
         catch(Exception $e){
             echo("Errore nella query: ".$e->getMessage());
-            header("location: profilo.php");
         }
         //echo("Connesione corretta");
     }

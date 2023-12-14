@@ -5,9 +5,9 @@
     </head>
     <body>
         <form action="registracontroller.php" method="post">
-            <input type="text" name="username">
-            <input type="text" name="name">
-            <input type="text" name="password">
+            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="name" placeholder="Name">
+            <input type="text" name="password" placeholder="Password">
             <input type="submit">
         </form>
     </body>

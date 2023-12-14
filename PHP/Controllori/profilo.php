@@ -10,11 +10,12 @@
     </head>
     <body>
         <h1>Profilo</h1>
-        <p>Benvenuto 
+        <h3>Benvenuto 
             <?php 
                 echo $_SESSION['username'];
             ?>
-        </p>
+        </h3>
         <a href="logout.php">Logout</a>
+        <a href="cancella.php">Cancella account</a>
     </body>
 </html>
