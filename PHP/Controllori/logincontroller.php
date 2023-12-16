@@ -1,8 +1,8 @@
 <?php
 session_start();
-$username = $_POST['username'];
-$password = $_POST['password'];
-$password = md5($password);
+$nome_utente = $_POST['nome_utente'];
+$codice = $_POST['codice'];
+$codice = md5($codice);
 $connessione = new mysqli('localhost', 'root', '', 'progetto');
 if ($connessione->connect_errno)
 {
@@ -10,13 +10,13 @@ if ($connessione->connect_errno)
     exit();
 }else{
     try{
-        $login = "SELECT * FROM utenti WHERE username = '$username' AND password = '$password'";
+        $login = "SELECT * FROM controllori WHERE nome_utente = '$nome_utente' AND codice = '$codice'";
         $risultato = $connessione->query($login);
         if($risultato->num_rows > 0){
-            $_SESSION['username'] = $username;
-            header("location: profilo.php?username=$username");
+            $_SESSION['nome_utente'] = $nome_utente;
+            header("location: profilo.php?nome_utente=$nome_utente");
         }else{
-            header("location: login.php?err=Username o password errati");
+            header("location: login.php?err=nome_utente o codice errati");
         }
     }
     catch(Exception $e){

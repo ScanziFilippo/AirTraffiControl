@@ -1,11 +1,11 @@
 <html>
     <head>
-        <title>Document</title>
+        <title>Accesso</title>
     </head>
     <body>
         <form action="logincontroller.php" method="post">
-            <input type="text" name="username" placeholder="Username">
-            <input type="text" name="password" placeholder="Password">
+            <input type="text" name="nome_utente" placeholder="nome_utente">
+            <input type="text" name="codice" placeholder="codice">
             <input type="submit">
         </form>
         <a href="registra.php">Registrati</a>

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $username = $_SESSION['username'];
+    $nome_utente = $_SESSION['nome_utente'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
     if ($connessione->connect_errno)
     {
@@ -8,7 +8,7 @@
         exit();
     }else{
         try{
-            $cancella = "DELETE FROM utenti WHERE username = '$username'";
+            $cancella = "DELETE FROM controllori WHERE nome_utente = '$nome_utente'";
             $risultato = $connessione->query($cancella);
             echo("Account cancellato");
         }

@@ -12,12 +12,8 @@ Alle torri di controllo di qualsiasi tipo di aereporto
 - PHP
 ## Funzionalità
 * Aeroporto
-  * Registazione del profilo dell'aeroporto
+  * Registazione dell'aeroporto direttamente con profilo amministratore
     * <a href="https://it.wikipedia.org/wiki/Codice_aeroportuale_ICAO">ICAO</a> e <a href="https://en.wikipedia.org/wiki/IATA_airport_code">IATA (se esistente)</a>
-    * Password
-  * Accesso al profilo 
-  * Uscita dal profilo
-  * Recupero profilo se la password è stata smarrita
   * Parcheggi
     * Modifica numero
   * Piste
@@ -45,14 +41,17 @@ Alle torri di controllo di qualsiasi tipo di aereporto
     * Rulla verso parcheggio XX
     * Rifornisciti di carburante
     * Fai scendere/salire le persone
-  * Volo
-    * Aggiunta manuale dei dati
-    * Modifica
-    * Elimina
-  * Controllori (utenti)
-    * Aggiunta manuale dei dati
-    * Modifica
-    * Elimina
+* Volo
+  * Aggiunta manuale dei dati
+  * Modifica
+  * Elimina
+* Controllori (utenti)
+  * Accesso al profilo 
+  * Uscita dal profilo
+  * Recupero profilo se la password è stata smarrita
+  * Aggiunta manuale dei dati
+  * Modifica
+  * Elimina
 
 ## Interfaccia
 ### Accesso
