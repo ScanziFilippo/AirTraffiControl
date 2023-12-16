@@ -40,6 +40,6 @@
                 }
             ?>
         </table>
-        <a href="amministratore.php">Torna alla home</a>
+        <a href="profilo.php">Torna al profilo</a>
     </body>
 </html>
