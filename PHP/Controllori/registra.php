@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Document</title>
+        <title>Registrazione</title>
     </head>
     <body>
+        Registrazione del profilo<br><br>
         <form action="registracontroller.php" method="post">
             <input type="text" name="aeroporto_icao" placeholder="aeroporto_icao">
             <input type="text" name="nome_utente" placeholder="nome_utente">
