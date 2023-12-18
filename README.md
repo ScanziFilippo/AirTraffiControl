@@ -105,12 +105,12 @@ CREATE TABLE `controllori` (
 CREATE TABLE `parcheggi` (
     id int(11) NOT NULL PRIMARY KEY,
     stato varchar(255),
-    aereopoto_icao varchar(255)
+    aeroporto_icao varchar(255)
 )
 CREATE TABLE `piste` (
     id int(11) NOT NULL PRIMARY KEY,
     stato varchar(255),
-    aereopoto_icao varchar(255)
+    aeroporto_icao varchar(255)
 )
 CREATE TABLE `voli` (
     id int(11) NOT NULL PRIMARY KEY,
