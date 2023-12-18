@@ -18,6 +18,11 @@
         try{
             $registra = "INSERT INTO aeroporti (icao, iata, nome, citta, nazione) VALUES ('$icao', '$iata', '$nome', '$citta', '$nazione')";
             $risultato = $connessione->query($registra);
+            $_SESSION['aeroporto_icao'] = $icao;
+            $_SESSION['aeroporto_iata'] = $iata;
+            $_SESSION['aeroporto_nome'] = $nome;
+            $_SESSION['aeroporto_citta'] = $citta;
+            $_SESSION['aeroporto_nazione'] = $nazione;
             header("location: ../Controllori/profilo.php");
         }
         catch(Exception $e){
