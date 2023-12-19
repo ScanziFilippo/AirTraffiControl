@@ -62,9 +62,7 @@
         </h3>
         <?php
             if($_SESSION['ruolo'] == "Amministratore"){?>
-                <a href="visualizza_controllori.php">Visualizza controllori</a>
                 <a href="modifica_amministratore.php">Modifica</a>
-                <a href="modifica_altri.php">Modifica controllori</a>
                 <?php
             }else{?>
                 <a href="modifica.php">Modifica</a>

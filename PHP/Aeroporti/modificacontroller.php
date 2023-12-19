@@ -11,14 +11,11 @@
     }
     else{
         try{
-            $connessione->query("DELETE FROM parcheggi WHERE id = '$_GET[id]'");
-            /*for($i = $_GET[id]; $i <= $connessione->query("SELECT * FROM parcheggi WHERE id>'$_GET[id]' AND aeroporto_icao = '$_SESSION[aeroporto_icao]'")->num_rows; $i++){
-                $connessione->query("UPDATE parcheggi SET id = '$i' WHERE id = '$i' + 1");
-            }*/
-            header("Location: visualizza.php");
+            $connessione->query("UPDATE aeroporti SET icao = '$_POST[icao]', iata = '$_POST[iata]', nome = '$_POST[nome]', citta = '$_POST[citta]', nazione = '$_POST[nazione]' WHERE icao = '$_SESSION[aeroporto_icao]'");
+            $_SESSION['aeroporto_icao'] = $_POST['icao'];
+            header("Location: ../Controllori/profilo.php");
         }
         catch(Exception $e){
             echo("Errore: " . $e->getMessage());
         }
     }
-?>

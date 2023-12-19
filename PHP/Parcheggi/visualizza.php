@@ -23,13 +23,19 @@
                     echo("<tr>");
                     echo("<td>".$parcheggi_row['id']."</td>");
                     echo("<td>".$parcheggi_row['stato']."</td>");
-                    echo("<td><a href='eliminacontroller.php?id=".$parcheggi_row['id']."'>Elimina</a></td>");
+                    if($_SESSION['ruolo'] == "Amministratore"){
+                        echo("<td><a href='eliminacontroller.php?id=".$parcheggi_row['id']."'>Elimina</a></td>");
+                    }
                     echo("</tr>");
                 }
             ?>
         </table>
         <form>
-            <input type="button" value="Aggiungi parcheggio" onclick="window.location.href='aggiungicontroller.php'">
+            <?php
+                if($_SESSION['ruolo'] == "Amministratore"){
+                    echo("<input type='button' value='Aggiungi parcheggio' onclick='window.location.href=\"aggiungicontroller.php\"'>");
+                }
+            ?>
         </form>
         <a href="../Controllori/profilo.php">Torna al profilo</a>
     </body>

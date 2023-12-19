@@ -12,6 +12,9 @@
     else{
         try{
             $n = $connessione->query("SELECT * FROM parcheggi WHERE aeroporto_icao = '$_SESSION[aeroporto_icao]'")->num_rows + 1;
+            while($connessione->query("SELECT * FROM parcheggi WHERE id = '$n' AND aeroporto_icao = '$_SESSION[aeroporto_icao]'")->num_rows > 0){
+                $n++;
+            }
             $connessione->query("INSERT INTO parcheggi (id, stato, aeroporto_icao) VALUES ('$n','Libero', '$_SESSION[aeroporto_icao]')");
             header("Location: visualizza.php");
         }
