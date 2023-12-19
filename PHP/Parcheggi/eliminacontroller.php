@@ -13,9 +13,9 @@
         try{
             $connessione->query("DELETE FROM parcheggi WHERE id = '$_GET[id]'");
             echo $_GET[id];
-            for($i = $_GET[id]; $i <= $connessione->query("SELECT * FROM parcheggi WHERE id>'$_GET[id]' AND aeroporto_icao = '$_SESSION[aeroporto_icao]'")->num_rows; $i++){
+            /*for($i = $_GET[id]; $i <= $connessione->query("SELECT * FROM parcheggi WHERE id>'$_GET[id]' AND aeroporto_icao = '$_SESSION[aeroporto_icao]'")->num_rows; $i++){
                 $connessione->query("UPDATE parcheggi SET id = '$i' WHERE id = '$i' + 1");
-            }
+            }*/
             header("Location: visualizza.php");
         }
         catch(Exception $e){

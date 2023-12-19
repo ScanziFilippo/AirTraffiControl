@@ -128,6 +128,7 @@ Poi scrivere sul terminale:
 docker run --name myXampp -p 41061:22 -p 41062:80 -d -v /workspaces/AirTraffiControl:/www tomsik68/xampp:8
 ```
 Per avviare:
+```
 docker start myXampp
-
+```
 Collegarsi aprire il link della porta 41062:80 e aggiungere alla fine dell'URL "/www/PHP" per accedere all'index (esempio: https://esempio.app.github.dev/www/PHP)
