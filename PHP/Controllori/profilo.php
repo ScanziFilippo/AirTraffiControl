@@ -52,6 +52,14 @@
                 echo $_SESSION['ruolo'];
             ?>
         </h3>
+        <h3>Personale:
+            <?php
+                echo " " . $connessione->query("SELECT * FROM controllori WHERE aeroporto_icao = '$_SESSION[aeroporto_icao]'")-> num_rows;
+                if($_SESSION['ruolo'] == "Amministratore"){
+                    echo " <a href='visualizza_controllori.php'>Visualizza</a>";
+                }
+            ?>
+        </h3>
         <?php
             if($_SESSION['ruolo'] == "Amministratore"){?>
                 <a href="visualizza_controllori.php">Visualizza controllori</a>
