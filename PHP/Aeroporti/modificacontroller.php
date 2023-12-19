@@ -19,3 +19,4 @@
             echo("Errore: " . $e->getMessage());
         }
     }
+?>
