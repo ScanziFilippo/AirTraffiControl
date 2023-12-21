@@ -20,13 +20,23 @@
             <?php
                 $parcheggi = $connessione->query("SELECT * FROM parcheggi WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."'");
                 while($parcheggi_row = $parcheggi->fetch_assoc()){
+                    echo("<form action='modificacontroller.php' method='post'>");
                     echo("<tr>");
-                    echo("<td>".$parcheggi_row['id']."</td>");
+                    echo("<td>");
+                    if($_SESSION['ruolo'] == "Amministratore"){
+                        echo("<input type='text' name='id' value='");
+                    }
+                    echo($parcheggi_row['id']);
+                    if($_SESSION['ruolo'] == "Amministratore"){
+                        echo("'></input></td>");
+                    }
                     echo("<td>".$parcheggi_row['stato']."</td>");
                     if($_SESSION['ruolo'] == "Amministratore"){
+                        echo("<td><input type='submit'></input></td>");
                         echo("<td><a href='eliminacontroller.php?id=".$parcheggi_row['id']."'>Elimina</a></td>");
+                        echo("</tr>");
                     }
-                    echo("</tr>");
+                    echo("</form>");
                 }
             ?>
         </table>

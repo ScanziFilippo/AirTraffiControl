@@ -70,7 +70,7 @@ AEROPORTO (<ins>ICAO</ins>, IATA, NOME, CITTA, NAZIONE) <br>
 CONTROLLORE (<ins>ID</ins>, <ins>NOME_UTENTE</ins>, CODICE, RUOLO, AEROPORTO_ICAO) <br>
 AEREO (<ins>IMMATRICOLAZIONE</ins>, MODELLO, COMPAGNIA, PASSEGGERI, FOTO_AEREO, BANDIERA, FOTO_COMPAGNIA, POSIZIONE, STATO, PISTA_ID, PARCHEGGIO_ID, AEROPORTO_ICAO) <br>
 PISTA (<ins>ID</ins>, STATO, AEROPORTO_ICAO) <br>
-PARCHEGGIO (<ins>ID</ins>, STATO, AEROPORTO_ICAO) <br>
+PARCHEGGIO (<ins>ID</ins>, STATO, <ins>AEROPORTO_ICAO</ins>) <br>
 VOLO (<ins>ID</ins>, PARTENZA, DESTINAZIONE, DATA_PARTENZA, DATA_ARRIVO, AEREO_ID) <br>
 ## Creazione tabelle
 ```sql
@@ -103,9 +103,10 @@ CREATE TABLE `controllori` (
     aeroporto_icao varchar(255)
 )
 CREATE TABLE `parcheggi` (
-    id int(11) NOT NULL PRIMARY KEY,
+    id int(11) NOT NULL,
     stato varchar(255),
-    aeroporto_icao varchar(255)
+    aeroporto_icao varchar(255) NOT NULL,
+    PRIMARY KEY(`id`, `aeroporto_icao`)
 )
 CREATE TABLE `piste` (
     id int(11) NOT NULL PRIMARY KEY,
