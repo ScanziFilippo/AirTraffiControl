@@ -71,5 +71,7 @@
         ?>
         <a href="logout.php">Logout</a>
         <a href="cancella.php">Cancella account</a>
+        <br><br>
+        <a href="../index.php">Torna alla home</a>
     </body>
 </html>

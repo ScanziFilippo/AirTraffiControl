@@ -27,6 +27,8 @@
             <input type="text" name="nazione" placeholder="nazione" value="<?php echo $_SESSION['aeroporto_nazione']; ?>">
             <input type="submit">
         </form>
+        <br>
+        <a href="../Controllori/profilo.php">Torna al profilo</a>
     </body>
     <?php
         if(isset($_GET['err'])){?>

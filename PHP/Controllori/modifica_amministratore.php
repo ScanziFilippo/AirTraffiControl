@@ -18,6 +18,8 @@
             <input type="text" name="cognome" placeholder="cognome" value="<?php echo $_SESSION['cognome']; ?>">
             <input type="submit">
         </form>
+        <br>
+        <a href="../Controllori/profilo.php">Torna al profilo</a>
     </body>
     <?php
         if(isset($_GET['err'])){?>
