@@ -21,6 +21,12 @@
             $pista_id = $_POST['pista_id'];
             $parcheggio_id = $_POST['parcheggio_id'];
             $aeroporto_icao = $_POST['aeroporto_icao'];
+            if($pista_id == ""){
+                $pista_id = "NULL";
+            }
+            if($parcheggio_id == ""){
+                $parcheggio_id = "NULL";
+            }
             $connessione->query("INSERT INTO aerei (immatricolazione, modello, compagnia, passeggeri, foto_aereo, foto_compagnia, posizione, stato, pista_id, parcheggio_id, aeroporto_icao) VALUES ('$immatricolazione', '$modello', '$compagnia', '$passeggeri', '$foto_aereo', '$foto_compagnia', '$posizione', '$stato', '$pista_id', '$parcheggio_id', '$aeroporto_icao')");
             header("Location: index.php");
         }
