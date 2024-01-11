@@ -5,7 +5,7 @@
     }
     $nome_utente = $_SESSION['nome_utente'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
-    $compagnie = $connessione->query("SELECT nome FROM compagnie");
+    $compagnie = $connessione->query("SELECT nome FROM compagnie ORDER BY nome");
 ?>
 <!DOCTYPE html>
 <html>
