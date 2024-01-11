@@ -22,7 +22,7 @@ if ($connessione->connect_errno)
             $_SESSION['cognome'] = $cognome;
             $_SESSION['ruolo'] = $ruolo;
             $_SESSION['aeroporto_icao'] = $aeroporto_icao;
-            header("location: profilo.php?nome_utente=$nome_utente");
+            header("location: ../index.php");
         }else{
             header("location: login.php?err=nome_utente o codice errati");
         }

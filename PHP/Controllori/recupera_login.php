@@ -1,16 +1,15 @@
 <html>
     <head>
-        <title>Accesso</title>
+        <title>Recupera login</title>
     </head>
     <body>
-        Accesso al profilo<br><br>
-        <form action="logincontroller.php" method="post">
+        Recupera login<br><br>
+        <form action="recupera_logincontroller.php" method="post">
             <input type="text" name="nome_utente" placeholder="nome_utente">
-            <input type="text" name="codice" placeholder="codice">
+            <input type="text" name="codice" placeholder="nuovo codice">
             <input type="submit">
         </form>
-        <a href="registra.php">Registrati</a>
-        <a href="recupera_login.php">Non riesci a entrare?</a>
+        <a href="login.php">Torna al login</a>
     </body>
     <?php
         if(isset($_GET['err'])){?>

@@ -10,15 +10,17 @@
         <title>Home</title>
     </head>
     <body>
-        <h1>Benvenuto 
-            <?php 
-                echo $_SESSION['nome_utente'];
-            ?>
+        <h1>Benvenuto
+            <a href="Controllori/profilo.php">
+                <?php 
+                    echo $_SESSION['nome_utente'];
+                ?>
+            </a>
         </h1>
-        <a href="Controllori/profilo.php"><h2>Profilo</h2></a>
         <a href="aggiungi_aereo.php"><h2>Aggiungi aereo</h2></a>
-        <table>
-            <tr>
+        <?php
+            if($connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."'")->num_rows > 0){
+                echo("            <b><tr>
                 <th>Immatricolazione</th>
                 <th>Modello</th>
                 <th>Compagnia</th>
@@ -27,7 +29,11 @@
                 <th>Foto compagnia</th>
                 <th>Posizione</th>
                 <th>Stato</th>
-            </tr>
+            </tr><b>
+            ");
+            }
+        ?>
+        <table>
         <?php
             $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."'");
             while($aerei_row = $aerei->fetch_assoc()){

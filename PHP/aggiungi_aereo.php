@@ -4,6 +4,8 @@
         header("Location: login.php");
     }
     $nome_utente = $_SESSION['nome_utente'];
+    $connessione = new mysqli('localhost', 'root', '', 'progetto');
+    $compagnie = $connessione->query("SELECT nome FROM compagnie");
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +17,14 @@
         <form action="aggiungi_aereocontroller.php" method="post">
             <input type="text" name="immatricolazione" placeholder="immatricolazione">
             <input type="text" name="modello" placeholder="modello">
-            <input type="text" name="compagnia" placeholder="compagnia">
+            <input list="compagnie" name="compagnia" placeholder="compagnia">
+                <datalist id="compagnie">
+                    <?php
+                        while($compagnie_row = $compagnie->fetch_assoc()){
+                            echo("<option value='".$compagnie_row['nome']."'>");
+                        }
+                    ?>
+                </datalist>
             <input type="number" name="passeggeri" placeholder="passeggeri">
             <input type="file" name="foto_aereo" placeholder="foto_aereo">
             <input type="file" name="foto_compagnia" placeholder="foto_compagnia">
