@@ -1,10 +1,10 @@
 CREATE TABLE compagnie (
   id INT PRIMARY KEY,
   nome VARCHAR(50) NOT NULL,
-  ocdice VARCHAR(3) NOT NULL
+  codice VARCHAR(3) NOT NULL
 );
 
-INSERT INTO compagnie (id, nome, ocdice) VALUES
+INSERT INTO compagnie (id, nome, codice) VALUES
 (1, 'Qatar Airways', 'QTR'),
 (2, 'Eurowings', 'EWG'),
 (3, 'LOT Polish Airlines', 'LOT'),
