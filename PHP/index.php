@@ -42,8 +42,8 @@
                 echo("<td>".$aerei_row['modello']."</td>");
                 echo("<td>".$aerei_row['compagnia']."</td>");
                 echo("<td>".$aerei_row['passeggeri']."</td>");
-                echo("<td>".$aerei_row['foto_aereo']."</td>");
-                echo("<td>".$aerei_row['foto_compagnia']."</td>");
+                echo("<td><img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'></td>");
+                echo("<td><img src='../IMG/Compagnie/".$aerei_row['compagnia']."' width='200px'></td>");
                 echo("<td>".$aerei_row['posizione']."</td>");
                 echo("<td>".$aerei_row['stato']."</td>");
                 echo("</tr>");
