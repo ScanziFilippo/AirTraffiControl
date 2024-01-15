@@ -72,6 +72,7 @@ AEREO (<ins>IMMATRICOLAZIONE</ins>, MODELLO, COMPAGNIA, PASSEGGERI, FOTO_AEREO, 
 PISTA (<ins>ID</ins>, STATO, AEROPORTO_ICAO) <br>
 PARCHEGGIO (<ins>ID</ins>, STATO, <ins>AEROPORTO_ICAO</ins>) <br>
 VOLO (<ins>ID</ins>, PARTENZA, DESTINAZIONE, DATA_PARTENZA, DATA_ARRIVO, AEREO_ID) <br>
+COMPAGNIA (<ins>ID</ins>, NOME, CODICE) <br>
 ## Creazione tabelle
 ```sql
 CREATE TABLE `aerei` (
@@ -121,7 +122,7 @@ CREATE TABLE `voli` (
     data_arrivo timestamp,
     aereo_immatricolazione varchar(255)
 );
-CREATE TABLE compagnie (
+CREATE TABLE `compagnie` (
   id INT PRIMARY KEY,
   nome VARCHAR(50) NOT NULL,
   codice VARCHAR(3) NOT NULL
