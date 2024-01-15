@@ -18,6 +18,7 @@
             </a>
         </h1>
         <a href="aggiungi_aereo.php"><h2>Aggiungi aereo</h2></a>
+        <table>
         <?php
             if($connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."'")->num_rows > 0){
                 echo("            <b><tr>
@@ -33,7 +34,6 @@
             ");
             }
         ?>
-        <table>
         <?php
             $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."'");
             while($aerei_row = $aerei->fetch_assoc()){
