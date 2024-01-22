@@ -9,7 +9,6 @@
 <html>
     <head>
         <title>Visualizza Parcheggi</title>
-        
     </head>
     <body>
         Visualizza parcheggi<br><br>
@@ -23,7 +22,7 @@
                 while($parcheggi_row = $parcheggi->fetch_assoc()){
                     echo("<form action='modificacontroller.php' method='post'>");
                     echo("<tr>");
-                    echo("<td id='" . $parcheggi_row['id'] . "'>");
+                    echo("<td>");
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("<input type='text' name='id' value='");
                     }
@@ -34,8 +33,7 @@
                     echo("<td>".$parcheggi_row['stato']."</td>");
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("<td><input type='submit'></input></td>");
-                        //echo("<td><a href='eliminacontroller.php?id=".$parcheggi_row['id']."'>Elimina</a></td>");
-                        echo("<td><button>Elimina</button></td>");
+                        echo("<td><a href='eliminacontroller.php?id=".$parcheggi_row['id']."'>Elimina</a></td>");
                         echo("</tr>");
                     }
                     echo("</form>");
@@ -50,29 +48,5 @@
             ?>
         </form>
         <a href="../Controllori/profilo.php">Torna al profilo</a>
-
-        <script>
-
-            totali = document.getElementsByTagName("tr");
-            console.log(totali.length);
-            for(i=0; i<totali.length; i++){
-                if(totali[i] != undefined && totali[i].getElementsByTagName("td")[3] != undefined && totali[i].getElementsByTagName("td")[3].getElementsByTagName("button")[0] != undefined){
-                    var idDaEliminare = totali[i].getElementsByTagName("td")[0].id;
-                    console.log(idDaEliminare);
-                    totali[i].getElementsByTagName("td")[3].getElementsByTagName("button")[0].addEventListener("click", function(e, () => { function(idDaEliminare){
-                        e.preventDefault();
-                        //e.stopImmediatePropagation();
-                        var xmlhttp = new XMLHttpRequest();
-                        xmlhttp.onreadystatechange = function() {
-                            if (this.readyState == 4 && this.status == 200) {
-                                document.getElementById(idDaEliminare).remove();
-                            }
-                        };
-                        xmlhttp.open("POST", "eliminacontroller.php?id=" + idDaEliminare, true);
-                        xmlhttp.send();
-                    }}));
-                }
-            }
-        </script>
     </body>
 </html>
