@@ -52,6 +52,20 @@
         <a href="../Controllori/profilo.php">Torna al profilo</a>
 
         <script>
+            function elimina(e){
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                idDaEliminare=this.parentNode.parentNode.getElementsByTagName("td")[0].id;
+                console.log("id" + idDaEliminare);
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById(idDaEliminare).parentNode.remove();
+                    }
+                };
+                xmlhttp.open("POST", "eliminacontroller.php?id=" + idDaEliminare, true);
+                xmlhttp.send();
+            }
 
             totali = document.getElementsByTagName("tr");
             console.log(totali.length);
@@ -59,18 +73,7 @@
                 if(totali[i] != undefined && totali[i].getElementsByTagName("td")[3] != undefined && totali[i].getElementsByTagName("td")[3].getElementsByTagName("button")[0] != undefined){
                     var idDaEliminare = totali[i].getElementsByTagName("td")[0].id;
                     console.log(idDaEliminare);
-                    totali[i].getElementsByTagName("td")[3].getElementsByTagName("button")[0].addEventListener("click", function(e, () => { function(idDaEliminare){
-                        e.preventDefault();
-                        //e.stopImmediatePropagation();
-                        var xmlhttp = new XMLHttpRequest();
-                        xmlhttp.onreadystatechange = function() {
-                            if (this.readyState == 4 && this.status == 200) {
-                                document.getElementById(idDaEliminare).remove();
-                            }
-                        };
-                        xmlhttp.open("POST", "eliminacontroller.php?id=" + idDaEliminare, true);
-                        xmlhttp.send();
-                    }}));
+                    totali[i].getElementsByTagName("td")[3].getElementsByTagName("button")[0].addEventListener("click", elimina);
                 }
             }
         </script>

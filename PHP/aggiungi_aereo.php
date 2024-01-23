@@ -16,7 +16,7 @@
         Aggiungi un aereo<br><br>
         <form action="aggiungi_aereocontroller.php" method="post" enctype="multipart/form-data">
             <input type="text" name="immatricolazione" placeholder="immatricolazione">
-            <input list="aerei" name="modello" placeholder="modello">
+            <input list="aerei" name="modello" placeholder="modello" id="modello" onchange="cercaFotoModello()">
                 <datalist id="aerei">
                     <option value="A220">
                     <option value="A300">
@@ -61,7 +61,8 @@
                     ?>
                 </datalist>
             <input type="number" name="passeggeri" placeholder="passeggeri">
-            <input type="file" name="foto_aereo" placeholder="foto_aereo">
+            <img src="" width="300px">
+            <input type="file" name="foto_aereo" placeholder="foto_aereo" id="foto_aereo">
             <input type="file" name="foto_compagnia" placeholder="foto_compagnia">
             <input type="text" name="posizione" placeholder="posizione">
             <input type="text" name="stato" placeholder="stato">
@@ -72,5 +73,11 @@
         </form>
         <br>
         <a href="index.php">Torna alla home</a>
+        <script>
+            function cercaFotoModello(){
+                var modello = document.getElementById("modello").value;
+                document.getElementsByTagName("img")[0].src='../IMG/Aerei/' + modello;
+            }
+        </script>
     </body>
 </html>

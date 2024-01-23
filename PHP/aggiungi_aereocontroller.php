@@ -21,10 +21,10 @@
             $parcheggio_id = $_POST['parcheggio_id'];
             $aeroporto_icao = $_POST['aeroporto_icao'];
             if($pista_id == ""){
-                $pista_id = "NULL";
+                $pista_id = NULL;
             }
             if($parcheggio_id == ""){
-                $parcheggio_id = "NULL";
+                $parcheggio_id = NULL;
             }
             $target_dir_aerei = "../IMG/Aerei/";
             $target_dir_compagnie = "../IMG/Compagnie/";
@@ -34,19 +34,25 @@
             $imageFileType_aereo = strtolower(pathinfo($target_file_aereo,PATHINFO_EXTENSION));
             $imageFileType_compagnia = strtolower(pathinfo($target_file_compagnia,PATHINFO_EXTENSION));  
             $target_dir_aerei = $target_dir_aerei . $immatricolazione . ".jpeg";
-            $target_dir_compagnie = $target_dir_compagnie . $compagnia . ".jpeg";      
-            $check1 = getimagesize($_FILES["foto_aereo"]["tmp_name"]);
-            $check2 = getimagesize($_FILES["foto_compagnia"]["tmp_name"]);
-            if($check1 !== false and $check2 !== false) {
-              $uploadOk = 1;
-            } else {
-              echo "File is not an image.";
-              $uploadOk = 0;
-            }
-            if ($_FILES["foto_aereo"]["size"] > 10000000 or $_FILES["foto_compagnia"]["size"] > 10000000) {
-                echo "Sorry, your file is too large.";
+            $target_dir_compagnie = $target_dir_compagnie . $compagnia . ".jpeg";    
+            if($foto_aereo != "" and $foto_compagnia != ""){
+                $check1 = getimagesize($_FILES["foto_aereo"]["tmp_name"]);
+                $check2 = getimagesize($_FILES["foto_compagnia"]["tmp_name"]);
+                if($check1 !== false and $check2 !== false) {
+                $uploadOk = 1;
+                } else {
+                echo "File is not an image.";
                 $uploadOk = 0;
+                }
+                if ($_FILES["foto_aereo"]["size"] > 10000000 or $_FILES["foto_compagnia"]["size"] > 10000000) {
+                    echo "Sorry, your file is too large.";
+                    $uploadOk = 0;
+                }
+            }else{
+                $foto_aereo = NULL;
+                $foto_compagnia = NULL;
             }
+            
               
             if ($uploadOk == 0) {
                 echo "Sorry, your file was not uploaded.";
