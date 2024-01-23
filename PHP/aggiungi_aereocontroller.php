@@ -35,7 +35,7 @@
             $imageFileType_compagnia = strtolower(pathinfo($target_file_compagnia,PATHINFO_EXTENSION));  
             $target_dir_aerei = $target_dir_aerei . $immatricolazione . ".jpeg";
             $target_dir_compagnie = $target_dir_compagnie . $compagnia . ".jpeg";    
-            if($foto_aereo != "" and $foto_compagnia != ""){
+            if($_FILES['foto_aereo'] != "" and $_FILES['foto_compagnia'] != ""){
                 $check1 = getimagesize($_FILES["foto_aereo"]["tmp_name"]);
                 $check2 = getimagesize($_FILES["foto_compagnia"]["tmp_name"]);
                 if($check1 !== false and $check2 !== false) {

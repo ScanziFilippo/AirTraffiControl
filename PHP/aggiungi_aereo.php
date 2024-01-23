@@ -52,7 +52,7 @@
                     <option value="MD90">
                     <option value="MD95">
                 </datalist>
-            <input list="compagnie" name="compagnia" placeholder="compagnia">
+            <input list="compagnie" name="compagnia" placeholder="compagnia" id="compagnia" onchange="cercaFotoCompagnia()">
                 <datalist id="compagnie">
                     <?php
                         while($compagnie_row = $compagnie->fetch_assoc()){
@@ -63,6 +63,7 @@
             <input type="number" name="passeggeri" placeholder="passeggeri">
             <img src="" width="300px">
             <input type="file" name="foto_aereo" placeholder="foto_aereo" id="foto_aereo">
+            <img src="" width="300px">
             <input type="file" name="foto_compagnia" placeholder="foto_compagnia">
             <input type="text" name="posizione" placeholder="posizione">
             <input type="text" name="stato" placeholder="stato">
@@ -77,6 +78,10 @@
             function cercaFotoModello(){
                 var modello = document.getElementById("modello").value;
                 document.getElementsByTagName("img")[0].src='../IMG/Aerei/' + modello;
+            }
+            function cercaFotoCompagnia(){
+                var compagnia = document.getElementById("compagnia").value;
+                document.getElementsByTagName("img")[1].src='../IMG/Compagnie/' + compagnia;
             }
         </script>
     </body>
