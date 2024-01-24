@@ -36,9 +36,6 @@
                     <option value="B767">
                     <option value="B777">
                     <option value="B787">
-                    <option value="C130">
-                    <option value="C17">
-                    <option value="C5">
                     <option value="CRJ200">
                     <option value="CRJ700">
                     <option value="CRJ900">

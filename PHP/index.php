@@ -30,6 +30,7 @@
                 <th>Foto compagnia</th>
                 <th>Posizione</th>
                 <th>Stato</th>
+                <th>Bandiera</th>
             </tr><b>
             ");
             }
@@ -46,6 +47,7 @@
                 echo("<td><img src='../IMG/Compagnie/".$aerei_row['compagnia']."' width='200px'></td>");
                 echo("<td>".$aerei_row['posizione']."</td>");
                 echo("<td>".$aerei_row['stato']."</td>");
+                echo("<td><img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png'></td>");
                 echo("</tr>");
             }
         ?>

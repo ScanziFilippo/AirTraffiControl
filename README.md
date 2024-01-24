@@ -228,7 +228,7 @@ INSERT INTO `compagnie` (id, nome, codice) VALUES
 (99, 'Wizz Air', 'WZZ'),
 (100, 'Level', 'IBS');
 ```
-##Come installare
+## Come installare
 Avviare un nuovo codespace
 Poi scrivere sul terminale:
 ```

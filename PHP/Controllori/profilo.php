@@ -47,6 +47,15 @@
                     echo " <a href='../Parcheggi/visualizza.php'>Visualizza</a>";
                 //}
             ?>
+        </h3>
+        <h3>Piste:
+            <?php
+                echo " " . $connessione->query("SELECT * FROM piste WHERE aeroporto_icao = '$_SESSION[aeroporto_icao]'")-> num_rows;
+                if($_SESSION['ruolo'] == "Amministratore"){
+                    echo " <a href='../Piste/visualizza.php'>Visualizza</a>";
+                }
+            ?>
+        </h3>
         <h3>Ruolo: 
             <?php 
                 echo $_SESSION['ruolo'];
