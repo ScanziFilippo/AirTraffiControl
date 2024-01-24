@@ -20,10 +20,10 @@
             $pista_id = $_POST['pista_id'];
             $parcheggio_id = $_POST['parcheggio_id'];
             $aeroporto_icao = $_POST['aeroporto_icao'];
-            if($pista_id == ""){
+            if(!is_int($pista_id)){
                 $pista_id = NULL;
             }
-            if($parcheggio_id == ""){
+            if(!is_int($parcheggio_id)){
                 $parcheggio_id = NULL;
             }
             $target_dir_aerei = "../IMG/Aerei/";
@@ -35,11 +35,12 @@
             $imageFileType_compagnia = strtolower(pathinfo($target_file_compagnia,PATHINFO_EXTENSION));  
             $target_dir_aerei = $target_dir_aerei . $immatricolazione . ".jpeg";
             $target_dir_compagnie = $target_dir_compagnie . $compagnia . ".jpeg";    
-            if($_FILES['foto_aereo'] != "" and $_FILES['foto_compagnia'] != ""){
+            if ($_FILES["foto_aereo"]["name"] != NULL and $_FILES["foto_compagnia"]["name"] != NULL) {
+            //if($_FILES['foto_aereo'] != '' and $_FILES['foto_compagnia'] != ''){
                 $check1 = getimagesize($_FILES["foto_aereo"]["tmp_name"]);
                 $check2 = getimagesize($_FILES["foto_compagnia"]["tmp_name"]);
                 if($check1 !== false and $check2 !== false) {
-                $uploadOk = 1;
+                    $uploadOk = 1;
                 } else {
                 echo "File is not an image.";
                 $uploadOk = 0;
@@ -56,12 +57,14 @@
               
             if ($uploadOk == 0) {
                 echo "Sorry, your file was not uploaded.";
+                $connessione->query("INSERT INTO aerei (immatricolazione, modello, compagnia, passeggeri, foto_aereo, foto_compagnia, posizione, stato, pista_id, parcheggio_id, aeroporto_icao) VALUES ('$immatricolazione', '$modello', '$compagnia', '$passeggeri', NULL, NULL, '$posizione', '$stato', NULL, NULL, '$aeroporto_icao')");
+                header("Location: index.php");
             }else {
                 if (move_uploaded_file($_FILES["foto_aereo"]["tmp_name"], $target_file_aereo) and move_uploaded_file($_FILES["foto_compagnia"]["tmp_name"], $target_file_compagnia)) {
                   echo "The files have been uploaded.";
                   $foto_aereo = $target_file_aereo;
                   $foto_compagnia = $target_file_compagnia;
-                  $connessione->query("INSERT INTO aerei (immatricolazione, modello, compagnia, passeggeri, foto_aereo, foto_compagnia, posizione, stato, pista_id, parcheggio_id, aeroporto_icao) VALUES ('$immatricolazione', '$modello', '$compagnia', '$passeggeri', '$foto_aereo', '$foto_compagnia', '$posizione', '$stato', '$pista_id', '$parcheggio_id', '$aeroporto_icao')");
+                  $connessione->query("INSERT INTO aerei (immatricolazione, modello, compagnia, passeggeri, foto_aereo, foto_compagnia, posizione, stato, pista_id, parcheggio_id, aeroporto_icao) VALUES ('$immatricolazione', '$modello', '$compagnia', '$passeggeri', '$foto_aereo', '$foto_compagnia', '$posizione', '$stato', NULL, NULL, '$aeroporto_icao')");
                   header("Location: index.php");      
                 } else {
                   echo "Sorry, there was an error uploading your file.";

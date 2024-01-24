@@ -20,8 +20,8 @@
     <body>
         Modifica dell'aeroporto<br><br>
         <form action="modificacontroller.php" method="post">
-            <input type="text" name="icao" placeholder="icao" value="<?php echo $_SESSION['aeroporto_icao']; ?>">
-            <input type="text" name="iata" placeholder="iata" value="<?php echo $_SESSION['aeroporto_iata']; ?>">
+            <input type="text" name="icao" placeholder="icao" style="text-transform:uppercase" value="<?php echo $_SESSION['aeroporto_icao']; ?>">
+            <input type="text" name="iata" placeholder="iata" style="text-transform:uppercase" value="<?php echo $_SESSION['aeroporto_iata']; ?>">
             <input type="text" name="nome" placeholder="nome" value="<?php echo $_SESSION['aeroporto_nome']; ?>">
             <input type="text" name="citta" placeholder="citta" value="<?php echo $_SESSION['aeroporto_citta']; ?>">
             <input type="text" name="nazione" placeholder="nazione" value="<?php echo $_SESSION['aeroporto_nazione']; ?>">

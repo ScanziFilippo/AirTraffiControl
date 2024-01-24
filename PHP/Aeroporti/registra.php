@@ -12,8 +12,8 @@
     <body>
         Registrazione dell'aeroporto<br><br>
         <form action="registracontroller.php" method="post">
-            <input type="text" name="icao" placeholder="icao" readonly value="<?php echo $_SESSION['aeroporto_icao']; ?>">
-            <input type="text" name="iata" placeholder="iata">
+            <input type="text" name="icao" placeholder="icao" style="text-transform:uppercase" readonly value="<?php echo $_SESSION['aeroporto_icao']; ?>">
+            <input type="text" name="iata" placeholder="iata" style="text-transform:uppercase" >
             <input type="text" name="nome" placeholder="nome">
             <input type="text" name="citta" placeholder="citta">
             <input type="text" name="nazione" placeholder="nazione">

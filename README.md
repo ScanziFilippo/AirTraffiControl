@@ -26,7 +26,6 @@ Alle torri di controllo di qualsiasi tipo di aereporto
     * Modello aereo
     * Compagnia
     * Passeggeri
-    * Percentuale di carburante
     * Foto aereo
     * Foto bandiera (automatico in base all'immatricolazione)
     * Posizione

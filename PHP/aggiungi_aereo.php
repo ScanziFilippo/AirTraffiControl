@@ -69,7 +69,15 @@
             <input type="text" name="stato" placeholder="stato">
             <input type="number" name="pista_id" placeholder="pista_id">
             <input type="number" name="parcheggio_id" placeholder="parcheggio_id">
-            <input type="text" name="aeroporto_icao" placeholder="aeroporto_icao">
+            <input list="aeroporti" type="text" name="aeroporto_icao" placeholder="aeroporto_icao" style="text-transform:uppercase">
+                <datalist id="aeroporti">
+                    <?php
+                        $aeroporti = $connessione->query("SELECT icao FROM aeroporti ORDER BY icao");
+                        while($aeroporti_row = $aeroporti->fetch_assoc()){
+                            echo("<option value='".$aeroporti_row['icao']."'>");
+                        }
+                    ?>
+                </datalist>
             <input type="submit">
         </form>
         <br>
