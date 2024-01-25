@@ -16,6 +16,10 @@
         if(isset($_GET['err'])){?>
         <p> <?php echo $_GET['err']; ?> </p>
         <?php 
-        } 
+        }
+        session_start();
+        if(isset($_SESSION['nome_utente'])){
+            header("Location: profilo.php");
+        }
     ?>
 </html>
