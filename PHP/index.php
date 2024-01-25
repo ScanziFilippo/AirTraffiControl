@@ -31,7 +31,7 @@
                 <th>Posizione</th>
                 <th>Stato</th>
                 <th>Bandiera</th>
-            </tr><b>
+            </tr><b>    
             ");
             }
         ?>
@@ -48,6 +48,7 @@
                 echo("<td>".$aerei_row['posizione']."</td>");
                 echo("<td>".$aerei_row['stato']."</td>");
                 echo("<td><img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png'></td>");
+                //echo("<td><a href='modifica_aereo.php?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a></td>");
                 echo("</tr>");
             }
         ?>
