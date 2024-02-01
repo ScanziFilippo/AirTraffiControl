@@ -25,7 +25,6 @@
                 <th>Immatricolazione</th>
                 <th>Modello</th>
                 <th>Compagnia</th>
-                <th>Passeggeri</th>
                 <th>Foto aereo</th>
                 <th>Foto compagnia</th>
                 <th>Posizione</th>
@@ -42,7 +41,6 @@
                 echo("<td>".$aerei_row['immatricolazione']."</td>");
                 echo("<td>".$aerei_row['modello']."</td>");
                 echo("<td>".$aerei_row['compagnia']."</td>");
-                echo("<td>".$aerei_row['passeggeri']."</td>");
                 echo("<td><img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'></td>");
                 echo("<td><img src='../IMG/Compagnie/".$aerei_row['compagnia']."' width='200px'></td>");
                 echo("<td>".$aerei_row['posizione']."</td>");

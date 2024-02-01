@@ -2,7 +2,6 @@ CREATE TABLE `aerei` (
     immatricolazione varchar(255) NOT NULL PRIMARY KEY,
     modello varchar(255),
     compagnia varchar(255),
-    passeggeri int(11),
     foto_aereo varchar(255),
     foto_compagnia varchar(255),
     posizione varchar(255),
