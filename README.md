@@ -25,7 +25,6 @@ Alle torri di controllo di qualsiasi tipo di aereporto
     * <a href="https://it.wikipedia.org/wiki/Marche_d%27immatricolazione">Immatricolazione aereo</a>
     * Modello aereo
     * Compagnia
-    * Passeggeri
     * Foto aereo
     * Foto bandiera (automatico in base all'immatricolazione)
     * Posizione
@@ -67,7 +66,7 @@ Alle torri di controllo di qualsiasi tipo di aereporto
 ## Relazioni
 AEROPORTO (<ins>ICAO</ins>, IATA, NOME, CITTA, NAZIONE) <br>
 CONTROLLORE (<ins>ID</ins>, <ins>NOME_UTENTE</ins>, CODICE, RUOLO, AEROPORTO_ICAO) <br>
-AEREO (<ins>IMMATRICOLAZIONE</ins>, MODELLO, COMPAGNIA, PASSEGGERI, FOTO_AEREO, BANDIERA, FOTO_COMPAGNIA, POSIZIONE, STATO, PISTA_ID, PARCHEGGIO_ID, AEROPORTO_ICAO) <br>
+AEREO (<ins>IMMATRICOLAZIONE</ins>, MODELLO, COMPAGNIA, FOTO_AEREO, BANDIERA, FOTO_COMPAGNIA, POSIZIONE, STATO, PISTA_ID, PARCHEGGIO_ID, AEROPORTO_ICAO) <br>
 PISTA (<ins>ID</ins>, STATO, AEROPORTO_ICAO) <br>
 PARCHEGGIO (<ins>ID</ins>, STATO, <ins>AEROPORTO_ICAO</ins>) <br>
 VOLO (<ins>ID</ins>, PARTENZA, DESTINAZIONE, DATA_PARTENZA, DATA_ARRIVO, AEREO_ID) <br>
