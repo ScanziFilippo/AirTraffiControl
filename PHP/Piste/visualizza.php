@@ -50,7 +50,6 @@
             ?>
         </form>
         <a href="../Controllori/profilo.php">Torna al profilo</a>
-
         <script>
             function elimina(e){
                 e.preventDefault();

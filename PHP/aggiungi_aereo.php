@@ -6,6 +6,8 @@
     $nome_utente = $_SESSION['nome_utente'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
     $compagnie = $connessione->query("SELECT nome FROM compagnie ORDER BY nome");
+    $parcheggi = $connessione->query("SELECT id FROM parcheggi ORDER BY id");
+    $piste = $connessione->query("SELECT id FROM piste ORDER BY id");
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,15 +59,39 @@
                         }
                     ?>
                 </datalist>
-            <input type="number" name="passeggeri" placeholder="passeggeri">
             <img src="" width="300px">
             <input type="file" name="foto_aereo" placeholder="foto_aereo" id="foto_aereo">
             <img src="" width="300px">
             <input type="file" name="foto_compagnia" placeholder="foto_compagnia">
             <input type="text" name="posizione" placeholder="posizione">
-            <input type="text" name="stato" placeholder="stato">
-            <input type="number" name="pista_id" placeholder="pista_id">
-            <input type="number" name="parcheggio_id" placeholder="parcheggio_id">
+            <!--<input type="text" name="stato" placeholder="stato">-->
+            <select name="stato">
+                <option value="Fermo">Fermo</option>
+                <option value="In volo">In volo</option>
+                <option value="Atterrando">Atterrando</option>
+                <option value="Decollando">Decollando</option>
+                <option value="In attesa">In attesa</option>
+            </select>
+            <!--<input type="number" name="pista_id" placeholder="pista_id">
+            <input type="number" name="parcheggio_id" placeholder="parcheggio_id">-->
+            Pista
+            <select name="pista_id">
+                <option value="-">-</option>
+                <?php
+                    while($piste_row = $piste->fetch_assoc()){
+                        echo("<option value='".$piste_row['id']."'>".$piste_row['id']."</option>");
+                    }
+                ?>
+            </select>
+            Parcheggio
+            <select name="parcheggio_id">
+                <option value="-">-</option>
+                <?php
+                    while($parcheggi_row = $parcheggi->fetch_assoc()){
+                        echo("<option value='".$parcheggi_row['id']."'>".$parcheggi_row['id']."</option>");
+                    }
+                ?>
+            </select>
             <input list="aeroporti" type="text" name="aeroporto_icao" placeholder="aeroporto_icao" style="text-transform:uppercase">
                 <datalist id="aeroporti">
                     <?php

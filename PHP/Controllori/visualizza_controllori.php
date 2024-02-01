@@ -32,12 +32,16 @@
                 $controllori = $connessione->query("SELECT * FROM controllori WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."'");
                 while($controllori_row = $controllori->fetch_assoc()){
                     echo("<tr>");
-                    echo("<td>".$controllori_row['nome_utente']."</td>");
+                    echo("<td id=".$controllori_row['nome_utente'].">".$controllori_row['nome_utente']."</td>");
                     echo("<td>".$controllori_row['nome']."</td>");
                     echo("<td>".$controllori_row['cognome']."</td>");
                     echo("<td>".$controllori_row['aeroporto_icao']."</td>");
                     /*echo("<td><a href='modifica_controllori.php?nome_utente=".$controllori_row['nome_utente']."'>Modifica</a></td>");
                     echo("<td><a href='cancella_controllori.php?nome_utente=".$controllori_row['nome_utente']."'>Cancella</a></td>");*/
+                    if($_SESSION['ruolo'] == "Amministratore" && $controllori_row['nome_utente'] != $_SESSION['nome_utente']){
+                        echo("<td><button>Elimina</button></td>");
+                        echo("</tr>");
+                    }
                     echo("</tr>");
                 }
             ?>
@@ -45,7 +49,6 @@
         <a href="profilo.php">Torna al profilo</a>
         <script>
             document.addEventListener("DOMContentLoaded", function(event) {
-                console.log("DOM fully loaded and parsed");
                 var ricerca = document.getElementById("valore");
                 ricerca.addEventListener("keyup", sulClick);
             });
@@ -74,6 +77,31 @@
                 };
                 return false;
             }
+            
+            function elimina(e){
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                idDaEliminare=this.parentNode.parentNode.getElementsByTagName("td")[0].id;
+                console.log("id" + idDaEliminare);
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById(idDaEliminare).parentNode.remove();
+                    }
+                };
+                xmlhttp.open("POST", "eliminacontroller.php?id=" + idDaEliminare, true);
+                xmlhttp.send();
+            }
+            totali = document.getElementsByTagName("tr");
+            console.log(totali.length);
+            for(i=0; i<totali.length; i++){
+                if(totali[i] != undefined && totali[i].getElementsByTagName("td")[4] != undefined && totali[i].getElementsByTagName("td")[4].getElementsByTagName("button")[0] != undefined){
+                    var idDaEliminare = totali[i].getElementsByTagName("td")[0].id;
+                    console.log(idDaEliminare);
+                    totali[i].getElementsByTagName("td")[4].getElementsByTagName("button")[0].addEventListener("click", elimina);
+                }
+            }
+
         </script>
     </body>
 </html>
