@@ -1,9 +1,9 @@
 <?php
     session_start();
-    if($_SESSION['ruolo'] == "amministratore"){
-        if(!isset($_SESSION['nome_utente'])){
-            header("Location: login.php");
-        }
+    if(!isset($_SESSION['nome_utente'])){
+        header("Location: login.php");
+    }
+    if($_SESSION['ruolo'] == "Amministratore"){
         $nome_utente = $_SESSION['nome_utente'];
         $connessione = new mysqli('localhost', 'root', '', 'progetto');
         if($connessione->connect_errno){
@@ -37,5 +37,7 @@
             $target_dir_compagnie = $target_dir_compagnie . $compagnia . ".jpeg";    
             $connessione->query("UPDATE aerei SET modello = '".$modello."', compagnia = '".$compagnia."', posizione = '".$posizione."', stato = '".$stato."', pista_id = '".$pista_id."', parcheggio_id = '".$parcheggio_id."', aeroporto_icao = '".$aeroporto_icao."' WHERE immatricolazione = '".$immatricolazione."'");
         }
+    }else{
+        header("Location: index.php");
     }
 ?>

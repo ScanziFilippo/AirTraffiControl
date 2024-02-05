@@ -83,6 +83,64 @@
                 </div>");
             }
             echo("</div>");
+            $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."' AND stato = 'in attesa'");
+            echo("<div><h3 style=padding:10px;
+            >In attesa</h3>");
+            while($aerei_row = $aerei->fetch_assoc()){
+                echo("<div style=display:inline-block;padding:10px;> 
+                    <div style=display:inline-block;>
+                        <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
+                    </div>
+                    <div style=display:inline-block;>
+                    <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
+                        <p>Modello: ".$aerei_row['modello']."</p>
+                        <p>Compagnia: ".$aerei_row['compagnia']."</p>
+                        <p>Posizione: Pista ".$aerei_row['pista_id']."</p>
+                        <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
+                        <a href='modifica_aereo.php?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a>
+                    </div>
+                </div>");
+            }
+            echo("</div>");
+            $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."' AND stato = 'decollando'");
+            echo("<div><h3 style=padding:10px;
+            >Decollando</h3>");
+            while($aerei_row = $aerei->fetch_assoc()){
+                echo("<div style=display:inline-block;padding:10px;> 
+                    <div style=display:inline-block;>
+                        <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
+                    </div>
+                    <div style=display:inline-block;>
+                    <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
+                        <p>Modello: ".$aerei_row['modello']."</p>
+                        <p>Compagnia: ".$aerei_row['compagnia']."</p>
+                        <p>Posizione: Pista ".$aerei_row['pista_id']."</p>
+                        <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
+                        <a href='modifica_aereo.php?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a>
+                    </div>
+                </div>");
+            }
+            echo("</div>");
+            $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."' AND stato = 'atterrando'");
+            echo("<div><h3 style=padding:10px;
+            >Atterrando</h3>");
+            while($aerei_row = $aerei->fetch_assoc()){
+                echo("<div style=display:inline-block;padding:10px;> 
+                    <div style=display:inline-block;>
+                        <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
+                    </div>
+                    <div style=display:inline-block;>
+                    <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
+                        <p>Modello: ".$aerei_row['modello']."</p>
+                        <p>Compagnia: ".$aerei_row['compagnia']."</p>
+                        <p>Posizione: Pista ".$aerei_row['pista_id']."</p>
+                        <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
+                        <a href='modifica_aereo.php?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a>
+                    </div>
+                </div>");
+            }
+            echo("</div>");
+            
             ?>
         <!--</table>-->
     </body>
