@@ -1,9 +1,9 @@
 <?php
     $immatricolazione = $_GET['immatricolazione'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
+    $icao = $connessione->query("SELECT aeroporto_icao FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['aeroporto_icao'];
     $modello = $connessione->query("SELECT modello FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['modello'];
     $compagnia = $connessione->query("SELECT compagnia FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['compagnia'];
-    $passeggeri = $connessione->query("SELECT passeggeri FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['passeggeri'];
     $posizione = $connessione->query("SELECT posizione FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['posizione'];
     $stato = $connessione->query("SELECT stato FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['stato'];
 ?>
@@ -52,20 +52,42 @@
             <input list="compagnie" name="compagnia" placeholder="compagnia" id="compagnia" value="<?php echo($compagnia); ?>" onchange="cercaFotoCompagnia()">
                 <datalist id="compagnie">
                     <?php
+                        $compagnie = $connessione->query("SELECT nome FROM compagnie ORDER BY nome");
                         while($compagnie_row = $compagnie->fetch_assoc()){
                             echo("<option value='".$compagnie_row['nome']."'>");
                         }
                     ?>
                 </datalist>
-            <input type="number" name="passeggeri" value="<?php echo($passeggeri); ?>" placeholder="passeggeri">
             <!--<img src="" width="300px">
             <input type="file" name="foto_aereo" placeholder="foto_aereo" id="foto_aereo">
             <img src="" width="300px">
             <input type="file" name="foto_compagnia" placeholder="foto_compagnia">-->
             <input type="text" name="posizione" placeholder="posizione" value="<?php echo($posizione); ?>">
-            <input type="text" name="stato" placeholder="stato" value="<?php echo($stato); ?>">
-            <!--<input type="number" name="pista_id" placeholder="pista_id">
-            <input type="number" name="parcheggio_id" placeholder="parcheggio_id">-->
+            <select name="stato" value="<?php echo($stato); ?>">
+                <option value="Fermo">Fermo</option>
+                <option value="In volo">In volo</option>
+                <option value="Atterrando">Atterrando</option>
+                <option value="Decollando">Decollando</option>
+                <option value="In attesa">In attesa</option>
+            </select>
+            <select name="pista_id" value="<?php echo($pista_id); ?>">
+                <option value="-">-</option>
+                <?php
+                    $piste = $connessione->query("SELECT id FROM piste ORDER BY id");
+                    while($piste_row = $piste->fetch_assoc()){
+                        echo("<option value='".$piste_row['id']."'>".$piste_row['id']."</option>");
+                    }
+                ?>
+            </select>
+            <select name="parcheggio_id" value="<?php echo($parcheggio_id); ?>">
+                <option value="-">-</option>
+                <?php
+                    $parcheggi = $connessione->query("SELECT id FROM parcheggi ORDER BY id");
+                    while($parcheggi_row = $parcheggi->fetch_assoc()){
+                        echo("<option value='".$parcheggi_row['id']."'>".$parcheggi_row['id']."</option>");
+                    }
+                ?>
+            </select>
             <input list="aeroporti" type="text" name="aeroporto_icao" placeholder="aeroporto_icao" value="<?php echo($icao); ?>" style="text-transform:uppercase">
                 <datalist id="aeroporti">
                     <?php

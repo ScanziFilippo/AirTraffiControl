@@ -17,7 +17,7 @@
     <body>
         Aggiungi un aereo<br><br>
         <form action="aggiungi_aereocontroller.php" method="post" enctype="multipart/form-data">
-            <input type="text" name="immatricolazione" placeholder="immatricolazione">
+            <input type="text" name="immatricolazione" placeholder="immatricolazione" style="text-transform:uppercase">
             <input list="aerei" name="modello" placeholder="modello" id="modello" onchange="cercaFotoModello()">
                 <datalist id="aerei">
                     <option value="A220">
