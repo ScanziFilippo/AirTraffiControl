@@ -35,8 +35,10 @@
         ?>
         <?php
             $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."' AND stato = 'in volo'");
+            if($aerei->num_rows > 0){
             echo("<div><h3 style=padding:10px;
             >In aria</h3>");
+            }
             while($aerei_row = $aerei->fetch_assoc()){
                 /*echo("<tr>");
                 echo("<td>".$aerei_row['immatricolazione']."</td>");
@@ -63,10 +65,14 @@
                     </div>
                 </div>");
             }
-            echo("</div>");
+            if($aerei->num_rows > 0){
+                echo("</div>");
+            }
             $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."' AND stato = 'fermo'");
+            if($aerei->num_rows > 0){
             echo("<div><h3 style=padding:10px;
             >Fermo</h3>");
+            }
             while($aerei_row = $aerei->fetch_assoc()){
                 echo("<div style=display:inline-block;padding:10px;> 
                     <div style=display:inline-block;>
@@ -82,10 +88,14 @@
                     </div>
                 </div>");
             }
-            echo("</div>");
+            if($aerei->num_rows > 0){
+                echo("</div>");
+            }
             $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."' AND stato = 'in attesa'");
+            if($aerei->num_rows > 0){
             echo("<div><h3 style=padding:10px;
             >In attesa</h3>");
+            }
             while($aerei_row = $aerei->fetch_assoc()){
                 echo("<div style=display:inline-block;padding:10px;> 
                     <div style=display:inline-block;>
@@ -101,10 +111,14 @@
                     </div>
                 </div>");
             }
-            echo("</div>");
+            if($aerei->num_rows > 0){
+                echo("</div>");
+            }
             $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."' AND stato = 'decollando'");
+            if($aerei->num_rows > 0){
             echo("<div><h3 style=padding:10px;
             >Decollando</h3>");
+            }
             while($aerei_row = $aerei->fetch_assoc()){
                 echo("<div style=display:inline-block;padding:10px;> 
                     <div style=display:inline-block;>
@@ -120,10 +134,14 @@
                     </div>
                 </div>");
             }
-            echo("</div>");
+            if($aerei->num_rows > 0){
+                echo("</div>");
+            }
             $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."' AND stato = 'atterrando'");
+            if($aerei->num_rows > 0){
             echo("<div><h3 style=padding:10px;
             >Atterrando</h3>");
+            }
             while($aerei_row = $aerei->fetch_assoc()){
                 echo("<div style=display:inline-block;padding:10px;> 
                     <div style=display:inline-block;>
@@ -139,8 +157,10 @@
                     </div>
                 </div>");
             }
-            echo("</div>");
-            
+            if($aerei->num_rows > 0){
+                echo("</div>");
+            }
+
             ?>
         <!--</table>-->
     </body>
