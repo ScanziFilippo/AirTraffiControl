@@ -36,7 +36,7 @@
         <?php
             $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."' AND stato = 'in volo'");
             if($aerei->num_rows > 0){
-            echo("<div><h3 style=padding:10px;
+            echo("<div style=padding:10px><h3 style=padding:10px;
             >In aria</h3>");
             }
             while($aerei_row = $aerei->fetch_assoc()){
@@ -55,7 +55,7 @@
                     <div style=display:inline-block;>
                         <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'>
                     </div>
-                    <div style=display:inline-block;>
+                    <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
                         <p>Modello: ".$aerei_row['modello']."</p>
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>
@@ -70,7 +70,7 @@
             }
             $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."' AND stato = 'fermo'");
             if($aerei->num_rows > 0){
-            echo("<div><h3 style=padding:10px;
+            echo("<div style=padding:10px><h3 style=padding:10px;
             >Fermo</h3>");
             }
             while($aerei_row = $aerei->fetch_assoc()){
@@ -78,7 +78,7 @@
                     <div style=display:inline-block;>
                         <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
                     </div>
-                    <div style=display:inline-block;>
+                    <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
                         <p>Modello: ".$aerei_row['modello']."</p>
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>
@@ -93,7 +93,7 @@
             }
             $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."' AND stato = 'in attesa'");
             if($aerei->num_rows > 0){
-            echo("<div><h3 style=padding:10px;
+            echo("<div style=padding:10px><h3 style=padding:10px;
             >In attesa</h3>");
             }
             while($aerei_row = $aerei->fetch_assoc()){
@@ -101,7 +101,7 @@
                     <div style=display:inline-block;>
                         <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
                     </div>
-                    <div style=display:inline-block;>
+                    <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
                         <p>Modello: ".$aerei_row['modello']."</p>
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>
@@ -116,7 +116,7 @@
             }
             $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."' AND stato = 'decollando'");
             if($aerei->num_rows > 0){
-            echo("<div><h3 style=padding:10px;
+            echo("<div style=padding:10px><h3 style=padding:10px;
             >Decollando</h3>");
             }
             while($aerei_row = $aerei->fetch_assoc()){
@@ -124,7 +124,7 @@
                     <div style=display:inline-block;>
                         <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
                     </div>
-                    <div style=display:inline-block;>
+                    <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
                         <p>Modello: ".$aerei_row['modello']."</p>
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>
@@ -139,7 +139,7 @@
             }
             $aerei = $connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."' AND stato = 'atterrando'");
             if($aerei->num_rows > 0){
-            echo("<div><h3 style=padding:10px;
+            echo("<div style=padding:10px><h3 style=padding:10px;
             >Atterrando</h3>");
             }
             while($aerei_row = $aerei->fetch_assoc()){
@@ -147,7 +147,7 @@
                     <div style=display:inline-block;>
                         <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
                     </div>
-                    <div style=display:inline-block;>
+                    <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
                         <p>Modello: ".$aerei_row['modello']."</p>
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>
