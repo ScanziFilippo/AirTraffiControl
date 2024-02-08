@@ -10,14 +10,16 @@
         <title>Home</title>
     </head>
     <body>
-        <h1>Benvenuto
-            <a href="Controllori/profilo.php">
-                <?php 
-                    echo $_SESSION['nome_utente'];
-                ?>
-            </a>
-        </h1>
-        <a href="aggiungi_aereo.php"><h2>Aggiungi aereo</h2></a>
+        <div style='padding-left: 20px; padding-top:10px;'>
+            <h1>Benvenuto
+                <a href="Controllori/profilo.php">
+                    <?php 
+                        echo $_SESSION['nome_utente'];
+                    ?>
+                </a>
+            </h1>
+            <a href="aggiungi_aereo.php"><h2>Aggiungi aereo</h2></a>
+        </div>
         <!--<table>-->
         <?php
             if($connessione->query("SELECT * FROM aerei WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."'")->num_rows > 0){
