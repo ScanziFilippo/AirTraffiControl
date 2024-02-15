@@ -53,7 +53,7 @@
                 echo("<td><img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png'></td>");
                 //echo("<td><a href='modifica_aereo.php?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a></td>");
                 echo("</tr>");*/
-                echo("<div style=display:inline-block;padding:10px;> 
+                echo("<div style=display:inline-block;padding:10px; class='aereo'> 
                     <div style=display:inline-block;>
                         <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'>
                     </div>
@@ -76,7 +76,7 @@
             >Fermo</h3>");
             }
             while($aerei_row = $aerei->fetch_assoc()){
-                echo("<div style=display:inline-block;padding:10px;> 
+                echo("<div style=display:inline-block;padding:10px; class='aereo'> 
                     <div style=display:inline-block;>
                         <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
                     </div>
@@ -99,7 +99,7 @@
             >In attesa</h3>");
             }
             while($aerei_row = $aerei->fetch_assoc()){
-                echo("<div style=display:inline-block;padding:10px;> 
+                echo("<div style=display:inline-block;padding:10px; class='aereo'> 
                     <div style=display:inline-block;>
                         <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
                     </div>
@@ -122,7 +122,7 @@
             >Decollando</h3>");
             }
             while($aerei_row = $aerei->fetch_assoc()){
-                echo("<div style=display:inline-block;padding:10px;> 
+                echo("<div style=display:inline-block;padding:10px; class='aereo'> 
                     <div style=display:inline-block;>
                         <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
                     </div>
@@ -145,7 +145,7 @@
             >Atterrando</h3>");
             }
             while($aerei_row = $aerei->fetch_assoc()){
-                echo("<div style=display:inline-block;padding:10px;> 
+                echo("<div style=display:inline-block;padding:10px; class='aereo'> 
                     <div style=display:inline-block;>
                         <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
                     </div>
@@ -165,5 +165,10 @@
 
             ?>
         <!--</table>-->
+        <script>
+            for(var i = 0; i < document.getElementsByClassName("aereo").length; i++){
+                document.getElementsByClassName("aereo")[i].getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";
+            }
+        </script>
     </body>
 </html>
