@@ -20,21 +20,22 @@
             </tr>
             <?php
                 $piste = $connessione->query("SELECT * FROM piste WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."'");
-                while($parcheggi_row = $piste->fetch_assoc()){
+                while($piste_row = $piste->fetch_assoc()){
                     echo("<form action='modificacontroller.php' method='post'>");
                     echo("<tr>");
-                    echo("<td id='" . $parcheggi_row['id'] . "'>");
+                    echo("<td id='" . $piste_row['id'] . "'>");
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("<input type='text' name='id' value='");
                     }
-                    echo($parcheggi_row['id']);
+                    echo($piste_row['id']);
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("'></input></td>");
                     }
-                    echo("<td>".$parcheggi_row['stato']."</td>");
+                    echo("<input type='hidden' name='idVecchio' value='".$piste_row['id']."'></input>");
+                    echo("<td>".$piste_row['stato']."</td>");
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("<td><input type='submit'></input></td>");
-                        //echo("<td><a href='eliminacontroller.php?id=".$parcheggi_row['id']."'>Elimina</a></td>");
+                        //echo("<td><a href='eliminacontroller.php?id=".$piste_row['id']."'>Elimina</a></td>");
                         echo("<td><button>Elimina</button></td>");
                         echo("</tr>");
                     }

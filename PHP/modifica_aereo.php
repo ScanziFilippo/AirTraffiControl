@@ -65,12 +65,34 @@
             <img src="" width="300px">
             <input type="file" name="foto_compagnia" placeholder="foto_compagnia">-->
             <input type="text" name="posizione" placeholder="posizione" value="<?php echo($posizione); ?>">
-            <select name="stato" value="<?php echo($stato); ?>">
-                <option value="Fermo">Fermo</option>
-                <option value="In volo">In volo</option>
-                <option value="Atterrando">Atterrando</option>
-                <option value="Decollando">Decollando</option>
-                <option value="In attesa">In attesa</option>
+            <select name="stato">
+                <?php
+                    echo("<option value='Fermo'");
+                    if($stato == "Fermo"){
+                        echo(" selected");
+                    }
+                    echo(">Fermo</option>");
+                    echo("<option value='In volo'");
+                    if($stato == "In volo"){
+                        echo(" selected");
+                    }
+                    echo(">In volo</option>");
+                    echo("<option value='Atterrando'");
+                    if($stato == "Atterrando"){
+                        echo(" selected");
+                    }
+                    echo(">Atterrando</option>");
+                    echo("<option value='Decollando'");
+                    if($stato == "Decollando"){
+                        echo(" selected");
+                    }
+                    echo(">Decollando</option>");
+                    echo("<option value='In attesa'");
+                    if($stato == "In attesa"){
+                        echo(" selected");
+                    }
+                    echo(">In attesa</option>");
+                ?>
             </select>
             <select name="pista_id">
                 <option value="-">-</option>

@@ -31,6 +31,7 @@
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("'></input></td>");
                     }
+                    echo("<input type='hidden' name='idVecchio' value='".$parcheggi_row['id']."'></input>");
                     echo("<td>".$parcheggi_row['stato']."</td>");
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("<td><input type='submit'></input></td>");
