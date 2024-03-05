@@ -6,6 +6,8 @@
     $compagnia = $connessione->query("SELECT compagnia FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['compagnia'];
     $posizione = $connessione->query("SELECT posizione FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['posizione'];
     $stato = $connessione->query("SELECT stato FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['stato'];
+    $pista_id = $connessione->query("SELECT pista_id FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['pista_id'];
+    $parcheggio_id = $connessione->query("SELECT parcheggio_id FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['parcheggio_id'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,21 +72,29 @@
                 <option value="Decollando">Decollando</option>
                 <option value="In attesa">In attesa</option>
             </select>
-            <select name="pista_id" value="<?php echo($pista_id); ?>">
+            <select name="pista_id">
                 <option value="-">-</option>
                 <?php
                     $piste = $connessione->query("SELECT id FROM piste ORDER BY id");
                     while($piste_row = $piste->fetch_assoc()){
-                        echo("<option value='".$piste_row['id']."'>".$piste_row['id']."</option>");
+                        echo("<option value='".$piste_row['id']."'");
+                        if($piste_row['id'] == $pista_id){
+                            echo(" selected");
+                        }
+                        echo(">".$piste_row['id']."</option>");
                     }
                 ?>
             </select>
-            <select name="parcheggio_id" value="<?php echo($parcheggio_id); ?>">
+            <select name="parcheggio_id">
                 <option value="-">-</option>
                 <?php
                     $parcheggi = $connessione->query("SELECT id FROM parcheggi ORDER BY id");
                     while($parcheggi_row = $parcheggi->fetch_assoc()){
-                        echo("<option value='".$parcheggi_row['id']."'>".$parcheggi_row['id']."</option>");
+                        echo("<option value='".$parcheggi_row['id']."'");
+                        if($parcheggi_row['id'] == $parcheggio_id){
+                            echo(" selected");
+                        }
+                        echo(">".$parcheggi_row['id']."</option>");
                     }
                 ?>
             </select>

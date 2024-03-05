@@ -34,8 +34,15 @@
             $imageFileType_aereo = strtolower(pathinfo($target_file_aereo,PATHINFO_EXTENSION));
             $imageFileType_compagnia = strtolower(pathinfo($target_file_compagnia,PATHINFO_EXTENSION));  
             $target_dir_aerei = $target_dir_aerei . $immatricolazione . ".jpeg";
-            $target_dir_compagnie = $target_dir_compagnie . $compagnia . ".jpeg";    
-            $connessione->query("UPDATE aerei SET modello = '".$modello."', compagnia = '".$compagnia."', posizione = '".$posizione."', stato = '".$stato."', pista_id = '".$pista_id."', parcheggio_id = '".$parcheggio_id."', aeroporto_icao = '".$aeroporto_icao."' WHERE immatricolazione = '".$immatricolazione."'");
+            $target_dir_compagnie = $target_dir_compagnie . $compagnia . ".jpeg";  
+            $connessione->query("UPDATE aerei SET modello = '".$modello."', compagnia = '".$compagnia."', posizione = '".$posizione."', stato = '".$stato."', aeroporto_icao = '".$aeroporto_icao."' WHERE immatricolazione = '".$immatricolazione."'");
+            if($pista_id != NULL){
+                $connessione->query("UPDATE aerei SET pista_id = '".$pista_id."' WHERE immatricolazione = '".$immatricolazione."'");
+            }
+            if($parcheggio_id != NULL){
+                $connessione->query("UPDATE aerei SET parcheggio_id = '".$parcheggio_id."' WHERE immatricolazione = '".$immatricolazione."'");
+            }
+            header("Location: index.php");
         }
     }else{
         header("Location: index.php");
