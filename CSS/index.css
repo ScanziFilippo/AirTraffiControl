@@ -6,3 +6,11 @@ a {
     text-decoration: none;
     color: blue;
 }
+input {
+    padding: 5px;
+    margin: 5px;
+}
+select {
+    padding: 5px;
+    margin: 5px;
+}
