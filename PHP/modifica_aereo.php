@@ -13,6 +13,7 @@
 <html>
     <head>
         <title>modifica aereo</title>
+        <link rel="stylesheet" href="../CSS/index.css">
     </head>
     <body>
         modifica un aereo<br><br>

@@ -8,6 +8,7 @@
 <html>
     <head>
         <title>Home</title>
+        <link rel="stylesheet" href="../CSS/index.css">
     </head>
     <body>
         <div style='padding-left: 20px; padding-top:10px;'>

@@ -9,6 +9,7 @@
 <html>
     <head>
         <title>Modifica profilo</title>
+        <link rel="stylesheet" href="../../CSS/index.css">
     </head>
     <body>
         Modifica del profilo<br><br>

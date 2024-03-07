@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Registrazione</title>
+        <link rel="stylesheet" href="../../CSS/index.css">
     </head>
     <body>
         Registrazione del profilo<br><br>

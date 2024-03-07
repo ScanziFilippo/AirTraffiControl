@@ -13,6 +13,7 @@
 <html>
     <head>
         <title>Aggiungi aereo</title>
+        <link rel="stylesheet" href="../CSS/index.css">
     </head>
     <body>
         Aggiungi un aereo<br><br>

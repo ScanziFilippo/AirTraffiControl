@@ -9,7 +9,7 @@
 <html>
     <head>
         <title>Visualizza Piste</title>
-        
+        <link rel="stylesheet" href="../../CSS/index.css">
     </head>
     <body>
         Visualizza Piste<br><br>

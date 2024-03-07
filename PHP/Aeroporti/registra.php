@@ -8,6 +8,7 @@
 <html>
     <head>
         <title>Registra aeroporto</title>
+        <link rel="stylesheet" href="../../CSS/index.css">
     </head>
     <body>
         Registrazione dell'aeroporto<br><br>

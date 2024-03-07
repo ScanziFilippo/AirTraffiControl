@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Accesso</title>
+        <link rel="stylesheet" href="../../CSS/index.css">
     </head>
     <body>
         Accesso al profilo<br><br>

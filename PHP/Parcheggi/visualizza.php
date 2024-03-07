@@ -9,7 +9,7 @@
 <html>
     <head>
         <title>Visualizza Parcheggi</title>
-        
+        <link rel="stylesheet" href="../../CSS/index.css">
     </head>
     <body>
         Visualizza parcheggi<br><br>

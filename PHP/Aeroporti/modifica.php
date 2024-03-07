@@ -16,6 +16,7 @@
 <html>
     <head>
         <title>Modifica aeroporto</title>
+        <link rel="stylesheet" href="../../CSS/index.css">
     </head>
     <body>
         Modifica dell'aeroporto<br><br>

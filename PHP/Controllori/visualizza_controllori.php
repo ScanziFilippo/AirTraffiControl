@@ -14,6 +14,7 @@
 <html>
     <head>
         <title>Visualizza controllori</title>
+        <link rel="stylesheet" href="../../CSS/index.css">
     </head>
     <body>
         <h3>Visualizza controllori</h3>

@@ -13,6 +13,7 @@
 <html>
     <head>
         <title>Document</title>
+        <link rel="stylesheet" href="../../CSS/index.css">
     </head>
     <body>
         <h1>Profilo</h1>
