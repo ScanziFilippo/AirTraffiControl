@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    
     $immatricolazione = $_GET['immatricolazione'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
     $icao = $connessione->query("SELECT aeroporto_icao FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['aeroporto_icao'];
@@ -98,7 +100,7 @@
             <select name="pista_id">
                 <option value="-">-</option>
                 <?php
-                    $piste = $connessione->query("SELECT id FROM piste ORDER BY id");
+                    $piste = $connessione->query("SELECT id FROM piste WHERE aeroporto_icao = '".$icao."' ORDER BY id");
                     while($piste_row = $piste->fetch_assoc()){
                         echo("<option value='".$piste_row['id']."'");
                         if($piste_row['id'] == $pista_id){
@@ -111,7 +113,7 @@
             <select name="parcheggio_id">
                 <option value="-">-</option>
                 <?php
-                    $parcheggi = $connessione->query("SELECT id FROM parcheggi ORDER BY id");
+                    $parcheggi = $connessione->query("SELECT id FROM parcheggi WHERE aeroporto_icao = '".$icao."' ORDER BY id");
                     while($parcheggi_row = $parcheggi->fetch_assoc()){
                         echo("<option value='".$parcheggi_row['id']."'");
                         if($parcheggi_row['id'] == $parcheggio_id){

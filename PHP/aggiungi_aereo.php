@@ -6,8 +6,8 @@
     $nome_utente = $_SESSION['nome_utente'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
     $compagnie = $connessione->query("SELECT nome FROM compagnie ORDER BY nome");
-    $parcheggi = $connessione->query("SELECT id FROM parcheggi ORDER BY id");
-    $piste = $connessione->query("SELECT id FROM piste ORDER BY id");
+    $parcheggi = $connessione->query("SELECT id FROM parcheggi WHERE aeroporto_icao='". $_SESSION['aeroporto_icao'] . "' ORDER BY id");
+    $piste = $connessione->query("SELECT id FROM piste WHERE aeroporto_icao='". $_SESSION['aeroporto_icao'] . "' ORDER BY id");
 ?>
 <!DOCTYPE html>
 <html>
