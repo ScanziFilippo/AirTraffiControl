@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^api.php/([a-zA-Z0-9_-]+)/?$ api.php?tabella=$1 [NC,QSA,L]
+RewriteRule ^api.php/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ api.php?tabella=$1&campo=$2 [NC,QSA,L]
