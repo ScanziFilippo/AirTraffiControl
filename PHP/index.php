@@ -24,6 +24,7 @@
             </div>
             <div style='padding-right: 20px; padding-top:10px;'>
                 <h2><a href="Voli/visualizza.php">Cronologia Voli</a></h2>
+                <h2><a href="api.php">Api</a></h2>
             </div>
         </div>
         <!--<table>-->

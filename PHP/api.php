@@ -42,7 +42,8 @@
                     <h2><a href='api.php/controllori'>Controllori</a></h2>
                     <h2><a href='api.php/voli'>Voli</a></h2>
                     <h2><a href='api.php/parcheggi'>Parcheggi</a></h2>
-                    <h2><a href='api.php/piste'>Piste</a></h2>
+                    <h2><a href='api.php/piste'>Piste</a></h2><br>
+                    <h2><a href='index.php'>Home</a></h2>
                 </div>
             </body>
         </html>");
