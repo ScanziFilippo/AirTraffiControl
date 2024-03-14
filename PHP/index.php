@@ -11,15 +11,20 @@
         <link rel="stylesheet" href="../CSS/index.css">
     </head>
     <body>
-        <div style='padding-left: 20px; padding-top:10px;'>
-            <h1>Benvenuto
-                <a href="Controllori/profilo.php">
-                    <?php 
-                        echo $_SESSION['nome_utente'];
-                    ?>
-                </a>
-            </h1>
-            <a href="aggiungi_aereo.php"><h2>Aggiungi aereo</h2></a>
+        <div style='display: flex; justify-content: space-between;'>
+            <div style='padding-left: 20px; padding-top:10px;'>
+                <h1>Benvenuto
+                    <a href="Controllori/profilo.php">
+                        <?php 
+                            echo $_SESSION['nome_utente'];
+                        ?>
+                    </a>
+                </h1>
+                <a href="aggiungi_aereo.php"><h2>Aggiungi aereo</h2></a>
+            </div>
+            <div style='padding-right: 20px; padding-top:10px;'>
+                <h2><a href="Voli/visualizza.php">Cronologia Voli</a></h2>
+            </div>
         </div>
         <!--<table>-->
         <?php
