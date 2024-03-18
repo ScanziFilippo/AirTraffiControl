@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente'])){
-        header("Location: Controllori/login.php");
+        header("Location: Controllori/login");
     }
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
 ?>
@@ -14,17 +14,17 @@
         <div style='display: flex; justify-content: space-between;'>
             <div style='padding-left: 20px; padding-top:10px;'>
                 <h1>Benvenuto
-                    <a href="Controllori/profilo.php">
+                    <a href="Controllori/profilo">
                         <?php 
                             echo $_SESSION['nome_utente'];
                         ?>
                     </a>
                 </h1>
-                <a href="aggiungi_aereo.php"><h2>Aggiungi aereo</h2></a>
+                <a href="aggiungi_aereo"><h2>Aggiungi aereo</h2></a>
             </div>
             <div style='padding-right: 20px; padding-top:10px;'>
-                <h2><a href="Voli/visualizza.php">Cronologia Voli</a></h2>
-                <h2><a href="api.php">Api</a></h2>
+                <h2><a href="Voli/visualizza">Cronologia Voli</a></h2>
+                <h2><a href="api">Api</a></h2>
             </div>
         </div>
         <!--<table>-->
@@ -58,7 +58,7 @@
                 echo("<td>".$aerei_row['posizione']."</td>");
                 //echo("<td>".$aerei_row['stato']."</td>");
                 echo("<td><img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png'></td>");
-                //echo("<td><a href='modifica_aereo.php?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a></td>");
+                //echo("<td><a href='modifica_aereo?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a></td>");
                 echo("</tr>");*/
                 echo("<div style=display:inline-block;padding:10px; class='aereo'> 
                     <div style=display:inline-block;>
@@ -70,7 +70,7 @@
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>
                         <p>Posizione: ".$aerei_row['posizione']."</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
-                        <a href='modifica_aereo.php?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a>
+                        <a href='modifica_aereo?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a>
                     </div>
                 </div>");
             }
@@ -93,7 +93,7 @@
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>
                         <p>Posizione: Parcheggio ".$aerei_row['parcheggio_id']."</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
-                        <a href='modifica_aereo.php?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a>
+                        <a href='modifica_aereo?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a>
                     </div>
                 </div>");
             }
@@ -116,7 +116,7 @@
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>
                         <p>Posizione: Pista ".$aerei_row['pista_id']."</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
-                        <a href='modifica_aereo.php?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a>
+                        <a href='modifica_aereo?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a>
                     </div>
                 </div>");
             }
@@ -139,7 +139,7 @@
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>
                         <p>Posizione: Pista ".$aerei_row['pista_id']."</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
-                        <a href='modifica_aereo.php?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a>
+                        <a href='modifica_aereo?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a>
                     </div>
                 </div>");
             }
@@ -162,7 +162,7 @@
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>
                         <p>Posizione: Pista ".$aerei_row['pista_id']."</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
-                        <a href='modifica_aereo.php?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a>
+                        <a href='modifica_aereo?immatricolazione=".$aerei_row['immatricolazione']."'>Modifica</a>
                     </div>
                 </div>");
             }

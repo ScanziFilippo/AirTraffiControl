@@ -36,14 +36,14 @@
             <body>
                 <div style='padding-left: 20px; padding-top:10px;'>
                     <h1>Api</h1>
-                    <h2><a href='api.php/aerei'>Aerei</a></h2>
-                    <h2><a href='api.php/aeroporti'>Aeroporti</a></h2>
-                    <h2><a href='api.php/compagnie'>Compagnie</a></h2>
-                    <h2><a href='api.php/controllori'>Controllori</a></h2>
-                    <h2><a href='api.php/voli'>Voli</a></h2>
-                    <h2><a href='api.php/parcheggi'>Parcheggi</a></h2>
-                    <h2><a href='api.php/piste'>Piste</a></h2><br>
-                    <h2><a href='index.php'>Home</a></h2>
+                    <h2><a href='api/aerei'>Aerei</a></h2>
+                    <h2><a href='api/aeroporti'>Aeroporti</a></h2>
+                    <h2><a href='api/compagnie'>Compagnie</a></h2>
+                    <h2><a href='api/controllori'>Controllori</a></h2>
+                    <h2><a href='api/voli'>Voli</a></h2>
+                    <h2><a href='api/parcheggi'>Parcheggi</a></h2>
+                    <h2><a href='api/piste'>Piste</a></h2><br>
+                    <h2><a href='index'>Home</a></h2>
                 </div>
             </body>
         </html>");
