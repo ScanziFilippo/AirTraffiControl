@@ -23,14 +23,14 @@
                 $connessione->query("UPDATE piste SET aeroporto_icao = '$_POST[icao]' WHERE aeroporto_icao = '$_SESSION[aeroporto_icao]'");
                 $connessione->query("UPDATE parcheggi SET aeroporto_icao = '$_POST[icao]' WHERE aeroporto_icao = '$_SESSION[aeroporto_icao]'");
             }
-            try{
-                $connessione->query("UPDATE aeroporti SET icao = '$_POST[icao]', iata = '$_POST[iata]', nome = '$_POST[nome]', citta = '$_POST[citta]', nazione = '$_POST[nazione]' WHERE icao = '$_SESSION[aeroporto_icao]'");
-                $_SESSION['aeroporto_icao'] = $_POST['icao'];
-                header("Location: ../Controllori/profilo.php");
-            }
-            catch(Exception $e){
-                echo("Errore: " . $e->getMessage());
-            }
         }
+        try{
+            $connessione->query("UPDATE aeroporti SET icao = '$_POST[icao]', iata = '$_POST[iata]', nome = '$_POST[nome]', citta = '$_POST[citta]', nazione = '$_POST[nazione]' WHERE icao = '$_SESSION[aeroporto_icao]'");
+            $_SESSION['aeroporto_icao'] = $_POST['icao'];
+            header("Location: ../Controllori/profilo.php");
+        }
+        catch(Exception $e){
+            echo("Errore: " . $e->getMessage());
+        }   
     }
 ?>

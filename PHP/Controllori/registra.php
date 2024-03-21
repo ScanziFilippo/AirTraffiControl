@@ -11,7 +11,7 @@
             <input type="text" name="nome_utente" placeholder="nome_utente">
             <input type="text" name="nome" placeholder="nome">
             <input type="text" name="cognome" placeholder="cognome">
-            <input type="text" name="codice" placeholder="codice">
+            <input type="password" name="codice" placeholder="codice">
             <input type="checkbox" name="ruolo">Amministratore
             <input type="submit">
         </form>

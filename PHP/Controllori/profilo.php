@@ -35,9 +35,9 @@
                     }else{
                         $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'");
                         if($_SESSION['ruolo'] == "Amministratore"){
-                            echo "[ " . $_SESSION['aeroporto_icao'] . " ] " . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['nome'] . " (" . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['citta'] . ", " . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['nazione'] . ") <a href='../Aeroporti/modifica.php'>Modifica</a>";
+                            echo "「 " . $_SESSION['aeroporto_icao'] . " 」 " . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['nome'] . " (" . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['citta'] . ", " . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['nazione'] . ") <a href='../Aeroporti/modifica.php'>Modifica</a>";
                         }else{
-                            echo "[ " . $_SESSION['aeroporto_icao'] . " ] " . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['nome'] . " (" . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['citta'] . ", " . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['nazione'] . ")";
+                            echo "「 " . $_SESSION['aeroporto_icao'] . " 」 " . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['nome'] . " (" . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['citta'] . ", " . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['nazione'] . ")";
                         }
                     }
                 ?>
@@ -83,7 +83,7 @@
             <a href="logout.php">Logout</a>
             <a href="cancella.php">Cancella account</a>
             <br><br>
-            <a href="../index.php">Torna alla home</a>
+            <a href="../index">Torna alla home</a>
         </div>
     </body>
 </html>
