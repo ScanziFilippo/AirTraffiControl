@@ -5,4 +5,4 @@ RewriteRule ^api/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ www/PHP/api.php?tabella=$1
 RewriteRule ^api.php/([a-zA-Z0-9_-]+)/?$ api.php?tabella=$1 [NC,QSA,L]
 RewriteRule ^api.php/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ api.php?tabella=$1&id=$2 [NC,QSA,L]
 RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^([^\.]+)$ www/PHP/$1.php [NC,L]
+RewriteRule ^([a-zA-Z0-9_-]+)$ www/PHP/$1.php [NC,L]
