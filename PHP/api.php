@@ -13,7 +13,7 @@
     }
     /*if(isset($_GET['tabella'])){
         $tabella = $_GET['tabella'];*/
-    if(isset($_REQUEST['tabella'])){
+    if(isset($_REQUEST['tabella']) && $_REQUEST['tabella']!=""){
         $tabella = $_REQUEST['tabella'];
         if(isset($_REQUEST['id'])){
             $id = $_REQUEST['id'];
@@ -27,8 +27,6 @@
                 $query = "SELECT * FROM ".$tabella." WHERE codice_fiscale = '".$id."'";
         }else{
             $query = "SELECT * FROM ".$tabella;
-            if($tabella == '')
-                header("Location: api.php");
         }
         $risultato = $connessione->query($query);
         header('Content-Type: application/json');
@@ -54,19 +52,22 @@
                 ];
             $token = JWT::encode($data, $chiave_segreta, 'HS256');    
             echo $token;
-        }else if(isset($_POST['token'])){
+        }
+    }else if(isset($_POST['token'])){
             $token = $_POST['token'];
             try{
-                $decoded = JWT::decode($token, $chiave_segreta, array('HS256'));
-                echo $decoded;
+                //$decoded = JWT::decode($token, $chiave_segreta, array('HS256'));
+                //$decoded = JWT::decode($token, new Key($chiave_segreta, 'HS256'), $headers = new stdClass());
+                //$decoded = JWT::decode($token, $chiave_segreta, ['HS256', 'headers' => $headers]);
+                $decoded = JWT::decode($token, new Key($chiave_segreta, 'HS256'));
+                $json_payload = json_encode($decoded);
+                header('Content-Type: application/json');
+                echo $json_payload;
             }catch(Exception $e){
-                echo json_encode($e->getMessage());
+                echo json_encode($e->getMessage(), JSON_PRETTY_PRINT);
             }
-        }else{
-            header("Location: api");
-        }
-
-    }else{
+    }
+    else{
         echo("
         <!DOCTYPE html>
         <html>
@@ -85,13 +86,13 @@
                     <h2><a href='api/parcheggi'>Parcheggi</a></h2>
                     <h2><a href='api/piste'>Piste</a></h2><br>
                 </div>
-                    <form action='api.php' method='post' style='background-color: #f1f1f1; padding: 20px;'>
+                    <form action='api' method='post' style='background-color: #f1f1f1; padding: 20px;'>
                         <h2>Ottieni token</h2>
                         <input type='text' name='nome' placeholder='Nome'>
                         <input type='text' name='codice' placeholder='Codice'>
                         <input type='submit' value='Invia'>
                     </form>
-                    <form action='api.php' method='post' style='background-color: #f1f1f1; padding: 20px;'>
+                    <form action='api' method='post' style='background-color: #f1f1f1; padding: 20px;'>
                         <h2>Verifica token</h2>
                         <input type='text' name='token' placeholder='Token'>
                         <input type='submit' value='Invia'>
