@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente'])/* || $_SESSION['ruolo'] != "Amministratore"*/){
-        header("Location: ../Controllori/login.php");
+        header("Location: ../Controllori/login");
     }
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
     $idNuovo = $_POST['id'];
@@ -14,7 +14,7 @@
     else{
         try{
             $connessione->query("UPDATE parcheggi SET id = '".$idNuovo."' WHERE id = '".$idVecchio."'");
-            header("Location: visualizza.php");
+            header("Location: visualizza");
         }
         catch(Exception $e){
             echo("Errore: " . $e->getMessage());

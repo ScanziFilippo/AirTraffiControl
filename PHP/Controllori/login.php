@@ -5,13 +5,13 @@
     </head>
     <body>
         Accesso al profilo<br><br>
-        <form action="logincontroller.php" method="post">
+        <form action="logincontroller" method="post">
             <input type="text" name="nome_utente" placeholder="nome_utente">
             <input type="password" name="codice" placeholder="codice">
             <input type="submit">
         </form>
-        <a href="registra.php">Registrati</a>
-        <a href="recupera_login.php">Non riesci a entrare?</a>
+        <a href="registra">Registrati</a>
+        <a href="recupera_login">Non riesci a entrare?</a>
     </body>
     <?php
         if(isset($_GET['err'])){?>
@@ -20,7 +20,7 @@
         }
         session_start();
         if(isset($_SESSION['nome_utente'])){
-            header("Location: profilo.php");
+            header("Location: profilo");
         }
     ?>
 </html>

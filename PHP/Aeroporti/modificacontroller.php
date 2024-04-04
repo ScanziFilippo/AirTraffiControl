@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente']) || $_SESSION['ruolo'] != "Amministratore"){
-        header("Location: ../Controllori/login.php");
+        header("Location: ../Controllori/login");
     }
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
     if ($connessione->connect_errno)
@@ -12,7 +12,7 @@
     else{
         if($connessione->query("SELECT * FROM aeroporti WHERE icao = '$_POST[icao]'")->num_rows>0 && $_SESSION['icao']!=$_POST['icao'] )
         {
-            header("Location: ../Controllori/profilo.php?err=Esiste già un aeroporto con questo ICAO");
+            header("Location: ../Controllori/profilo?err=Esiste già un aeroporto con questo ICAO");
         }
         else{
             if($_SESSION['aeroporto_icao']!=$_POST['icao']){
@@ -27,7 +27,7 @@
         try{
             $connessione->query("UPDATE aeroporti SET icao = '$_POST[icao]', iata = '$_POST[iata]', nome = '$_POST[nome]', citta = '$_POST[citta]', nazione = '$_POST[nazione]' WHERE icao = '$_SESSION[aeroporto_icao]'");
             $_SESSION['aeroporto_icao'] = $_POST['icao'];
-            header("Location: ../Controllori/profilo.php");
+            header("Location: ../Controllori/profilo");
         }
         catch(Exception $e){
             echo("Errore: " . $e->getMessage());

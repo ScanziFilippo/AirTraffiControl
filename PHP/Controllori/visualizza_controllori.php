@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente']) || $_SESSION['ruolo'] != "Amministratore"){
-        header("Location: Controllori/login.php");
+        header("Location: Controllori/login");
     }
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
     if ($connessione->connect_errno)
@@ -37,8 +37,8 @@
                     echo("<td>".$controllori_row['nome']."</td>");
                     echo("<td>".$controllori_row['cognome']."</td>");
                     echo("<td>".$controllori_row['aeroporto_icao']."</td>");
-                    /*echo("<td><a href='modifica_controllori.php?nome_utente=".$controllori_row['nome_utente']."'>Modifica</a></td>");
-                    echo("<td><a href='cancella_controllori.php?nome_utente=".$controllori_row['nome_utente']."'>Cancella</a></td>");*/
+                    /*echo("<td><a href='modifica_controllori?nome_utente=".$controllori_row['nome_utente']."'>Modifica</a></td>");
+                    echo("<td><a href='cancella_controllori?nome_utente=".$controllori_row['nome_utente']."'>Cancella</a></td>");*/
                     if($_SESSION['ruolo'] == "Amministratore" && $controllori_row['nome_utente'] != $_SESSION['nome_utente']){
                         echo("<td><button>Elimina</button></td>");
                         echo("</tr>");
@@ -47,7 +47,7 @@
                 }
             ?>
         </table>
-        <a href="profilo.php">Torna al profilo</a>
+        <a href="profilo">Torna al profilo</a>
         <script>
             document.addEventListener("DOMContentLoaded", function(event) {
                 var ricerca = document.getElementById("valore");
@@ -61,7 +61,7 @@
                 console.log(e);
 
                 let xhr = new XMLHttpRequest();
-                xhr.open('GET', 'visualizza_controlloricontroller.php?t=' + contenuto);
+                xhr.open('GET', 'visualizza_controlloricontroller?t=' + contenuto);
                 xhr.send();
 
                 xhr.onload = function() {
@@ -90,7 +90,7 @@
                         document.getElementById(idDaEliminare).parentNode.remove();
                     }
                 };
-                xmlhttp.open("POST", "eliminacontroller.php?id=" + idDaEliminare, true);
+                xmlhttp.open("POST", "eliminacontroller?id=" + idDaEliminare, true);
                 xmlhttp.send();
             }
             totali = document.getElementsByTagName("tr");

@@ -18,28 +18,28 @@
         echo("Connessione fallita: ".$connessione->connect_error.".");
         exit();
     }else if($aeroporto_icao == "" || $nome_utente == "" || $nome == "" || $cognome == "" || $codice == ""){
-        header("location: registra.php?err=Compila tutti i campi");
+        header("location: registra?err=Compila tutti i campi");
     }else if($connessione->query("SELECT * FROM aeroporti WHERE icao = '$aeroporto_icao'")->num_rows == 0){
         if($ruolo=="Base"){
-            header("location: registra.php?err=Non esiste un aeroporto con questo icao. Devi essere amministratore per crearlo");
+            header("location: registra?err=Non esiste un aeroporto con questo icao. Devi essere amministratore per crearlo");
         }else{
             try{
                 $registra = "INSERT INTO controllori (aeroporto_icao, nome_utente, nome, cognome, codice, ruolo) VALUES ('$aeroporto_icao', '$nome_utente', '$nome', '$cognome', '$codice_criptato', '$ruolo')";
                 $risultato = $connessione->query($registra);
-                header("location: ../Aeroporti/registra.php");
+                header("location: ../Aeroporti/registra");
             }
             catch(Exception $e){
                 echo("Errore nella query: ".$e->getMessage());
             }
         }
     }else if($connessione->query("SELECT * FROM controllori WHERE nome_utente = '$nome_utente'")->num_rows > 0){
-        header("location: registra.php?err=Nome utente già esistente");
+        header("location: registra?err=Nome utente già esistente");
     }
     else{
         try{
             $registra = "INSERT INTO controllori (aeroporto_icao, nome_utente, nome, cognome, codice, ruolo) VALUES ('$aeroporto_icao', '$nome_utente', '$nome', '$cognome', '$codice_criptato', '$ruolo')";
             $risultato = $connessione->query($registra);
-            header("location: profilo.php");
+            header("location: profilo");
         }
         catch(Exception $e){
             echo("Errore nella query: ".$e->getMessage());

@@ -89,7 +89,7 @@
                     <form action='api' method='post' style='background-color: #f1f1f1; padding: 20px;'>
                         <h2>Ottieni token</h2>
                         <input type='text' name='nome' placeholder='Nome'>
-                        <input type='text' name='codice' placeholder='Codice'>
+                        <input type='password' name='codice' placeholder='Codice'>
                         <input type='submit' value='Invia'>
                     </form>
                     <form action='api' method='post' style='background-color: #f1f1f1; padding: 20px;'>

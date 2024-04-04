@@ -7,12 +7,12 @@
         echo("Connessione fallita: ".$connessione->connect_error.".");
         exit();
     }else if($nome_utente == "" || $codice == ""){
-        header("location: recupera_login.php?err=Compila tutti i campi");
+        header("location: recupera_login?err=Compila tutti i campi");
     }else if($connessione->query("SELECT * FROM controllori WHERE nome_utente = '$nome_utente'")->num_rows == 0){
-        header("location: recupera_login.php?err=Nome utente non esistente");
+        header("location: recupera_login?err=Nome utente non esistente");
     }else{
             $connessione->query("UPDATE controllori SET codice = '$codice' WHERE nome_utente = '$nome_utente'");
             session_start();
-            header("location: profilo.php");
+            header("location: profilo");
     }
 ?>

@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente'])/* || $_SESSION['ruolo'] != "Amministratore"*/){
-        header("Location: ../Controllori/login.php");
+        header("Location: ../Controllori/login");
     }
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
     if ($connessione->connect_errno)
@@ -17,7 +17,7 @@
                 $n++;
             }
             $connessione->query("INSERT INTO piste (id, stato, aeroporto_icao) VALUES ('$n','Libera', '$_SESSION[aeroporto_icao]')");
-            header("Location: visualizza.php");
+            header("Location: visualizza");
         }
         catch(Exception $e){
             echo("Errore: " . $e->getMessage());

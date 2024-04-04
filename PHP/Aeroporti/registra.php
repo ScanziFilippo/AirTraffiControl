@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente'])){
-        header("Location: ../Controllori/login.php");
+        header("Location: ../Controllori/login");
     }
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
     </head>
     <body>
         Registrazione dell'aeroporto<br><br>
-        <form action="registracontroller.php" method="post">
+        <form action="registracontroller" method="post">
             <input type="text" name="icao" placeholder="icao" style="text-transform:uppercase" readonly value="<?php echo $_SESSION['aeroporto_icao']; ?>">
             <input type="text" name="iata" placeholder="iata" style="text-transform:uppercase" >
             <input type="text" name="nome" placeholder="nome">

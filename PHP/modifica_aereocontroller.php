@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente'])){
-        header("Location: login.php");
+        header("Location: login");
     }
     if($_SESSION['ruolo'] == "Amministratore"){
         $nome_utente = $_SESSION['nome_utente'];
@@ -42,9 +42,9 @@
             if($parcheggio_id != NULL){
                 $connessione->query("UPDATE aerei SET parcheggio_id = '".$parcheggio_id."' WHERE immatricolazione = '".$immatricolazione."'");
             }
-            header("Location: index.php");
+            header("Location: index");
         }
     }else{
-        header("Location: index.php");
+        header("Location: index");
     }
 ?>

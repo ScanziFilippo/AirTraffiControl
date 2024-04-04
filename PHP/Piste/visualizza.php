@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente'])/* || $_SESSION['ruolo'] != "Amministratore"*/){
-        header("Location: ../Controllori/login.php");
+        header("Location: ../Controllori/login");
     }
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
 ?>
@@ -21,7 +21,7 @@
             <?php
                 $piste = $connessione->query("SELECT * FROM piste WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."'");
                 while($piste_row = $piste->fetch_assoc()){
-                    echo("<form action='modificacontroller.php' method='post'>");
+                    echo("<form action='modificacontroller' method='post'>");
                     echo("<tr>");
                     echo("<td id='" . $piste_row['id'] . "'>");
                     if($_SESSION['ruolo'] == "Amministratore"){
@@ -35,7 +35,7 @@
                     echo("<td>".$piste_row['stato']."</td>");
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("<td><input type='submit'></input></td>");
-                        //echo("<td><a href='eliminacontroller.php?id=".$piste_row['id']."'>Elimina</a></td>");
+                        //echo("<td><a href='eliminacontroller?id=".$piste_row['id']."'>Elimina</a></td>");
                         echo("<td><button>Elimina</button></td>");
                         echo("</tr>");
                     }
@@ -46,11 +46,11 @@
         <form>
             <?php
                 if($_SESSION['ruolo'] == "Amministratore"){
-                    echo("<input type='button' value='Aggiungi pista' onclick='window.location.href=\"aggiungicontroller.php\"'>");
+                    echo("<input type='button' value='Aggiungi pista' onclick='window.location.href=\"aggiungicontroller\"'>");
                 }
             ?>
         </form>
-        <a href="../Controllori/profilo.php">Torna al profilo</a>
+        <a href="../Controllori/profilo">Torna al profilo</a>
         <script>
             function elimina(e){
                 e.preventDefault();
@@ -63,7 +63,7 @@
                         document.getElementById(idDaEliminare).parentNode.remove();
                     }
                 };
-                xmlhttp.open("POST", "eliminacontroller.php?id=" + idDaEliminare, true);
+                xmlhttp.open("POST", "eliminacontroller?id=" + idDaEliminare, true);
                 xmlhttp.send();
             }
 

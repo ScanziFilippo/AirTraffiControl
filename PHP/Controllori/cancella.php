@@ -10,7 +10,7 @@
         try{
             $cancella = "DELETE FROM controllori WHERE nome_utente = '$nome_utente'";
             $risultato = $connessione->query($cancella);
-            echo("Account cancellato <a href='../index.php'>Torna alla home</a>");
+            echo("Account cancellato <a href='../index'>Torna alla home</a>");
             session_destroy();
         }
         catch(Exception $e){

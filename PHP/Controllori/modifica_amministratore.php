@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente']) || $_SESSION['ruolo'] != "Amministratore"){
-        header("Location: login.php");
+        header("Location: login");
     }
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
     </head>
     <body>
         Modifica del profilo<br><br>
-        <form action="modifica_amministratorecontroller.php" method="post">
+        <form action="modifica_amministratorecontroller" method="post">
             <!--<input type="text" name="aeroporto_icao" placeholder="aeroporto_icao" value="<?php echo $_SESSION['aeroporto_icao']; ?>">-->
             <input type="text" name="nome_utente" placeholder="nome_utente" value="<?php echo $_SESSION['nome_utente']; ?>">
             <input type="text" name="nome" placeholder="nome" value="<?php echo $_SESSION['nome']; ?>">
@@ -20,7 +20,7 @@
             <input type="submit">
         </form>
         <br>
-        <a href="../Controllori/profilo.php">Torna al profilo</a>
+        <a href="../Controllori/profilo">Torna al profilo</a>
     </body>
     <?php
         if(isset($_GET['err'])){?>

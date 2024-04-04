@@ -11,9 +11,9 @@
         echo("Connessione fallita: ".$connessione->connect_error.".");
         exit();
     }else if($icao == "" || $nome == "" || $nome == "" || $citta == "" || $nazione == ""){
-        header("location: registra.php?err=Compila tutti i campi");
+        header("location: registra?err=Compila tutti i campi");
     }else if($connessione->query("SELECT * FROM aeroporti WHERE icao = '$icao'")->num_rows > 0){
-        header("location: registra.php?err=ICAO già esistente");
+        header("location: registra?err=ICAO già esistente");
     }else{
         try{
             $registra = "INSERT INTO aeroporti (icao, iata, nome, citta, nazione) VALUES ('$icao', '$iata', '$nome', '$citta', '$nazione')";
@@ -23,7 +23,7 @@
             $_SESSION['aeroporto_nome'] = $nome;
             $_SESSION['aeroporto_citta'] = $citta;
             $_SESSION['aeroporto_nazione'] = $nazione;
-            header("location: ../Controllori/profilo.php");
+            header("location: ../Controllori/profilo");
         }
         catch(Exception $e){
             echo("Errore nella query: ".$e->getMessage());

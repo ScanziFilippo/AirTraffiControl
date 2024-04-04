@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente'])){
-        header("Location: login.php");
+        header("Location: login");
     }
     $nome_utente = $_SESSION['nome_utente'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
@@ -17,7 +17,7 @@
     </head>
     <body>
         Aggiungi un aereo<br><br>
-        <form action="aggiungi_aereocontroller.php" method="post" enctype="multipart/form-data">
+        <form action="aggiungi_aereocontroller" method="post" enctype="multipart/form-data">
             <input type="text" name="immatricolazione" placeholder="immatricolazione" style="text-transform:uppercase">
             <input list="aerei" name="modello" placeholder="modello" id="modello" onchange="cercaFotoModello()">
                 <datalist id="aerei">
@@ -105,7 +105,7 @@
             <input type="submit">
         </form>
         <br>
-        <a href="index.php">Torna alla home</a>
+        <a href="index">Torna alla home</a>
         <script>
             function cercaFotoModello(){
                 var modello = document.getElementById("modello").value;

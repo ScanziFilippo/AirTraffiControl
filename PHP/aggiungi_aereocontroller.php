@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente'])){
-        header("Location: login.php");
+        header("Location: login");
     }
     $nome_utente = $_SESSION['nome_utente'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
@@ -61,14 +61,14 @@
             if ($uploadOk == 0) {
                 echo "Sorry, your file was not uploaded.";
                 $connessione->query("INSERT INTO aerei (immatricolazione, modello, compagnia, foto_aereo, foto_compagnia, posizione, stato, pista_id, parcheggio_id, aeroporto_icao) VALUES ('$immatricolazione', '$modello', '$compagnia', NULL, NULL, '$posizione', '$stato', NULL, NULL, '$aeroporto_icao')");
-                header("Location: index.php");
+                header("Location: index");
             }else {
                 if (move_uploaded_file($_FILES["foto_aereo"]["tmp_name"], $target_file_aereo) and move_uploaded_file($_FILES["foto_compagnia"]["tmp_name"], $target_file_compagnia)) {
                   echo "The files have been uploaded.";
                   $foto_aereo = $target_file_aereo;
                   $foto_compagnia = $target_file_compagnia;
                   $connessione->query("INSERT INTO aerei (immatricolazione, modello, compagnia, foto_aereo, foto_compagnia, posizione, stato, pista_id, parcheggio_id, aeroporto_icao) VALUES ('$immatricolazione', '$modello', '$compagnia', '$foto_aereo', '$foto_compagnia', '$posizione', '$stato', '$pista_id', $parcheggio_id, '$aeroporto_icao')");
-                  header("Location: index.php");      
+                  header("Location: index");      
                 } else {
                   echo "Sorry, there was an error uploading your file.";
                   echo $target_file_aereo;

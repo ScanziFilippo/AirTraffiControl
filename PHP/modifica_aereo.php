@@ -19,7 +19,7 @@
     </head>
     <body>
         modifica un aereo<br><br>
-        <form action="modifica_aereocontroller.php" method="post" enctype="multipart/form-data">
+        <form action="modifica_aereocontroller" method="post" enctype="multipart/form-data">
             <input type="text" name="immatricolazione" placeholder="immatricolazione" value="<?php echo($immatricolazione); ?>">
             <input list="aerei" name="modello" placeholder="modello" id="modello" value="<?php echo($modello); ?>" onchange="cercaFotoModello()">
                 <datalist id="aerei">
@@ -135,7 +135,7 @@
             <input type="submit">
         </form>
         <br>
-        <a href="index.php">Torna alla home</a>
+        <a href="index">Torna alla home</a>
         <script>
             function cercaFotoModello(){
                 var modello = document.getElementById("modello").value;

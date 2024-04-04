@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente'])){
-        header("Location: login.php");
+        header("Location: login");
     }
     $nome_utente = $_SESSION['nome_utente'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
@@ -20,7 +20,7 @@
     </head>
     <body>
         Modifica dell'aeroporto<br><br>
-        <form action="modificacontroller.php" method="post">
+        <form action="modificacontroller" method="post">
             <input type="text" name="icao" placeholder="icao" style="text-transform:uppercase" value="<?php echo $_SESSION['aeroporto_icao']; ?>">
             <input type="text" name="iata" placeholder="iata" style="text-transform:uppercase" value="<?php echo $_SESSION['aeroporto_iata']; ?>">
             <input type="text" name="nome" placeholder="nome" value="<?php echo $_SESSION['aeroporto_nome']; ?>">
@@ -29,7 +29,7 @@
             <input type="submit">
         </form>
         <br>
-        <a href="../Controllori/profilo.php">Torna al profilo</a>
+        <a href="../Controllori/profilo">Torna al profilo</a>
     </body>
     <?php
         if(isset($_GET['err'])){?>

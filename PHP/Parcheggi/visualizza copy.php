@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente'])/* || $_SESSION['ruolo'] != "Amministratore"*/){
-        header("Location: ../Controllori/login.php");
+        header("Location: ../Controllori/login");
     }
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
 ?>
@@ -21,7 +21,7 @@
             <?php
                 $parcheggi = $connessione->query("SELECT * FROM parcheggi WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."'");
                 while($parcheggi_row = $parcheggi->fetch_assoc()){
-                    echo("<form action='modificacontroller.php' method='post'>");
+                    echo("<form action='modificacontroller' method='post'>");
                     echo("<tr>");
                     echo("<td>");
                     if($_SESSION['ruolo'] == "Amministratore"){
@@ -34,7 +34,7 @@
                     echo("<td>".$parcheggi_row['stato']."</td>");
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("<td><input type='submit'></input></td>");
-                        echo("<td><a href='eliminacontroller.php?id=".$parcheggi_row['id']."'>Elimina</a></td>");
+                        echo("<td><a href='eliminacontroller?id=".$parcheggi_row['id']."'>Elimina</a></td>");
                         echo("</tr>");
                     }
                     echo("</form>");
@@ -44,10 +44,10 @@
         <form>
             <?php
                 if($_SESSION['ruolo'] == "Amministratore"){
-                    echo("<input type='button' value='Aggiungi parcheggio' onclick='window.location.href=\"aggiungicontroller.php\"'>");
+                    echo("<input type='button' value='Aggiungi parcheggio' onclick='window.location.href=\"aggiungicontroller\"'>");
                 }
             ?>
         </form>
-        <a href="../Controllori/profilo.php">Torna al profilo</a>
+        <a href="../Controllori/profilo">Torna al profilo</a>
     </body>
 </html>

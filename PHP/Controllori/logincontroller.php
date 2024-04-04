@@ -22,13 +22,13 @@ if ($connessione->connect_errno)
             $_SESSION['cognome'] = $cognome;
             $_SESSION['ruolo'] = $ruolo;
             $_SESSION['aeroporto_icao'] = $aeroporto_icao;
-            header("location: ../index.php");
+            header("location: ../index");
         }else{
-            header("location: login.php?err=nome_utente o codice errati");
+            header("location: login?err=nome_utente o codice errati");
         }
     }
     catch(Exception $e){
         echo("Errore nella query: ".$e->getMessage());
-        header("location: login.php");
+        header("location: login");
     }
 }
