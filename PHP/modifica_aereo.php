@@ -97,6 +97,7 @@
                     echo(">In attesa</option>");
                 ?>
             </select>
+            Pista
             <select name="pista_id">
                 <option value="-">-</option>
                 <?php
@@ -110,6 +111,7 @@
                     }
                 ?>
             </select>
+            Parcheggio
             <select name="parcheggio_id">
                 <option value="-">-</option>
                 <?php
