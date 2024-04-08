@@ -137,6 +137,9 @@
             <input type="submit">
         </form>
         <br>
+        <a href="elimina_aereo.php?immatricolazione=<?php echo $immatricolazione;?>" style="color: red">Elimina aereo</a>
+        <br>
+        <br>
         <a href="index">Torna alla home</a>
         <script>
             function cercaFotoModello(){
