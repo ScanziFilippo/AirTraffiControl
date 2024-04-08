@@ -1,6 +1,6 @@
 # AirTraffiControl
 ## Descrizione
-Applicazione web per il controllo del traffico di uno spazio aereo con aeroporto: aerei generati casualmente o manualmente, l'utente comanda ad essi l'azione da fare (atterrare, decollare, rullare al parcheggio, aspettare in coda, rifornirsi di carburante, passeggeri).
+Applicazione web per il controllo del traffico di uno spazio aereo con aeroporto: aerei generati manualmente, l'utente comanda ad essi l'azione da fare (atterrare, decollare, rullare al parcheggio, aspettare in coda, rifornirsi di carburante, passeggeri).
 ## Che problema risolve?
 La lenta velocità che hanno i controllori di volo utilizzando dei fogli per annotarsi le informazioni che vanno spesso aggiornate, come la posizione, di ogni singolo volo.
 ## A chi è rivolta?
@@ -29,7 +29,6 @@ Alle torri di controllo di qualsiasi tipo di aereporto
     * Foto bandiera (automatico in base all'immatricolazione)
     * Posizione
     * Stato (automatico in base a posizione iniziale. Poi modificato in base alle azioni utente)
-  * Aggiunta casuale
   * Modifica
   * Eliminazione
   * Comandi
@@ -39,10 +38,6 @@ Alle torri di controllo di qualsiasi tipo di aereporto
     * Rulla verso parcheggio XX
     * Rifornisciti di carburante
     * Fai scendere/salire le persone
-* Volo
-  * Aggiunta manuale dei dati
-  * Modifica
-  * Elimina
 * Controllori (utenti)
   * Accesso al profilo 
   * Uscita dal profilo
@@ -69,7 +64,6 @@ CONTROLLORE (<ins>ID</ins>, <ins>NOME_UTENTE</ins>, CODICE, RUOLO, AEROPORTO_ICA
 AEREO (<ins>IMMATRICOLAZIONE</ins>, MODELLO, COMPAGNIA, FOTO_AEREO, BANDIERA, FOTO_COMPAGNIA, POSIZIONE, STATO, PISTA_ID, PARCHEGGIO_ID, AEROPORTO_ICAO) <br>
 PISTA (<ins>ID</ins>, STATO, AEROPORTO_ICAO) <br>
 PARCHEGGIO (<ins>ID</ins>, STATO, <ins>AEROPORTO_ICAO</ins>) <br>
-VOLO (<ins>ID</ins>, PARTENZA, DESTINAZIONE, DATA_PARTENZA, DATA_ARRIVO, AEREO_ID) <br>
 COMPAGNIA (<ins>ID</ins>, NOME, CODICE) <br>
 ## Creazione tabelle
 ```sql
@@ -110,14 +104,6 @@ CREATE TABLE `piste` (
     id int(11) NOT NULL PRIMARY KEY,
     stato varchar(255),
     aeroporto_icao varchar(255)
-);
-CREATE TABLE `voli` (
-    id int(11) NOT NULL PRIMARY KEY,
-    partenza varchar(255),
-    destinazione varchar(255),
-    data_partenza timestamp,
-    data_arrivo timestamp,
-    aereo_immatricolazione varchar(255)
 );
 CREATE TABLE `compagnie` (
   id INT PRIMARY KEY,
