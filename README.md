@@ -67,9 +67,9 @@ PARCHEGGIO (<ins>ID</ins>, STATO, <ins>AEROPORTO_ICAO</ins>) <br>
 COMPAGNIA (<ins>ID</ins>, NOME, CODICE) <br>
 ## Creazione tabelle
 ```sql
-DROP DATABASE IF EXISTS 'progetto';
-CREATE DATABASE 'progetto';
-USE 'progetto';
+DROP DATABASE IF EXISTS progetto;
+CREATE DATABASE progetto;
+USE progetto;
 CREATE TABLE `aerei` (
     immatricolazione varchar(255) NOT NULL PRIMARY KEY,
     modello varchar(255),
