@@ -10,7 +10,7 @@
             <input type="password" name="codice" placeholder="codice">
             <input type="submit">
         </form>
-        <a href="registra">Registrati</a>
+        <a href="registra">Registrati</a><br><br>
         <a href="recupera_login">Non riesci a entrare?</a>
     </body>
     <?php
