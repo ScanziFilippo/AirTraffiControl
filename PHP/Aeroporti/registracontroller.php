@@ -1,7 +1,7 @@
 <?php
     //var_dump($_POST);
-    $icao = $_POST["icao"];
-    $iata = $_POST["iata"];
+    $icao = strtoupper($_POST["icao"]);
+    $iata = strtoupper($_POST["iata"]);
     $nome = $_POST["nome"];
     $citta = $_POST["citta"];
     $nazione = $_POST["nazione"];
