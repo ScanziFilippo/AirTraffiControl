@@ -12,7 +12,7 @@ CREATE TABLE `aerei` (
     stato varchar(255),
     pista_id int(11),
     parcheggio_id int(11),
-    aeroporto_icao varchar(255)
+    aeroporto_id varchar(255)
 );
 CREATE TABLE `aeroporti` (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
@@ -29,18 +29,18 @@ CREATE TABLE `controllori` (
     cognome varchar(255),
     codice varchar(255),
     ruolo varchar(255),
-    aeroporto_icao varchar(255)
+    aeroporto_id varchar(255)
 );
 CREATE TABLE `parcheggi` (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
     nome varchar(255) NOT NULL,
-    aeroporto_icao varchar(255)
+    aeroporto_id varchar(255)
 );
 CREATE TABLE `piste` (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
     nome varchar(255),
     stato varchar(255),
-    aeroporto_icao varchar(255)
+    aeroporto_id varchar(255)
 );
 CREATE TABLE `compagnie` (
   id INT PRIMARY KEY,

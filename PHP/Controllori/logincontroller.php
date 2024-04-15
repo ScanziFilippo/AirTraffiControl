@@ -7,7 +7,7 @@ $connessione = new mysqli('localhost', 'root', '', 'progetto');
 $nome = $connessione->query("SELECT nome FROM controllori WHERE nome_utente = '$nome_utente'")->fetch_assoc()['nome'];
 $cognome = $connessione->query("SELECT cognome FROM controllori WHERE nome_utente = '$nome_utente'")->fetch_assoc()['cognome'];
 $ruolo = $connessione->query("SELECT ruolo FROM controllori WHERE nome_utente = '$nome_utente'")->fetch_assoc()['ruolo'];
-$aeroporto_icao = $connessione->query("SELECT aeroporto_icao FROM controllori WHERE nome_utente = '$nome_utente'")->fetch_assoc()['aeroporto_icao'];
+$aeroporto_id = $connessione->query("SELECT aeroporto_id FROM controllori WHERE nome_utente = '$nome_utente'")->fetch_assoc()['aeroporto_id'];
 if ($connessione->connect_errno)
 {
     echo("Connessione fallita: ".$connessione->connect_error.".");
@@ -21,7 +21,7 @@ if ($connessione->connect_errno)
             $_SESSION['nome'] = $nome;
             $_SESSION['cognome'] = $cognome;
             $_SESSION['ruolo'] = $ruolo;
-            $_SESSION['aeroporto_icao'] = $aeroporto_icao;
+            $_SESSION['aeroporto_id'] = $aeroporto_id;
             header("location: ../index");
         }else{
             header("location: login?err=nome_utente o codice errati");
