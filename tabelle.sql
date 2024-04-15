@@ -1,10 +1,53 @@
-CREATE TABLE compagnie (
+DROP DATABASE IF EXISTS progetto;
+CREATE DATABASE progetto;
+USE progetto;
+CREATE TABLE `aerei` (
+    id int(11) NOT NULL auto_increment PRIMARY KEY,
+    immatricolazione varchar(255) NOT NULL,
+    modello varchar(255),
+    compagnia varchar(255),
+    foto_aereo varchar(255),
+    foto_compagnia varchar(255),
+    posizione varchar(255),
+    stato varchar(255),
+    pista_id int(11),
+    parcheggio_id int(11),
+    aeroporto_icao varchar(255)
+);
+CREATE TABLE `aeroporti` (
+    id int(11) NOT NULL auto_increment PRIMARY KEY,
+    icao varchar(255) NOT NULL,
+    iata varchar(255),
+    nome varchar(255),
+    citta varchar(255),
+    nazione varchar(255)
+);
+CREATE TABLE `controllori` (
+    id int(11) NOT NULL auto_increment PRIMARY KEY,
+    nome_utente varchar(255) NOT NULL,
+    nome varchar(255),
+    cognome varchar(255),
+    codice varchar(255),
+    ruolo varchar(255),
+    aeroporto_icao varchar(255)
+);
+CREATE TABLE `parcheggi` (
+    id int(11) NOT NULL auto_increment PRIMARY KEY,
+    nome varchar(255) NOT NULL,
+    aeroporto_icao varchar(255)
+);
+CREATE TABLE `piste` (
+    id int(11) NOT NULL auto_increment PRIMARY KEY,
+    nome varchar(255),
+    stato varchar(255),
+    aeroporto_icao varchar(255)
+);
+CREATE TABLE `compagnie` (
   id INT PRIMARY KEY,
   nome VARCHAR(50) NOT NULL,
   codice VARCHAR(3) NOT NULL
 );
-
-INSERT INTO compagnie (id, nome, codice) VALUES
+INSERT INTO `compagnie` (id, nome, codice) VALUES
 (1, 'Qatar Airways', 'QTR'),
 (2, 'Eurowings', 'EWG'),
 (3, 'LOT Polish Airlines', 'LOT'),

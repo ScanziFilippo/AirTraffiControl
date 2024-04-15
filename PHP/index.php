@@ -4,10 +4,9 @@
         header("Location: Controllori/login");
     }
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
-    $query = "SELECT * FROM aeroporti WHERE icao = '".$_SESSION['icao']."'";
+    $query = "SELECT * FROM aeroporti WHERE icao = '".$_SESSION['aeroporto_icao']."'";
     if($connessione->query($query)->num_rows == 0){
         header("Location: Aeroporti/registra");
-        
     }
 ?>
 <html>
