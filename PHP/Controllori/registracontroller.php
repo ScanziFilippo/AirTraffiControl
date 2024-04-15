@@ -1,6 +1,6 @@
 <?php
     //var_dump($_POST);
-    $aeroporto_icao = $_POST["aeroporto_icao"];
+    $aeroporto_icao = strtoupper($_POST["aeroporto_icao"]);
     $nome_utente = $_POST["nome_utente"];
     $nome = $_POST["nome"];
     $cognome = $_POST["cognome"];
@@ -26,7 +26,7 @@
             try{
                 $registra = "INSERT INTO controllori (aeroporto_icao, nome_utente, nome, cognome, codice, ruolo) VALUES ('$aeroporto_icao', '$nome_utente', '$nome', '$cognome', '$codice_criptato', '$ruolo')";
                 $risultato = $connessione->query($registra);
-                header("location: ../Aeroporti/registra");
+                header("location: login");
             }
             catch(Exception $e){
                 echo("Errore nella query: ".$e->getMessage());

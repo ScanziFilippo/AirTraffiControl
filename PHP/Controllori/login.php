@@ -3,7 +3,7 @@
         <title>Accesso</title>
         <link rel="stylesheet" href="../../CSS/index.css">
     </head>
-    <body>
+    <body style="padding-left:20px; padding-top:20px">
         Accesso al profilo<br><br>
         <form action="logincontroller" method="post">
             <input type="text" name="nome_utente" placeholder="nome_utente">
