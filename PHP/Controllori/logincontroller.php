@@ -8,6 +8,7 @@ $nome = $connessione->query("SELECT nome FROM controllori WHERE nome_utente = '$
 $cognome = $connessione->query("SELECT cognome FROM controllori WHERE nome_utente = '$nome_utente'")->fetch_assoc()['cognome'];
 $ruolo = $connessione->query("SELECT ruolo FROM controllori WHERE nome_utente = '$nome_utente'")->fetch_assoc()['ruolo'];
 $aeroporto_id = $connessione->query("SELECT aeroporto_id FROM controllori WHERE nome_utente = '$nome_utente'")->fetch_assoc()['aeroporto_id'];
+$aeroporto_icao = $connessione->query("SELECT icao FROM aeroporti WHERE id = '$aeroporto_id'")->fetch_assoc()['icao'];
 if ($connessione->connect_errno)
 {
     echo("Connessione fallita: ".$connessione->connect_error.".");
@@ -22,6 +23,7 @@ if ($connessione->connect_errno)
             $_SESSION['cognome'] = $cognome;
             $_SESSION['ruolo'] = $ruolo;
             $_SESSION['aeroporto_id'] = $aeroporto_id;
+            $_SESSION['aeroporto_icao'] = $aeroporto_icao;
             header("location: ../index");
         }else{
             header("location: login?err=nome_utente o codice errati");

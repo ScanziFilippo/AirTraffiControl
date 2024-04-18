@@ -19,7 +19,7 @@
                 <th>Stato</th>
             </tr>
             <?php
-                $parcheggi = $connessione->query("SELECT * FROM parcheggi WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."'");
+                $parcheggi = $connessione->query("SELECT * FROM parcheggi WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."'");
                 while($parcheggi_row = $parcheggi->fetch_assoc()){
                     echo("<form action='modificacontroller.php' method='post'>");
                     echo("<tr>");

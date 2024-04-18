@@ -5,8 +5,9 @@
     }
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
     $query = "SELECT * FROM aeroporti WHERE icao = '".$_SESSION['aeroporto_icao']."'";
-    if($connessione->query($query)->num_rows == 0){
-        header("Location: Aeroporti/registra");
+    $result = $connessione->query($query);
+    if($result->num_rows == 0 || $result->fetch_assoc()['nome'] == null){
+        header("Location: Aeroporti/modifica");
     }
 ?>
 <html>

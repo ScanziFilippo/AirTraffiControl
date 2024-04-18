@@ -30,21 +30,21 @@
             </h3>
             <h3>Aeroporto: 
                 <?php 
-                    if($connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")-> num_rows == 0){
+                    if($connessione->query("SELECT * FROM aeroporti WHERE id = '$_SESSION[aeroporto_id]'")-> num_rows == 0){
                         echo "Aeroporto " . $_SESSION['aeroporto_icao'] . " non ancora registrato. <a href='../Aeroporti/registra'>Registrati</a>";
                     }else{
-                        $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'");
+                        $connessione->query("SELECT * FROM aeroporti WHERE id = '$_SESSION[aeroporto_id]'");
                         if($_SESSION['ruolo'] == "Amministratore"){
-                            echo "「 " . $_SESSION['aeroporto_icao'] . " 」 " . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['nome'] . " (" . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['citta'] . ", " . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['nazione'] . ") <a href='../Aeroporti/modifica'>Modifica</a>";
+                            echo "「 " . $_SESSION['aeroporto_icao'] . " 」 " . $connessione->query("SELECT * FROM aeroporti WHERE id = '$_SESSION[aeroporto_id]'")->fetch_assoc()['nome'] . " (" . $connessione->query("SELECT * FROM aeroporti WHERE id = '$_SESSION[aeroporto_id]'")->fetch_assoc()['citta'] . ", " . $connessione->query("SELECT * FROM aeroporti WHERE id = '$_SESSION[aeroporto_id]'")->fetch_assoc()['nazione'] . ") <a href='../Aeroporti/modifica'>Modifica</a>";
                         }else{
-                            echo "「 " . $_SESSION['aeroporto_icao'] . " 」 " . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['nome'] . " (" . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['citta'] . ", " . $connessione->query("SELECT * FROM aeroporti WHERE icao = '$_SESSION[aeroporto_icao]'")->fetch_assoc()['nazione'] . ")";
+                            echo "「 " . $_SESSION['aeroporto_icao'] . " 」 " . $connessione->query("SELECT * FROM aeroporti WHERE id = '$_SESSION[aeroporto_id]'")->fetch_assoc()['nome'] . " (" . $connessione->query("SELECT * FROM aeroporti WHERE id = '$_SESSION[aeroporto_id]'")->fetch_assoc()['citta'] . ", " . $connessione->query("SELECT * FROM aeroporti WHERE id = '$_SESSION[aeroporto_id]'")->fetch_assoc()['nazione'] . ")";
                         }
                     }
                 ?>
             </h3>
             <h3>Parcheggi:
                 <?php
-                echo " " . $connessione->query("SELECT * FROM parcheggi WHERE aeroporto_icao = '$_SESSION[aeroporto_icao]'")-> num_rows;
+                echo " " . $connessione->query("SELECT * FROM parcheggi WHERE aeroporto_id = '$_SESSION[aeroporto_id]'")-> num_rows;
                     //if($_SESSION['ruolo'] == "Amministratore"){
                         echo " <a href='../Parcheggi/visualizza'>Visualizza</a>";
                     //}
@@ -52,7 +52,7 @@
             </h3>
             <h3>Piste:
                 <?php
-                    echo " " . $connessione->query("SELECT * FROM piste WHERE aeroporto_icao = '$_SESSION[aeroporto_icao]'")-> num_rows;
+                    echo " " . $connessione->query("SELECT * FROM piste WHERE aeroporto_id = '$_SESSION[aeroporto_id]'")-> num_rows;
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo " <a href='../Piste/visualizza'>Visualizza</a>";
                     }
@@ -65,7 +65,7 @@
             </h3>
             <h3>Personale:
                 <?php
-                    echo " " . $connessione->query("SELECT * FROM controllori WHERE aeroporto_icao = '$_SESSION[aeroporto_icao]'")-> num_rows;
+                    echo " " . $connessione->query("SELECT * FROM controllori WHERE aeroporto_id = '$_SESSION[aeroporto_id]'")-> num_rows;
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo " <a href='visualizza_controllori'>Visualizza</a>";
                     }

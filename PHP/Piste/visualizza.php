@@ -19,7 +19,7 @@
                 <th>Stato</th>
             </tr>
             <?php
-                $piste = $connessione->query("SELECT * FROM piste WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."'");
+                $piste = $connessione->query("SELECT * FROM piste WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."'");
                 while($piste_row = $piste->fetch_assoc()){
                     echo("<form action='modificacontroller' method='post'>");
                     echo("<tr>");

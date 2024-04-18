@@ -24,7 +24,10 @@
             header("location: registra?err=Non esiste un aeroporto con questo icao. Devi essere amministratore per crearlo");
         }else{
             try{
-                $registra = "INSERT INTO controllori (aeroporto_icao, nome_utente, nome, cognome, codice, ruolo) VALUES ('$aeroporto_icao', '$nome_utente', '$nome', '$cognome', '$codice_criptato', '$ruolo')";
+                $registraAeroporto = "INSERT INTO aeroporti (icao) VALUES ('$aeroporto_icao')";
+                $risultatoAeroporto = $connessione->query($registraAeroporto);
+                $aeroporto_id = $connessione->query("SELECT id FROM aeroporti WHERE icao = '".$aeroporto_icao."'")->fetch_assoc()['id'];
+                $registra = "INSERT INTO controllori (aeroporto_id, nome_utente, nome, cognome, codice, ruolo) VALUES ('$aeroporto_id', '$nome_utente', '$nome', '$cognome', '$codice_criptato', '$ruolo')";
                 $risultato = $connessione->query($registra);
                 header("location: login");
             }
@@ -37,9 +40,10 @@
     }
     else{
         try{
-            $registra = "INSERT INTO controllori (aeroporto_icao, nome_utente, nome, cognome, codice, ruolo) VALUES ('$aeroporto_icao', '$nome_utente', '$nome', '$cognome', '$codice_criptato', '$ruolo')";
+            $aeroporto_id = $connessione->query("SELECT id FROM aeroporti WHERE icao = '".$aeroporto_icao."'")->fetch_assoc()['id'];
+            $registra = "INSERT INTO controllori (aeroporto_id, nome_utente, nome, cognome, codice, ruolo) VALUES ('$aeroporto_id', '$nome_utente', '$nome', '$cognome', '$codice_criptato', '$ruolo')";
             $risultato = $connessione->query($registra);
-            header("location: profilo");
+            header("location: login");
         }
         catch(Exception $e){
             echo("Errore nella query: ".$e->getMessage());
