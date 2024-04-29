@@ -1,15 +1,16 @@
 <?php
     session_start();
-    
-    $immatricolazione = $_GET['immatricolazione'];
+    $id=$_GET["id"];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
-    $icao = $connessione->query("SELECT aeroporto_id FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['aeroporto_id'];
-    $modello = $connessione->query("SELECT modello FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['modello'];
-    $compagnia = $connessione->query("SELECT compagnia FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['compagnia'];
-    $posizione = $connessione->query("SELECT posizione FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['posizione'];
-    $stato = $connessione->query("SELECT stato FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['stato'];
-    $pista_id = $connessione->query("SELECT pista_id FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['pista_id'];
-    $parcheggio_id = $connessione->query("SELECT parcheggio_id FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['parcheggio_id'];
+    $immatricolazione = $connessione->query("SELECT immatricolazione FROM aerei WHERE id = '".$id."'")->fetch_assoc()['immatricolazione'];
+    $aeroporto_id = $connessione->query("SELECT aeroporto_id FROM aerei WHERE id = '".$id."'")->fetch_assoc()['aeroporto_id'];
+    $icao = $connessione->query("SELECT icao FROM aerei INNER JOIN aeroporti ON aerei.aeroporto_id = aeroporti.id WHERE aerei.id = '".$id."'")->fetch_assoc()['icao'];
+    $modello = $connessione->query("SELECT modello FROM aerei WHERE id = '".$id."'")->fetch_assoc()['modello'];
+    $compagnia = $connessione->query("SELECT compagnia FROM aerei WHERE id = '".$id."'")->fetch_assoc()['compagnia'];
+    $posizione = $connessione->query("SELECT posizione FROM aerei WHERE id = '".$id."'")->fetch_assoc()['posizione'];
+    $stato = $connessione->query("SELECT stato FROM aerei WHERE id = '".$id."'")->fetch_assoc()['stato'];
+    $pista_id = $connessione->query("SELECT pista_id FROM aerei WHERE id = '".$id."'")->fetch_assoc()['pista_id'];
+    $parcheggio_id = $connessione->query("SELECT parcheggio_id FROM aerei WHERE id = '".$id."'")->fetch_assoc()['parcheggio_id'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,7 +21,8 @@
     <body>
         modifica un aereo<br><br>
         <form action="modifica_aereocontroller" method="post" enctype="multipart/form-data">
-            <input type="text" name="immatricolazione" placeholder="immatricolazione" value="<?php echo($immatricolazione); ?>">
+            <input name="id" value="<?php echo $id; ?>" type="hidden">
+            <input type="text" name="immatricolazione" placeholder="immatricolazione" style="text-transform:uppercase" value="<?php echo($immatricolazione); ?>">
             <input list="aerei" name="modello" placeholder="modello" id="modello" value="<?php echo($modello); ?>" onchange="cercaFotoModello()">
                 <datalist id="aerei">
                     <option value="A220">
@@ -101,7 +103,7 @@
             <select name="pista_id">
                 <option value="-">-</option>
                 <?php
-                    $piste = $connessione->query("SELECT id FROM piste WHERE aeroporto_id = '".$icao."' ORDER BY id");
+                    $piste = $connessione->query("SELECT id FROM piste WHERE aeroporto_id = '".$aeroporto_id."' ORDER BY id");
                     while($piste_row = $piste->fetch_assoc()){
                         echo("<option value='".$piste_row['id']."'");
                         if($piste_row['id'] == $pista_id){
@@ -115,7 +117,7 @@
             <select name="parcheggio_id">
                 <option value="-">-</option>
                 <?php
-                    $parcheggi = $connessione->query("SELECT id FROM parcheggi WHERE aeroporto_id = '".$icao."' ORDER BY id");
+                    $parcheggi = $connessione->query("SELECT id FROM parcheggi WHERE aeroporto_id = '".$aeroporto_id."' ORDER BY id");
                     while($parcheggi_row = $parcheggi->fetch_assoc()){
                         echo("<option value='".$parcheggi_row['id']."'");
                         if($parcheggi_row['id'] == $parcheggio_id){
@@ -125,7 +127,7 @@
                     }
                 ?>
             </select>
-            <input list="aeroporti" type="text" name="aeroporto_id" placeholder="aeroporto_id" value="<?php echo($icao); ?>" style="text-transform:uppercase">
+            <!--<input list="aeroporti" type="text" name="aeroporto_id" placeholder="aeroporto_id" value="<?php echo($icao); ?>" style="text-transform:uppercase">
                 <datalist id="aeroporti">
                     <?php
                         $aeroporti = $connessione->query("SELECT icao FROM aeroporti ORDER BY icao");
@@ -133,11 +135,11 @@
                             echo("<option value='".$aeroporti_row['icao']."'>");
                         }
                     ?>
-                </datalist>
+                </datalist>-->
             <input type="submit">
         </form>
         <br>
-        <a href="elimina_aereo.php?immatricolazione=<?php echo $immatricolazione;?>" style="color: red">Elimina aereo</a>
+        <a href="elimina_aereo.php?id=<?php echo $id;?>" style="color: red">Elimina aereo</a>
         <br>
         <br>
         <a href="index">Torna alla home</a>

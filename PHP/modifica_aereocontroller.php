@@ -10,6 +10,7 @@
             echo("Connessione fallita: ".$connessione->connect_error.".");
             exit();
         }else{
+            $id = $_POST['id'];
             $immatricolazione = $_POST['immatricolazione'];
             $immatricolazione = strtoupper($immatricolazione);
             $modello = $_POST['modello'];
@@ -18,8 +19,6 @@
             $stato = $_POST['stato'];
             $pista_id = $_POST['pista_id'];
             $parcheggio_id = $_POST['parcheggio_id'];
-            $aeroporto_icao = $_POST['aeroporto_icao'];
-            $aeroporto_icao = strtoupper($aeroporto_icao);
             /*if(!is_int($pista_id)){
                 $pista_id = NULL;
             }
@@ -35,18 +34,19 @@
             $imageFileType_compagnia = strtolower(pathinfo($target_file_compagnia,PATHINFO_EXTENSION));  
             $target_dir_aerei = $target_dir_aerei . $immatricolazione . ".jpeg";
             $target_dir_compagnie = $target_dir_compagnie . $compagnia . ".jpeg";  
-            $connessione->query("UPDATE aerei SET modello = '".$modello."', compagnia = '".$compagnia."', posizione = '".$posizione."', stato = '".$stato."', aeroporto_icao = '".$aeroporto_icao."' WHERE immatricolazione = '".$immatricolazione."'");
+            $connessione->query("UPDATE aerei SET immatricolazione = '".$immatricolazione."' WHERE id = '".$id."'");
+            $connessione->query("UPDATE aerei SET modello = '".$modello."', compagnia = '".$compagnia."', posizione = '".$posizione."', stato = '".$stato."' WHERE id = '".$id."'");
             if($pista_id != "-"){
-                $connessione->query("UPDATE aerei SET pista_id = '".$pista_id."' WHERE immatricolazione = '".$immatricolazione."'");
+                $connessione->query("UPDATE aerei SET pista_id = '".$pista_id."' WHERE id = '".$id."'");
             }
             if($parcheggio_id != "-"){
-                $connessione->query("UPDATE aerei SET parcheggio_id = '".$parcheggio_id."' WHERE immatricolazione = '".$immatricolazione."'");
+                $connessione->query("UPDATE aerei SET parcheggio_id = '".$parcheggio_id."' WHERE id = '".$id."'");
             }
             if($pista_id == "-"){
-                $connessione->query("UPDATE aerei SET pista_id = NULL WHERE immatricolazione = '".$immatricolazione."'");
+                $connessione->query("UPDATE aerei SET pista_id = NULL WHERE id = '".$id."'");
             }
             if($parcheggio_id == "-"){
-                $connessione->query("UPDATE aerei SET parcheggio_id = NULL WHERE immatricolazione = '".$immatricolazione."'");
+                $connessione->query("UPDATE aerei SET parcheggio_id = NULL WHERE id = '".$id."'");
             }
 
             header("Location: index");

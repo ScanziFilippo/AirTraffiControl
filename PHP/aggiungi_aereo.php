@@ -107,7 +107,7 @@
         <br>
         <?php
         if(isset($_GET['err'])){?>
-        <p> <?php echo $_GET['err']; ?> </p> 
+        <p style="color: red"> <?php echo $_GET['err']; ?> </p> 
         <?php
             }
         ?>

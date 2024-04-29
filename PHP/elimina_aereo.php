@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $immatricolazione = $_GET['immatricolazione'];
+    $id = $_GET['id'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
     if ($connessione->connect_errno)
     {
@@ -8,7 +8,7 @@
         exit();
     }else{
         try{
-            $cancella = "DELETE FROM aerei WHERE immatricolazione = '$immatricolazione'";
+            $cancella = "DELETE FROM aerei WHERE id = '$id'";
             $risultato = $connessione->query($cancella);
             header ("location: index");
         }

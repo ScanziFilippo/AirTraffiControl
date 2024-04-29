@@ -53,9 +53,9 @@
             <h3>Piste:
                 <?php
                     echo " " . $connessione->query("SELECT * FROM piste WHERE aeroporto_id = '$_SESSION[aeroporto_id]'")-> num_rows;
-                    if($_SESSION['ruolo'] == "Amministratore"){
+                    //if($_SESSION['ruolo'] == "Amministratore"){
                         echo " <a href='../Piste/visualizza'>Visualizza</a>";
-                    }
+                    //}
                 ?>
             </h3>
             <h3>Ruolo: 

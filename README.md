@@ -109,7 +109,6 @@ CREATE TABLE `parcheggi` (
 CREATE TABLE `piste` (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
     nome varchar(255),
-    stato varchar(255),
     aeroporto_id varchar(255)
 );
 CREATE TABLE `compagnie` (

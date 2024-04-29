@@ -18,8 +18,8 @@
     </body>
     <?php
         if(isset($_GET['err'])){?>
-            <p> <?php echo $_GET['err']; ?> </p>
-            <?php 
-        }
-    ?>
+        <p style="color: red"> <?php echo $_GET['err']; ?> </p> 
+        <?php
+            }
+        ?>
 </html>
