@@ -21,7 +21,7 @@
         header("location: registra?err=Compila tutti i campi");
     }else if($connessione->query("SELECT * FROM aeroporti WHERE icao = '$aeroporto_icao'")->num_rows == 0){
         if($ruolo=="Base"){
-            header("location: registra?err=Non esiste un aeroporto con questo icao. Devi essere amministratore per crearlo");
+            header("location: registra?err=Non%20esiste%20un%20aeroporto%20con%20questo%20icao.%20Devi%20essere%20amministratore%20per%20crearlo");
         }else{
             try{
                 $registraAeroporto = "INSERT INTO aeroporti (icao) VALUES ('$aeroporto_icao')";
@@ -36,7 +36,7 @@
             }
         }
     }else if($connessione->query("SELECT * FROM controllori WHERE nome_utente = '$nome_utente'")->num_rows > 0){
-        header("location: registra?err=Nome utente già esistente");
+        header("location: registra?err=Nome%20utente%20gi%C3%A0%20esistente");
     }
     else{
         try{

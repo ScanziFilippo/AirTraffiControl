@@ -101,7 +101,8 @@
             while($aerei_row = $aerei->fetch_assoc()){
                 echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['immatricolazione']."> 
                     <div style=display:inline-block;>
-                        <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
+                        <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
+                        <img src='../IMG/aereo.jpg' width='200px'><br>
                     </div>
                     <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
@@ -124,7 +125,8 @@
             while($aerei_row = $aerei->fetch_assoc()){
                 echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['immatricolazione']."> 
                     <div style=display:inline-block;>
-                        <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
+                        <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
+                        <img src='../IMG/aereo.jpg' width='200px'><br>
                     </div>
                     <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
@@ -146,7 +148,8 @@
             while($aerei_row = $aerei->fetch_assoc()){
                 echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['immatricolazione']."> 
                     <div style=display:inline-block;>
-                        <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
+                        <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
+                        <img src='../IMG/aereo.jpg' width='200px'><br>
                     </div>
                     <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
@@ -169,7 +172,8 @@
             while($aerei_row = $aerei->fetch_assoc()){
                 echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['immatricolazione']."> 
                     <div style=display:inline-block;>
-                        <img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>
+                        <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
+                        <img src='../IMG/aereo.jpg' width='200px'><br>
                     </div>
                     <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>

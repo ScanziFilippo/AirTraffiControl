@@ -1,41 +1,45 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente'])/* || $_SESSION['ruolo'] != "Amministratore"*/){
-        header("Location: ../Controllori/login");
+        header("Location: ../Controllori/login.php");
     }
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Visualizza Piste</title>
+        <title>Visualizza piste</title>
         <link rel="stylesheet" href="../../CSS/index.css">
     </head>
     <body>
-        Visualizza Piste<br><br>
+        Visualizza piste<br><br>
         <table>
             <tr>
                 <th>Id</th>
+                <th>Nome</th>
                 <th>Stato</th>
+                <th></th>
             </tr>
             <?php
-                $piste = $connessione->query("SELECT * FROM piste WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."'");
+                $piste = $connessione->query("SELECT * FROM piste WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."' ORDER BY nome");
                 while($piste_row = $piste->fetch_assoc()){
-                    echo("<form action='modificacontroller' method='post'>");
+                    echo("<form action='modificacontroller.php' method='post'>");
                     echo("<tr>");
                     echo("<td id='" . $piste_row['id'] . "'>");
-                    if($_SESSION['ruolo'] == "Amministratore"){
-                        echo("<input type='text' name='id' value='");
-                    }
+                    echo("<input readonly type='text' name='id' value='");
                     echo($piste_row['id']);
+                    echo("'></input></td>");
+                    echo("<td>");
+                    if($_SESSION['ruolo'] == "Amministratore"){
+                        echo("<input type='text' name='nome' value='");
+                    }
+                    echo($piste_row['nome']);
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("'></input></td>");
                     }
-                    echo("<input type='hidden' name='idVecchio' value='".$piste_row['id']."'></input>");
-                    echo("<td>".$piste_row['stato']."</td>");
+                    //TODO Metti stato
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("<td><input type='submit'></input></td>");
-                        //echo("<td><a href='eliminacontroller?id=".$piste_row['id']."'>Elimina</a></td>");
                         echo("<td><button>Elimina</button></td>");
                         echo("</tr>");
                     }
@@ -46,11 +50,12 @@
         <form>
             <?php
                 if($_SESSION['ruolo'] == "Amministratore"){
-                    echo("<input type='button' value='Aggiungi pista' onclick='window.location.href=\"aggiungicontroller\"'>");
+                    echo("<input type='button' value='Aggiungi pista' onclick='window.location.href=\"aggiungicontroller.php\"'>");
                 }
             ?>
         </form>
-        <a href="../Controllori/profilo">Torna al profilo</a>
+        <a href="../Controllori/profilo.php">Torna al profilo</a>
+
         <script>
             function elimina(e){
                 e.preventDefault();
@@ -63,7 +68,7 @@
                         document.getElementById(idDaEliminare).parentNode.remove();
                     }
                 };
-                xmlhttp.open("POST", "eliminacontroller?id=" + idDaEliminare, true);
+                xmlhttp.open("POST", "eliminacontroller.php?id=" + idDaEliminare, true);
                 xmlhttp.send();
             }
 

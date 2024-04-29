@@ -13,10 +13,10 @@
         try{
             $n = 1;
             //$n = $connessione->query("SELECT * FROM piste WHERE aeroporto_icao = '$_SESSION[aeroporto_icao]'")->num_rows + 1;
-            while($connessione->query("SELECT * FROM piste WHERE id = '$n' AND aeroporto_id = '$_SESSION[aeroporto_id]'")->num_rows > 0){
+            while($connessione->query("SELECT * FROM piste WHERE nome = '$n' AND aeroporto_id = '$_SESSION[aeroporto_id]'")->num_rows > 0){
                 $n++;
             }
-            $connessione->query("INSERT INTO piste (id, stato, aeroporto_id) VALUES ('$n','Libera', '$_SESSION[aeroporto_id]')");
+            $connessione->query("INSERT INTO piste (nome, aeroporto_id) VALUES ('$n', '$_SESSION[aeroporto_id]')");
             header("Location: visualizza");
         }
         catch(Exception $e){

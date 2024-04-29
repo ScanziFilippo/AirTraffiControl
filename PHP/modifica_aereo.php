@@ -3,7 +3,7 @@
     
     $immatricolazione = $_GET['immatricolazione'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
-    $icao = $connessione->query("SELECT aeroporto_icao FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['aeroporto_icao'];
+    $icao = $connessione->query("SELECT aeroporto_id FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['aeroporto_id'];
     $modello = $connessione->query("SELECT modello FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['modello'];
     $compagnia = $connessione->query("SELECT compagnia FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['compagnia'];
     $posizione = $connessione->query("SELECT posizione FROM aerei WHERE immatricolazione = '".$immatricolazione."'")->fetch_assoc()['posizione'];
@@ -101,7 +101,7 @@
             <select name="pista_id">
                 <option value="-">-</option>
                 <?php
-                    $piste = $connessione->query("SELECT id FROM piste WHERE aeroporto_icao = '".$icao."' ORDER BY id");
+                    $piste = $connessione->query("SELECT id FROM piste WHERE aeroporto_id = '".$icao."' ORDER BY id");
                     while($piste_row = $piste->fetch_assoc()){
                         echo("<option value='".$piste_row['id']."'");
                         if($piste_row['id'] == $pista_id){
@@ -115,7 +115,7 @@
             <select name="parcheggio_id">
                 <option value="-">-</option>
                 <?php
-                    $parcheggi = $connessione->query("SELECT id FROM parcheggi WHERE aeroporto_icao = '".$icao."' ORDER BY id");
+                    $parcheggi = $connessione->query("SELECT id FROM parcheggi WHERE aeroporto_id = '".$icao."' ORDER BY id");
                     while($parcheggi_row = $parcheggi->fetch_assoc()){
                         echo("<option value='".$parcheggi_row['id']."'");
                         if($parcheggi_row['id'] == $parcheggio_id){
@@ -125,7 +125,7 @@
                     }
                 ?>
             </select>
-            <input list="aeroporti" type="text" name="aeroporto_icao" placeholder="aeroporto_icao" value="<?php echo($icao); ?>" style="text-transform:uppercase">
+            <input list="aeroporti" type="text" name="aeroporto_id" placeholder="aeroporto_id" value="<?php echo($icao); ?>" style="text-transform:uppercase">
                 <datalist id="aeroporti">
                     <?php
                         $aeroporti = $connessione->query("SELECT icao FROM aeroporti ORDER BY icao");

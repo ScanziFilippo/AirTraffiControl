@@ -25,18 +25,16 @@
                 <th>Nome utente</th>
                 <th>Nome</th>
                 <th>Cognome</th>
-                <th>Aeroporto</th>
                 <!--<th>Modifica</th>
                 <th>Cancella</th>-->
             </tr>
             <?php
-                $controllori = $connessione->query("SELECT * FROM controllori WHERE aeroporto_icao = '".$_SESSION['aeroporto_icao']."'");
+                $controllori = $connessione->query("SELECT * FROM controllori WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."'");
                 while($controllori_row = $controllori->fetch_assoc()){
                     echo("<tr>");
                     echo("<td id=".$controllori_row['nome_utente'].">".$controllori_row['nome_utente']."</td>");
                     echo("<td>".$controllori_row['nome']."</td>");
                     echo("<td>".$controllori_row['cognome']."</td>");
-                    echo("<td>".$controllori_row['aeroporto_icao']."</td>");
                     /*echo("<td><a href='modifica_controllori?nome_utente=".$controllori_row['nome_utente']."'>Modifica</a></td>");
                     echo("<td><a href='cancella_controllori?nome_utente=".$controllori_row['nome_utente']."'>Cancella</a></td>");*/
                     if($_SESSION['ruolo'] == "Amministratore" && $controllori_row['nome_utente'] != $_SESSION['nome_utente']){

@@ -4,8 +4,9 @@
         header("Location: ../Controllori/login");
     }
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
-    $idNuovo = $_POST['id'];
-    $idVecchio = $_POST['idVecchio'];
+    $id = $_POST['id'];
+    //$idVecchio = $_POST['idVecchio'];
+    $nome = $_POST['nome'];
     if ($connessione->connect_errno)
     {
         echo("Connessione fallita: ".$connessione->connect_error.".");
@@ -13,7 +14,7 @@
     }
     else{
         try{
-            $connessione->query("UPDATE piste SET id = '".$idNuovo."' WHERE id = '".$idVecchio."'");
+            $connessione->query("UPDATE piste SET nome = '".$nome."' WHERE id = '".$id."'");
             header("Location: visualizza");
         }
         catch(Exception $e){

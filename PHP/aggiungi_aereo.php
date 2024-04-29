@@ -60,11 +60,11 @@
                         }
                     ?>
                 </datalist>
-            <img src="" width="300px">
+            <img src="" width="300px"><!--
             <input type="file" name="foto_aereo" placeholder="foto_aereo" id="foto_aereo">
             <img src="" width="300px">
             <input type="file" name="foto_compagnia" placeholder="foto_compagnia">
-            <input type="text" name="posizione" placeholder="posizione">
+            <input type="text" name="posizione" placeholder="posizione">-->
             <!--<input type="text" name="stato" placeholder="stato">-->
             <select name="stato">
                 <option value="Fermo">Fermo</option>
@@ -93,7 +93,7 @@
                     }
                 ?>
             </select>
-            <input list="aeroporti" type="text" name="aeroporto_icao" placeholder="aeroporto_icao" style="text-transform:uppercase">
+            <!--<input list="aeroporti" type="text" name="aeroporto_icao" placeholder="aeroporto_icao" style="text-transform:uppercase">
                 <datalist id="aeroporti">
                     <?php
                         $aeroporti = $connessione->query("SELECT icao FROM aeroporti ORDER BY icao");
@@ -101,20 +101,26 @@
                             echo("<option value='".$aeroporti_row['icao']."'>");
                         }
                     ?>
-                </datalist>
+                </datalist>-->
             <input type="submit">
         </form>
         <br>
+        <?php
+        if(isset($_GET['err'])){?>
+        <p> <?php echo $_GET['err']; ?> </p> 
+        <?php
+            }
+        ?>
         <a href="index">Torna alla home</a>
         <script>
-            function cercaFotoModello(){
+            /*function cercaFotoModello(){
                 var modello = document.getElementById("modello").value;
                 document.getElementsByTagName("img")[0].src='../IMG/Aerei/' + modello;
             }
             function cercaFotoCompagnia(){
                 var compagnia = document.getElementById("compagnia").value;
                 document.getElementsByTagName("img")[1].src='../IMG/Compagnie/' + compagnia;
-            }
+            }*/
         </script>
     </body>
 </html>
