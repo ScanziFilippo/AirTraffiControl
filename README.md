@@ -58,13 +58,9 @@ Alle torri di controllo di qualsiasi tipo di aereporto
 ![alt text](IMG/ERN.jpg)
 ## Relazioni
 AEROPORTO (<ins>ICAO</ins>, IATA, NOME, CITTA, NAZIONE) <br>
-CONTROLLORE (<ins>ID</ins>, <ins>NOME_UTENTE</ins>, CODICE, RUOLO, AEROPORTO_ICAO) <br>
-AEREO (<ins>IMMATRICOLAZIONE</ins>, MODELLO, COMPAGNIA, FOTO_AEREO, BANDIERA, FOTO_COMPAGNIA, POSIZIONE, STATO, PISTA_ID, PARCHEGGIO_ID, AEROPORTO_ICAO) <br>
-
-da eliminare!!!!!
-PISTA (<ins>ID</ins>, STATO, AEROPORTO_ICAO) <br>
-PARCHEGGIO (<ins>ID</ins>, STATO, <ins>AEROPORTO_ICAO</ins>) <br>
-
+CONTROLLORE (<ins>NOME_UTENTE</ins>, CODICE, RUOLO, AEROPORTO_ID) <br>
+AEREO (<ins>IMMATRICOLAZIONE</ins>, MODELLO, COMPAGNIA, BANDIERA, LUOGO, STATO) <br>
+LUOGO (<ins>ID</ins>, NOME, TIPO, AEROPORTO_ID) <br>
 COMPAGNIA (<ins>ID</ins>, NOME, CODICE) <br>
 ## Creazione tabelle
 ```sql
