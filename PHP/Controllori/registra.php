@@ -4,7 +4,7 @@
         <title>Registrazione</title>
         <link rel="stylesheet" href="../../CSS/index.css">
     </head>
-    <body>
+    <body style="padding-left:20px; padding-top:20px">
         Registrazione del profilo<br><br>
         <form action="registracontroller" method="post">
             <input type="text" name="aeroporto_icao" style="text-transform:uppercase" placeholder="aeroporto_icao">

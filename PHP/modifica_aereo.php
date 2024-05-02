@@ -18,7 +18,7 @@
         <title>modifica aereo</title>
         <link rel="stylesheet" href="../CSS/index.css">
     </head>
-    <body>
+    <body style="padding-left:20px; padding-top:20px">
         modifica un aereo<br><br>
         <form action="modifica_aereocontroller" method="post" enctype="multipart/form-data">
             <input name="id" value="<?php echo $id; ?>" type="hidden">

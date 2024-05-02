@@ -111,6 +111,14 @@ CREATE TABLE `piste` (
     nome varchar(255),
     aeroporto_id varchar(255)
 );
+CREATE TABLE `voli` (
+    id int(11) NOT NULL auto_increment PRIMARY KEY,
+    codice varchar(255) NOT NULL,
+    partenza varchar(255) NOT NULL,
+    destinazione varchar(255) NOT NULL,
+    data_partenza TIMESTAMP,
+    data_arrivo TIMESTAMP
+);
 CREATE TABLE `compagnie` (
   id INT PRIMARY KEY,
   nome VARCHAR(50) NOT NULL,
