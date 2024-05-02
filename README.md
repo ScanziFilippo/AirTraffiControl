@@ -73,7 +73,7 @@ CREATE TABLE `aerei` (
     modello varchar(255),
     compagnia varchar(255),
     luogo varchar(255),
-    stato varchar(255),
+    stato varchar(255)
 );
 CREATE TABLE `aeroporti` (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
