@@ -31,15 +31,11 @@ CREATE TABLE `controllori` (
     ruolo varchar(255),
     aeroporto_id varchar(255)
 );
-CREATE TABLE `parcheggi` (
-    id int(11) NOT NULL auto_increment PRIMARY KEY,
-    nome varchar(255) NOT NULL,
-    aeroporto_id varchar(255)
-);
-CREATE TABLE `piste` (
+CREATE TABLE `luoghi` (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
     nome varchar(255),
-    aeroporto_id varchar(255)
+    tipo int(11),
+    aeroporto_id varchar(255) NOT NULL
 );
 CREATE TABLE `voli` (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
