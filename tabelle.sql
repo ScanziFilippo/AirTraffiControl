@@ -18,7 +18,7 @@ CREATE TABLE `aeroporti` (
     nazione varchar(255)
 );
 INSERT INTO `aeroporti` (id, icao, nome) VALUES
-(0, 'GLOBALE', 'GLOBALE');
+(1, 'GLOBALE', 'GLOBALE');
 
 CREATE TABLE `controllori` (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
@@ -36,7 +36,7 @@ CREATE TABLE `luoghi` (
     aeroporto_id varchar(255) NOT NULL
 );
 INSERT INTO `luoghi` (id, nome, tipo, aeroporto_id) VALUES
-(0, 'GLOBALE', 0, 0);
+(1, 'GLOBALE', 0, 1);
 
 CREATE TABLE `voli` (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
