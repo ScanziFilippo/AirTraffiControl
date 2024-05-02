@@ -92,6 +92,9 @@ CREATE TABLE `aeroporti` (
     citta varchar(255),
     nazione varchar(255)
 );
+INSERT INTO `aeroporti` (id, icao, nome) VALUES
+(0, 'GLOBALE', 'GLOBALE');
+
 CREATE TABLE `controllori` (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
     nome_utente varchar(255) NOT NULL,
@@ -107,6 +110,9 @@ CREATE TABLE `luoghi` (
     tipo int(11),
     aeroporto_id varchar(255) NOT NULL
 );
+INSERT INTO `luoghi` (id, nome, tipo, aeroporto_id) VALUES
+(0, 'GLOBALE', 0, 0);
+
 CREATE TABLE `voli` (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
     codice varchar(255) NOT NULL,
