@@ -6,8 +6,11 @@
     $nome_utente = $_SESSION['nome_utente'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
     $compagnie = $connessione->query("SELECT nome FROM compagnie ORDER BY nome");
-    $parcheggi = $connessione->query("SELECT id FROM parcheggi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' ORDER BY id");
-    $piste = $connessione->query("SELECT id FROM piste WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' ORDER BY id");
+    $parcheggi = $connessione->query("SELECT id, nome FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='1' ORDER BY nome");
+    $piste = $connessione->query("SELECT id, nome FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='2' ORDER BY nome");
+    if($connessione->query("SELECT * FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='0'")->num_rows == 0){
+        $connessione->query("INSERT INTO luoghi (aeroporto_id, tipo, nome) VALUES ('". $_SESSION['aeroporto_id'] . "', '0', 'Spazio Aereo')");
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,33 +69,35 @@
             <input type="file" name="foto_compagnia" placeholder="foto_compagnia">
             <input type="text" name="posizione" placeholder="posizione">-->
             <!--<input type="text" name="stato" placeholder="stato">-->
-            <select name="stato">
+            <select name="stato" onchange="aggiornaConStato()">
                 <option value="Fermo">Fermo</option>
                 <option value="In volo">In volo</option>
-                <option value="Atterrando">Atterrando</option>
+                <!--<option value="Atterrando">Atterrando</option>
                 <option value="Decollando">Decollando</option>
-                <option value="In attesa">In attesa</option>
+                <option value="In attesa">In attesa</option>-->
             </select>
             <!--<input type="number" name="pista_id" placeholder="pista_id">
             <input type="number" name="parcheggio_id" placeholder="parcheggio_id">-->
-            Pista
+            <!--Pista
             <select name="pista_id">
                 <option value="-">-</option>
                 <?php
                     while($piste_row = $piste->fetch_assoc()){
-                        echo("<option value='".$piste_row['id']."'>".$piste_row['id']."</option>");
+                        echo("<option value='".$piste_row['id']."'>".$piste_row['nome']."</option>");
                     }
                 ?>
-            </select>
-            Parcheggio
-            <select name="parcheggio_id">
-                <option value="-">-</option>
-                <?php
-                    while($parcheggi_row = $parcheggi->fetch_assoc()){
-                        echo("<option value='".$parcheggi_row['id']."'>".$parcheggi_row['id']."</option>");
-                    }
-                ?>
-            </select>
+            </select>-->
+            <div id="parcheggi">
+                Parcheggio
+                <select name="luogo">
+                    <!--<option value="-">-</option>-->
+                    <?php
+                        while($parcheggi_row = $parcheggi->fetch_assoc()){
+                            echo("<option value='".$parcheggi_row['id']."'>".$parcheggi_row['nome']."</option>");
+                        }
+                    ?>
+                </select>
+            </div>
             <!--<input list="aeroporti" type="text" name="aeroporto_icao" placeholder="aeroporto_icao" style="text-transform:uppercase">
                 <datalist id="aeroporti">
                     <?php
@@ -113,6 +118,19 @@
         ?>
         <a href="index">Torna alla home</a>
         <script>
+            function aggiornaConStato(){
+                var stato = document.getElementsByTagName("select")[0].value;
+                if(stato == "Fermo"){
+                    document.getElementById("parcheggi").style.visibility = "visible";
+                    //if(document.getElementsByTagName("select")[1].value == "-"){
+                        document.getElementsByTagName("select")[1].value = "<?php echo $connessione->query("SELECT id FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='1' ORDER BY nome")->fetch_array()[0]; ?>";
+                    //}
+                }else{
+                    document.getElementById("parcheggi").style.visibility = "hidden";
+                    document.getElementsByTagName("select")[1].value = "-";
+                }
+            }
+            aggiornaConStato();
             /*function cercaFotoModello(){
                 var modello = document.getElementById("modello").value;
                 document.getElementsByTagName("img")[0].src='../IMG/Aerei/' + modello;

@@ -44,7 +44,7 @@
             </h3>
             <h3>Parcheggi:
                 <?php
-                echo " " . $connessione->query("SELECT * FROM parcheggi WHERE aeroporto_id = '$_SESSION[aeroporto_id]'")-> num_rows;
+                echo " " . $connessione->query("SELECT * FROM luoghi WHERE aeroporto_id = '$_SESSION[aeroporto_id]' AND tipo=1")-> num_rows;
                     //if($_SESSION['ruolo'] == "Amministratore"){
                         echo " <a href='../Parcheggi/visualizza'>Visualizza</a>";
                     //}
@@ -52,7 +52,7 @@
             </h3>
             <h3>Piste:
                 <?php
-                    echo " " . $connessione->query("SELECT * FROM piste WHERE aeroporto_id = '$_SESSION[aeroporto_id]'")-> num_rows;
+                    echo " " . $connessione->query("SELECT * FROM luoghi WHERE aeroporto_id = '$_SESSION[aeroporto_id]' AND tipo=2")-> num_rows;
                     //if($_SESSION['ruolo'] == "Amministratore"){
                         echo " <a href='../Piste/visualizza'>Visualizza</a>";
                     //}

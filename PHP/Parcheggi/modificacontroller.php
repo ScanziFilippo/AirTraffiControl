@@ -14,7 +14,7 @@
     }
     else{
         try{
-            $connessione->query("UPDATE parcheggi SET nome = '".$nome."' WHERE id = '".$id."'");
+            $connessione->query("UPDATE luoghi SET nome = '".$nome."' WHERE id = '".$id."'");
             header("Location: visualizza");
         }
         catch(Exception $e){

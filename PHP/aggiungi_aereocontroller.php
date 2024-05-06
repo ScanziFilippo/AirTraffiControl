@@ -4,6 +4,7 @@
         header("Location: login");
     }
     $nome_utente = $_SESSION['nome_utente'];
+    $aeroporto_id = $_SESSION['aeroporto_id'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
 
     if($connessione->connect_errno){
@@ -15,17 +16,15 @@
             $immatricolazione = strtoupper($immatricolazione);
             $modello = $_POST['modello'];
             $compagnia = $_POST['compagnia'];
-            $posizione = $_POST['posizione'];
             $stato = $_POST['stato'];
-            $pista_id = $_POST['pista_id'];
-            $parcheggio_id = $_POST['parcheggio_id'];
+            $luogo = $_POST['luogo'];
+            if($luogo == '-') 
+                //header("location: aggiungi_aereo?err=Seleziona%20un%20parcheggio");
+                $luogo = $connessione->query("SELECT id FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='0'")->fetch_assoc()['id'];
+            if($luogo == ' ' or $luogo == '' or $luogo == NULL) 
+                //header("location: aggiungi_aereo?err=Seleziona%20una%20pista");
+                $luogo = $connessione->query("SELECT id FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='0'")->fetch_assoc()['id'];
             $aeroporto_id = $_SESSION['aeroporto_id'];
-            if(!is_int($pista_id)){
-                $pista_id = NULL;
-            }
-            if(!is_int($parcheggio_id)){
-                $parcheggio_id = NULL;
-            }
             $target_dir_aerei = "../IMG/Aerei/";
             $target_dir_compagnie = "../IMG/Compagnie/";
             $target_file_aereo = $target_dir_aerei . $modello;
@@ -61,8 +60,7 @@
             }else{
                   
             if ($uploadOk == 0) {
-                echo "Sorry, your file was not uploaded.";
-                $connessione->query("INSERT INTO aerei (immatricolazione, modello, compagnia, foto_aereo, foto_compagnia, posizione, stato, pista_id, parcheggio_id, aeroporto_id) VALUES ('$immatricolazione', '$modello', '$compagnia', NULL, NULL, '$posizione', '$stato', NULL, NULL, '$aeroporto_id')");
+                $connessione->query("INSERT INTO aerei (immatricolazione, modello, compagnia, stato, luogo) VALUES ('$immatricolazione', '$modello', '$compagnia', '$stato', '$luogo')");
                 header("Location: index");
             }else {
                 if (move_uploaded_file($_FILES["foto_aereo"]["tmp_name"], $target_file_aereo) and move_uploaded_file($_FILES["foto_compagnia"]["tmp_name"], $target_file_compagnia)) {

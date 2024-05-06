@@ -21,7 +21,7 @@
                 <th></th>
             </tr>
             <?php
-                $parcheggi = $connessione->query("SELECT * FROM parcheggi WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."' ORDER BY nome");
+                $parcheggi = $connessione->query("SELECT * FROM luoghi WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."' AND tipo=1 ORDER BY nome");
                 while($parcheggi_row = $parcheggi->fetch_assoc()){
                     echo("<form action='modificacontroller.php' method='post'>");
                     echo("<tr>");

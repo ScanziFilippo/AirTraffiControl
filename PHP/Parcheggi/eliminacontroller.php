@@ -11,7 +11,7 @@
     }
     else{
         try{
-            $connessione->query("DELETE FROM parcheggi WHERE id = '$_GET[id]'");
+            $connessione->query("DELETE FROM luoghi WHERE id = '$_GET[id]'");
             /*for($i = $_GET[id]; $i <= $connessione->query("SELECT * FROM parcheggi WHERE id>'$_GET[id]' AND aeroporto_icao = '$_SESSION[aeroporto_icao]'")->num_rows; $i++){
                 $connessione->query("UPDATE parcheggi SET id = '$i' WHERE id = '$i' + 1");
             }*/

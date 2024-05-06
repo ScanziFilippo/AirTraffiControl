@@ -21,7 +21,7 @@
                 <th></th>
             </tr>
             <?php
-                $piste = $connessione->query("SELECT * FROM piste WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."' ORDER BY nome");
+                $piste = $connessione->query("SELECT * FROM luoghi WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."' AND tipo=2 ORDER BY nome");
                 while($piste_row = $piste->fetch_assoc()){
                     echo("<form action='modificacontroller.php' method='post'>");
                     echo("<tr>");
