@@ -16,3 +16,6 @@ select {
     padding: 5px;
     margin: 5px;
 }
+.aereo {
+    border: 1px solid black;
+}

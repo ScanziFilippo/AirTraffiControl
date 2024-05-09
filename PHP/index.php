@@ -51,17 +51,6 @@
             >In aria</h3>");
             }
             while($aerei_row = $aerei->fetch_assoc()){
-                /*echo("<tr>");
-                echo("<td>".$aerei_row['immatricolazione']."</td>");
-                echo("<td>".$aerei_row['modello']."</td>");
-                echo("<td>".$aerei_row['compagnia']."</td>");
-                echo("<td><img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'></td>");
-                echo("<td><img src='../IMG/Compagnie/".$aerei_row['compagnia']."' width='200px'></td>");
-                echo("<td>".$aerei_row['posizione']."</td>");
-                //echo("<td>".$aerei_row['stato']."</td>");
-                echo("<td><img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png'></td>");
-                //echo("<td><a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a></td>");
-                echo("</tr>");*/
                 echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['id']."> 
                     <div style=display:inline-block;>
                     <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
@@ -181,14 +170,11 @@
         <script>
             for(var i = 0; i < document.getElementsByClassName("aereo").length; i++){
                 //document.getElementsByClassName("aereo")[i].getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";
-                document.getElementsByClassName("aereo")[i].addEventListener("mouseover", function(){
-                    <?php
-                        /*if($connessione->query("SELECT stato FROM aerei WHERE immatricolazione = '".?> this.id <?php."'")->fetch_assoc()['stato'] == "in aria") {
-                            echo("this.getElementsByTagName('div')[1].appendChild(document.createElement('button')).innerHTML = 'Atterra';");
-                        }*/
-                    ?>
+                document.getElementsByClassName("aereo")[i].appendChild(document.createElement("div")).innerHTML = "<form action='sposta_aereo' method='post'><input type='hidden' name='id' value='" + document.getElementsByClassName("aereo")[i].id + "'><select name='azione' onchange='if(this.value==\"atterra\"){this.form.luogo.visibility=\"hidden\";this.form.luogo.disabled=\"true\";}else{this.form.luogo.visibility=\"visible\";this.form.luogo.disabled=\"false\";}'><option value='atterra'>Atterra</option><option value='decollo'>Sposta</option><select name='luogo'><?php $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=2 AND aeroporto_id = '".$_SESSION['aeroporto_id']."'"); while($luogo = $luoghi->fetch_assoc()){ echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");}?></select><input type='submit' value='Sposta'></form>";
+                /*document.getElementsByClassName("aereo")[i].addEventListener("mouseover", function(){
+                    //document.getElementsByClassName("aereo")[i].getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";
                     //this.getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";
-                });
+                });*/
             }
         </script>
     </body>
