@@ -23,6 +23,9 @@
             $_SESSION['aeroporto_nome'] = $nome;
             $_SESSION['aeroporto_citta'] = $citta;
             $_SESSION['aeroporto_nazione'] = $nazione;
+            //if($connessione->query("SELECT * FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='0'")->num_rows == 0){
+                $connessione->query("INSERT INTO luoghi (aeroporto_id, tipo, nome) VALUES ('". $_SESSION['aeroporto_id'] . "', '0', ". $_SESSION['aeroporto_nome'] .")");
+            //}
             header("location: ../Controllori/profilo");
         }
         catch(Exception $e){

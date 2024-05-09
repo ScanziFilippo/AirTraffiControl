@@ -10,6 +10,9 @@
         if($result->num_rows == 0 || $result->fetch_assoc()['nome'] == null){
             header("Location: Aeroporti/modifica");
         }
+        if($connessione->query("SELECT * FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='0'")->num_rows == 0){
+            $connessione->query("INSERT INTO luoghi (aeroporto_id, tipo, nome) VALUES ('". $_SESSION['aeroporto_id'] . "', '0', '". $_SESSION['aeroporto_icao'] ."')");
+        }            
     }
 ?>
 <html>
@@ -64,6 +67,24 @@
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
                         <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
+                    <div>
+                        <form action='sposta_aereo' method='post'>
+                            <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
+                            <select name='azione'>
+                                <option value='atterra'>Atterra</option>
+                                <option value='sposta'>Sposta</option>
+                            </select>
+                            <select name='luogo'>
+                                ");
+                                $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=2 AND aeroporto_id = '".$_SESSION['aeroporto_id']."' ORDER BY nome");
+                                while($luogo = $luoghi->fetch_assoc()){
+                                    echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
+                                }
+                                echo("
+                            </select>
+                            <input type='submit' value='Sposta'>
+                        </form>
+                    </div>
                 </div>");
             }
             if($aerei->num_rows > 0){
@@ -88,12 +109,29 @@
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
                         <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
+                    <div>
+                        <form action='sposta_aereo' method='post'>
+                            <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
+                            <select name='azione' onchange='if(this.value==\"atterra\"){this.form.luogo.visibility=visible;this.form.luogo.disabled=false;}else{this.form.luogo.visibility=hidden;this.form.luogo.disabled=true;}'>
+                                <option value='decolla'>Decolla</option>
+                            </select>
+                            <select name='luogo'>
+                                ");
+                                $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=2 AND aeroporto_id = '".$_SESSION['aeroporto_id']."' ORDER BY nome");
+                                while($luogo = $luoghi->fetch_assoc()){
+                                    echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
+                                }
+                                echo("
+                            </select>
+                            <input type='submit' value='Sposta'>
+                        </form>
+                    </div>
                 </div>");
             }
             if($aerei->num_rows > 0){
                 echo("</div>");
             }
-            $aerei = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id FROM aerei INNER JOIN luoghi ON aerei.luogo=luoghi.id WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."' AND stato = 'in attesa'");
+            /*$aerei = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id FROM aerei INNER JOIN luoghi ON aerei.luogo=luoghi.id WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."' AND stato = 'in attesa'");
             if($aerei->num_rows > 0){
             echo("<div style=padding:10px><h3 style=padding:10px;
             >In attesa</h3>");
@@ -115,7 +153,7 @@
             }
             if($aerei->num_rows > 0){
                 echo("</div>");
-            }
+            }*/
             $aerei = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id FROM aerei INNER JOIN luoghi ON aerei.luogo=luoghi.id WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."' AND stato = 'decollando'");
             if($aerei->num_rows > 0){
             echo("<div style=padding:10px><h3 style=padding:10px;
@@ -134,6 +172,24 @@
                         echo("<p>Posizione: Pista ".$connessione->query("SELECT nome FROM luoghi WHERE id = '".$aerei_row['luogo']."'")->fetch_assoc()['nome']."</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
                         <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
+                    </div>
+                    <div>
+                        <form action='sposta_aereo' method='post'>
+                            <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
+                            <select name='azione' onchange='if(this.value==\"annulla_decollo\"){this.form.luogo.visibility=hidden;this.form.luogo.disabled=true;}else{this.form.luogo.visibility=visible;this.form.luogo.disabled=false;}'>
+                                <option value='decollato'>Decollato</option>
+                                <option value='annulla_decollo'>Annulla decollo</option>
+                            </select>
+                            <select name='luogo'>
+                                ");
+                                $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=1 AND aeroporto_id = '".$_SESSION['aeroporto_id']."' ORDER BY nome");
+                                while($luogo = $luoghi->fetch_assoc()){
+                                    echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
+                                }
+                                echo("
+                            </select>
+                            <input type='submit' value='Sposta'>
+                        </form>
                     </div>
                 </div>");
             }
@@ -159,6 +215,23 @@
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
                         <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
+                    <div>
+                        <form action='sposta_aereo' method='post'>
+                            <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
+                            <select name='azione' onchange='if(this.value==\"annulla_atterraggio\"){this.form.luogo.visibility=hidden;this.form.luogo.disabled=true;}else{this.form.luogo.visibility=visible;this.form.luogo.disabled=false;}'>
+                                <option value='parcheggia'>Parcheggia</option>    
+                                <option value='annulla_atterraggio'>Annulla atterraggio</option>
+                            </select>
+                            <select name='luogo'>
+                                ");
+                                $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=1 AND aeroporto_id = '".$_SESSION['aeroporto_id']."' ORDER BY nome");
+                                while($luogo = $luoghi->fetch_assoc()){
+                                    echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
+                                }
+                                echo("
+                            </select>
+                            <input type='submit' value='Sposta'>
+                        </form>
                 </div>");
             }
             if($aerei->num_rows > 0){
@@ -170,7 +243,7 @@
         <script>
             for(var i = 0; i < document.getElementsByClassName("aereo").length; i++){
                 //document.getElementsByClassName("aereo")[i].getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";
-                document.getElementsByClassName("aereo")[i].appendChild(document.createElement("div")).innerHTML = "<form action='sposta_aereo' method='post'><input type='hidden' name='id' value='" + document.getElementsByClassName("aereo")[i].id + "'><select name='azione' onchange='if(this.value==\"atterra\"){this.form.luogo.visibility=\"hidden\";this.form.luogo.disabled=\"true\";}else{this.form.luogo.visibility=\"visible\";this.form.luogo.disabled=\"false\";}'><option value='atterra'>Atterra</option><option value='decollo'>Sposta</option><select name='luogo'><?php $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=2 AND aeroporto_id = '".$_SESSION['aeroporto_id']."'"); while($luogo = $luoghi->fetch_assoc()){ echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");}?></select><input type='submit' value='Sposta'></form>";
+                //document.getElementsByClassName("aereo")[i].appendChild(document.createElement("div")).innerHTML = "<form action='sposta_aereo' method='post'><input type='hidden' name='id' value='" + document.getElementsByClassName("aereo")[i].id + "'><select name='azione' onchange='if(this.value==\"atterra\"){this.form.luogo.visibility=\"hidden\";this.form.luogo.disabled=\"true\";}else{this.form.luogo.visibility=\"visible\";this.form.luogo.disabled=\"false\";}'><option value='atterra'>Atterra</option><option value='decollo'>Sposta</option><select name='luogo'><?php $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=2 AND aeroporto_id = '".$_SESSION['aeroporto_id']."'"); while($luogo = $luoghi->fetch_assoc()){ echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");}?></select><input type='submit' value='Sposta'></form>";
                 /*document.getElementsByClassName("aereo")[i].addEventListener("mouseover", function(){
                     //document.getElementsByClassName("aereo")[i].getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";
                     //this.getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";

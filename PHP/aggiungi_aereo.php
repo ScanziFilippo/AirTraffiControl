@@ -8,9 +8,6 @@
     $compagnie = $connessione->query("SELECT nome FROM compagnie ORDER BY nome");
     $parcheggi = $connessione->query("SELECT id, nome FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='1' ORDER BY nome");
     $piste = $connessione->query("SELECT id, nome FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='2' ORDER BY nome");
-    if($connessione->query("SELECT * FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='0'")->num_rows == 0){
-        $connessione->query("INSERT INTO luoghi (aeroporto_id, tipo, nome) VALUES ('". $_SESSION['aeroporto_id'] . "', '0', 'Spazio Aereo')");
-    }
 ?>
 <!DOCTYPE html>
 <html>
