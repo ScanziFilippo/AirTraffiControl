@@ -18,7 +18,7 @@
         <title>Modifica aeroporto</title>
         <link rel="stylesheet" href="../../CSS/index.css">
     </head>
-    <body>
+    <body style="padding-left:20px; padding-top:20px">
         Modifica dell'aeroporto<br><br>
         <form action="modificacontroller" method="post">
             <input type="text" name="icao" placeholder="icao" style="text-transform:uppercase" readonly="readonly" value="<?php echo $_SESSION['aeroporto_icao']; ?>">

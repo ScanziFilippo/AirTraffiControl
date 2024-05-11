@@ -11,11 +11,11 @@
         <title>Visualizza piste</title>
         <link rel="stylesheet" href="../../CSS/index.css">
     </head>
-    <body>
+    <body style="padding-left:20px; padding-top:20px">
         Visualizza piste<br><br>
         <table>
             <tr>
-                <th>Id</th>
+                <th hidden>Id</th>
                 <th>Nome</th>
                 <th>Stato</th>
                 <th></th>
@@ -25,7 +25,7 @@
                 while($piste_row = $piste->fetch_assoc()){
                     echo("<form action='modificacontroller.php' method='post'>");
                     echo("<tr>");
-                    echo("<td id='" . $piste_row['id'] . "'>");
+                    echo("<td hidden id='" . $piste_row['id'] . "'>");
                     echo("<input readonly type='text' name='id' value='");
                     echo($piste_row['id']);
                     echo("'></input></td>");
@@ -54,6 +54,7 @@
                 }
             ?>
         </form>
+        <br>
         <a href="../Controllori/profilo.php">Torna al profilo</a>
 
         <script>

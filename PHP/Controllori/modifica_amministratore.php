@@ -10,7 +10,7 @@
         <title>Modifica Amministratore</title>
         <link rel="stylesheet" href="../../CSS/index.css">
     </head>
-    <body>
+    <body style="padding-left:20px; padding-top:20px">
         Modifica del profilo<br><br>
         <form action="modifica_amministratorecontroller" method="post">
             <!--<input type="text" name="aeroporto_icao" placeholder="aeroporto_icao" value="<?php echo $_SESSION['aeroporto_icao']; ?>">-->

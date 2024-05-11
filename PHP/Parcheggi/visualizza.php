@@ -11,11 +11,11 @@
         <title>Visualizza Parcheggi</title>
         <link rel="stylesheet" href="../../CSS/index.css">
     </head>
-    <body>
+    <body style="padding-left:20px; padding-top:20px">
         Visualizza parcheggi<br><br>
         <table>
             <tr>
-                <th>Id</th>
+                <th hidden>Id</th>
                 <th>Nome</th>
                 <th>Stato</th>
                 <th></th>
@@ -25,7 +25,7 @@
                 while($parcheggi_row = $parcheggi->fetch_assoc()){
                     echo("<form action='modificacontroller.php' method='post'>");
                     echo("<tr>");
-                    echo("<td id='" . $parcheggi_row['id'] . "'>");
+                    echo("<td hidden id='" . $parcheggi_row['id'] . "'>");
                     echo("<input readonly type='text' name='id' value='");
                     echo($parcheggi_row['id']);
                     echo("'></input></td>");
@@ -36,6 +36,12 @@
                     echo($parcheggi_row['nome']);
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("'></input></td>");
+                    }
+                    echo("<td>");
+                    if($connessione->query("SELECT * FROM luoghi INNER JOIN aerei ON luoghi.id = aerei.luogo WHERE luoghi.id = ". $parcheggi_row['id'])->num_rows>0){
+                        echo("Occupato");
+                    }else{
+                        echo("Libero");
                     }
                     //TODO Metti stato
                     if($_SESSION['ruolo'] == "Amministratore"){
@@ -53,7 +59,7 @@
                     echo("<input type='button' value='Aggiungi parcheggio' onclick='window.location.href=\"aggiungicontroller.php\"'>");
                 }
             ?>
-        </form>
+        </form><br>
         <a href="../Controllori/profilo.php">Torna al profilo</a>
 
         <script>
