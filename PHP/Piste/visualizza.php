@@ -37,6 +37,13 @@
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("'></input></td>");
                     }
+                    echo("<td>");
+                    if($connessione->query("SELECT * FROM luoghi INNER JOIN aerei ON luoghi.id = aerei.luogo WHERE luoghi.id = ". $piste_row['id'])->num_rows>0){
+                        echo("Occupato");
+                    }else{
+                        echo("Libero");
+                    }
+                    echo("</td>");
                     //TODO Metti stato
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("<td><input type='submit'></input></td>");

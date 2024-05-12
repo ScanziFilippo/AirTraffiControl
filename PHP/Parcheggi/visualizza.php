@@ -43,6 +43,7 @@
                     }else{
                         echo("Libero");
                     }
+                    echo("</td>");
                     //TODO Metti stato
                     if($_SESSION['ruolo'] == "Amministratore"){
                         echo("<td><input type='submit'></input></td>");

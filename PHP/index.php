@@ -12,7 +12,9 @@
         }
         if($connessione->query("SELECT * FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='0'")->num_rows == 0){
             $connessione->query("INSERT INTO luoghi (aeroporto_id, tipo, nome) VALUES ('". $_SESSION['aeroporto_id'] . "', '0', '". $_SESSION['aeroporto_icao'] ."')");
-        }            
+        }
+        $aeroporti=$connessione->query("SELECT * FROM luoghi WHERE tipo=0");
+        $parcheggi=$connessione->query("SELECT * FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='1'");
     }
 ?>
 <html>
@@ -76,7 +78,7 @@
                             </select>
                             <select name='luogo'>
                                 ");
-                                $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=2 AND aeroporto_id = '".$_SESSION['aeroporto_id']."' ORDER BY nome");
+                                $luoghi = $connessione->query("SELECT * FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=2 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id iS NULL ORDER BY nome");
                                 while($luogo = $luoghi->fetch_assoc()){
                                     echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
                                 }
@@ -248,6 +250,29 @@
                     //document.getElementsByClassName("aereo")[i].getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";
                     //this.getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";
                 });*/
+                document.getElementsByClassName("aereo")[i].getElementsByTagName("div")[2].getElementsByTagName("select")[0].addEventListener("click", function(){
+                    if(this.value == "atterra"){
+                        //delete options
+                        this.parentNode.getElementsByTagName("select")[1].innerHTML = "";
+                        //add options
+                        <?php
+                            $luoghi = $connessione->query("SELECT * FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=2 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id IS NULL ORDER BY nome");
+                            while($luogo = $luoghi->fetch_assoc()){
+                                echo("this.parentNode.getElementsByTagName('select')[1].innerHTML += '<option value=\"".$luogo['id']."\">".$luogo['nome']."</option>';");
+                            }
+                        ?>
+                    }else if(this.value == "sposta"){
+                        //delete options
+                        this.parentNode.getElementsByTagName("select")[1].innerHTML = "";
+                        //add options
+                        <?php
+                            $luoghi = $connessione->query("SELECT * FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=0 AND id!='".$_SESSION['aeroporto_id']."' AND id!=1 AND aerei.id IS NULL ORDER BY nome");
+                            while($luogo = $luoghi->fetch_assoc()){
+                                echo("this.parentNode.getElementsByTagName('select')[1].innerHTML += '<option value=\"".$luogo['id']."\">".$luogo['nome']."</option>';");
+                            }
+                        ?>
+                    }
+                });
             }
         </script>
     </body>
