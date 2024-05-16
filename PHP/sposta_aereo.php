@@ -1,6 +1,11 @@
 <?php
+    session_start();
+    $connessione = new mysqli('localhost', 'root', '', 'progetto');
     $id = $_POST["id"];
     $stato = $_POST["azione"];
+    $stato = strtolower($stato);
+    if(isset($_POST["luogo"]))
+        $luogo = $_POST["luogo"];
     if($stato == "sposta"){
         $stato = "In volo";
     }else if($stato == "atterra"){
@@ -19,10 +24,10 @@
         $stato = "Fermo";
     }
     else if($stato == "decollato"){
+        $luogo = $connessione->query("SELECT id FROM luoghi WHERE aeroporto_id = '$_SESSION[aeroporto_id]' AND tipo = 0")->fetch_assoc()["id"];
         $stato = "In volo";
     }
     
-    $luogo = $_POST["luogo"];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
     if ($connessione->connect_errno)
     {

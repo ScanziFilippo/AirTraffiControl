@@ -176,7 +176,7 @@
                         <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
                     <div>
-                        <form action='sposta_aereo' method='post'>
+                        <!--<form action='sposta_aereo' method='post'>
                             <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
                             <select name='azione' onchange='if(this.value==\"annulla_decollo\"){this.form.luogo.visibility=hidden;this.form.luogo.disabled=true;}else{this.form.luogo.visibility=visible;this.form.luogo.disabled=false;}'>
                                 <option value='decollato'>Decollato</option>
@@ -191,7 +191,18 @@
                                 echo("
                             </select>
                             <input type='submit' value='Sposta'>
-                        </form>
+                        </form>-->
+                        <div style=display:inline-block;>
+                            <form action='sposta_aereo' method='post' style=display:inline-block;>
+                                <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
+                                <input type='hidden' name='azione' value='Decollato'>
+                                <input type='submit' value='Decollato'>
+                            </form>
+                            <form action='sposta_aereo' method='post' style=display:inline-block;>
+                                <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
+                                <input type='hidden' name='azione' value='Annulla decollo'>
+                                <input type='submit' value='Annulla decollo'>
+                        </div>
                     </div>
                 </div>");
             }
