@@ -4,7 +4,7 @@
     $id = $_POST["id"];
     $stato = $_POST["azione"];
     $stato = strtolower($stato);
-    if(isset($_POST["luogo"]))
+    //if(isset($_POST["luogo"]))
         $luogo = $_POST["luogo"];
     if($stato == "sposta"){
         $stato = "In volo";
@@ -18,6 +18,7 @@
         $stato = "Fermo";
     }
     else if($stato == "annulla_atterraggio"){
+        $luogo = $connessione->query("SELECT id FROM luoghi WHERE aeroporto_id = '$_SESSION[aeroporto_id]' AND tipo = 0")->fetch_assoc()["id"];
         $stato = "In volo";
     }
     else if($stato == "annulla_decollo"){
@@ -39,9 +40,10 @@
     }*/
     else{
         try{
+            echo $luogo;
             $aggiorna = "UPDATE aerei SET stato = '$stato', luogo = '$luogo' WHERE id = '$id'";
             $risultato = $connessione->query($aggiorna);
-            header("location: index");
+            //header("location: index");
         }
         catch(Exception $e){
             echo("Errore nella query: ".$e->getMessage());

@@ -229,12 +229,13 @@
                         <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
                     <div>
-                        <form action='sposta_aereo' method='post'>
-                            <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
-                            <select name='azione' onchange='if(this.value==\"annulla_atterraggio\"){this.form.luogo.visibility=hidden;this.form.luogo.disabled=true;}else{this.form.luogo.visibility=visible;this.form.luogo.disabled=false;}'>
+                        <form action='sposta_aereo' method='post' style=display:inline-block;>
+                            <input type='hidden' name='id' value='" . $aerei_row['id'] . "'> Parcheggia
+                            <input type='hidden' name='azione' value='Parcheggia'>
+                            <!--<select name='azione' onchange='//if(this.value==\"annulla_atterraggio\"){this.form.luogo.visibility=hidden;this.form.luogo.disabled=true;}else{this.form.luogo.visibility=visible;this.form.luogo.disabled=false;}'>
                                 <option value='parcheggia'>Parcheggia</option>    
                                 <option value='annulla_atterraggio'>Annulla atterraggio</option>
-                            </select>
+                            </select>-->
                             <select name='luogo'>
                                 ");
                                 $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=1 AND aeroporto_id = '".$_SESSION['aeroporto_id']."' ORDER BY nome");
@@ -245,6 +246,12 @@
                             </select>
                             <input type='submit' value='Sposta'>
                         </form>
+                        <form action='sposta_aereo' method='post' style=display:inline-block;>
+                            <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
+                            <input type='hidden' name='azione' value='annulla_atterraggio'>
+                            <input type='submit' value='Annulla atterraggio'>
+                        </form>
+                    </div>
                 </div>");
             }
             if($aerei->num_rows > 0){
