@@ -12,6 +12,10 @@
         </form>
         <a href="registra">Registrati</a><br><br>
         <a href="recupera_login">Non riesci a entrare?</a>
+        <!-- bottom right div -->
+        <div style="position: fixed; bottom: 0; right: 0; padding-right: 20px; padding-bottom: 20px;">
+            v2
+        </div>
     </body>
     <?php
         if(isset($_GET['err'])){?>
