@@ -40,11 +40,11 @@ INSERT INTO `luoghi` (id, nome, tipo, aeroporto_id) VALUES
 
 CREATE TABLE `voli` (
     id int(11) NOT NULL auto_increment PRIMARY KEY,
-    codice varchar(255) NOT NULL,
     partenza varchar(255) NOT NULL,
-    destinazione varchar(255) NOT NULL,
-    data_partenza TIMESTAMP,
-    data_arrivo TIMESTAMP
+    destinazione varchar(255),
+    data_partenza TIMESTAMP NULL DEFAULT NULL,
+    data_arrivo TIMESTAMP NULL DEFAULT NULL,
+    aereo_id int(11) NOT NULL
 );
 CREATE TABLE `compagnie` (
   id INT PRIMARY KEY,

@@ -47,9 +47,65 @@
             <div style='padding-right: 20px; padding-top:10px;'>
                 <!--<h2><a href="Voli/visualizza">Cronologia Voli</a></h2>-->
                 <h2><a href="api">Api</a></h2>
+                <h2><a href="Voli/visualizza">Cronologia voli</a></h2>
             </div>
         </div>
         <?php
+            $aerei = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id FROM aerei INNER JOIN voli ON aerei.id = voli.aereo_id WHERE luogo = 1 AND partenza = ".$_SESSION['aeroporto_id'] ." AND data_arrivo is NULL");
+            $aerei2 = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id FROM aerei INNER JOIN voli ON aerei.id = voli.aereo_id WHERE luogo = 1 AND destinazione = ".$_SESSION['aeroporto_id'] ." AND data_arrivo is NULL");
+            if($aerei->num_rows > 0 || $aerei2->num_rows > 0){
+            echo("<div style=padding:10px><h3 style=padding:10px;
+            >In transito</h3>");
+            }
+            while($aerei_row = $aerei->fetch_assoc()){
+                echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['id']."> 
+                    <div style=display:inline-block;>
+                    <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
+                    <img src='../IMG/aereo.jpg' border=1 width='200px'><br>
+                </div>
+                    <div style=display:inline-block;padding:10px>
+                    <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
+                        <p>Modello: ".$aerei_row['modello']."</p>
+                        <p>Compagnia: ".$aerei_row['compagnia']."</p>");
+                        echo("<p>Posizione: In volo</p>
+                        <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
+                        <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
+                    </div>
+                    <div>
+                        <form action='sposta_aereo' method='post'>
+                            <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
+                            <input type='hidden' name='azione' value='annulla_transito'>
+                            <input type='submit' value='Annulla'>
+                        </form>
+                    </div>
+                </div>");
+            }
+            while($aerei_row = $aerei2->fetch_assoc()){
+                echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['id']."> 
+                    <div style=display:inline-block;>
+                    <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
+                    <img src='../IMG/aereo.jpg' border=1 width='200px'><br>
+                </div>
+                    <div style=display:inline-block;padding:10px>
+                    <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
+                        <p>Modello: ".$aerei_row['modello']."</p>
+                        <p>Compagnia: ".$aerei_row['compagnia']."</p>");
+                        echo("<p>Posizione: In volo</p>
+                        <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
+                        <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
+                    </div>
+                    <div>
+                        <form action='sposta_aereo' method='post'>
+                            <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
+                            <input type='hidden' name='azione' value='accetta_transito'>
+                            <input type='submit' value='Accetta'>
+                        </form>
+                    </div>
+                </div>");
+            }
+            if($aerei->num_rows > 0 || $aerei2->num_rows > 0){
+                echo("</div>");
+            }
             $aerei = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id FROM aerei INNER JOIN luoghi ON aerei.luogo=luoghi.id WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."' AND stato = 'in volo'");
             if($aerei->num_rows > 0){
             echo("<div style=padding:10px><h3 style=padding:10px;
@@ -268,29 +324,41 @@
                     //document.getElementsByClassName("aereo")[i].getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";
                     //this.getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";
                 });*/
-                document.getElementsByClassName("aereo")[i].getElementsByTagName("div")[2].getElementsByTagName("select")[0].addEventListener("click", function(){
-                    if(this.value == "atterra"){
-                        //delete options
-                        this.parentNode.getElementsByTagName("select")[1].innerHTML = "";
-                        //add options
-                        <?php
-                            $luoghi = $connessione->query("SELECT * FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=2 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id IS NULL ORDER BY nome");
-                            while($luogo = $luoghi->fetch_assoc()){
-                                echo("this.parentNode.getElementsByTagName('select')[1].innerHTML += '<option value=\"".$luogo['id']."\">".$luogo['nome']."</option>';");
-                            }
-                        ?>
-                    }else if(this.value == "sposta"){
-                        //delete options
-                        this.parentNode.getElementsByTagName("select")[1].innerHTML = "";
-                        //add options
-                        <?php
-                            $luoghi = $connessione->query("SELECT * FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=0 AND id!='".$_SESSION['aeroporto_id']."' AND id!=1 AND aerei.id IS NULL ORDER BY nome");
-                            while($luogo = $luoghi->fetch_assoc()){
-                                echo("this.parentNode.getElementsByTagName('select')[1].innerHTML += '<option value=\"".$luogo['id']."\">".$luogo['nome']."</option>';");
-                            }
-                        ?>
-                    }
-                });
+                if(document.getElementsByClassName("aereo")[i].getElementsByTagName("div")[2].getElementsByTagName("select")[0] != null){ 
+                    document.getElementsByClassName("aereo")[i].getElementsByTagName("div")[2].getElementsByTagName("select")[0].addEventListener("click", function(){
+                        if(this.value == "atterra"){
+                            //delete options
+                            this.parentNode.getElementsByTagName("select")[1].innerHTML = "";
+                            //add options
+                            <?php
+                                $luoghi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=2 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id IS NULL ORDER BY nome");
+                                ?>
+                                this.parentNode.getElementsByTagName('select')[1].visibility = "visible";
+                                this.parentNode.getElementsByTagName('input')[0].visibility = "visible";
+                                <?php
+                                while($luogo = $luoghi->fetch_assoc()){
+                                    echo("this.parentNode.getElementsByTagName('select')[1].innerHTML += '<option value=\"".$luogo['id']."\">".$luogo['nome']."</option>';");
+                                }
+                            ?>
+                        }else if(this.value == "sposta"){
+                            //delete options
+                            this.parentNode.getElementsByTagName("select")[1].innerHTML = "";
+                            //add options
+                            <?php
+                                $luoghi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi WHERE tipo=0 AND luoghi.id!='".$_SESSION['aeroporto_id']."' AND luoghi.id!=1 ORDER BY nome");
+                                if($luoghi->num_rows == 0){?>
+                                    this.parentNode.getElementsByTagName('input')[1].display = "none";
+                                    this.parentNode.innerHTML += "Non ci sono altri aeroporti";
+                                <?php
+                                }else{
+                                    while($luogo = $luoghi->fetch_assoc()){
+                                        echo("this.parentNode.getElementsByTagName('select')[1].innerHTML += '<option value=\"".$luogo['id']."\">".$luogo['nome']."</option>';");
+                                    }
+                                }
+                            ?>
+                        }
+                    });
+                }
             }
         </script>
     </body>

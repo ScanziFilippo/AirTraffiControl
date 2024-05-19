@@ -6,7 +6,7 @@
     $nome_utente = $_SESSION['nome_utente'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
     $compagnie = $connessione->query("SELECT nome FROM compagnie ORDER BY nome");
-    $parcheggi = $connessione->query("SELECT id, nome FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='1' ORDER BY nome");
+    $parcheggi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=1 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id iS NULL ORDER BY nome");
     $piste = $connessione->query("SELECT id, nome FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='2' ORDER BY nome");
 ?>
 <!DOCTYPE html>
@@ -120,7 +120,7 @@
                 if(stato == "Fermo"){
                     document.getElementById("parcheggi").style.visibility = "visible";
                     //if(document.getElementsByTagName("select")[1].value == "-"){
-                        document.getElementsByTagName("select")[1].value = "<?php echo $connessione->query("SELECT id FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='1' ORDER BY nome")->fetch_array()[0]; ?>";
+                        document.getElementsByTagName("select")[1].value = "<?php echo $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=1 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id iS NULL ORDER BY nome")->fetch_array()[0]; ?>";
                     //}
                 }else{
                     document.getElementById("parcheggi").style.visibility = "hidden";
