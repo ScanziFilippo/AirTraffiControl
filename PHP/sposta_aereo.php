@@ -43,7 +43,7 @@
             echo $luogo;
             $aggiorna = "UPDATE aerei SET stato = '$stato', luogo = '$luogo' WHERE id = '$id'";
             $risultato = $connessione->query($aggiorna);
-            //header("location: index");
+            header("location: index");
         }
         catch(Exception $e){
             echo("Errore nella query: ".$e->getMessage());

@@ -78,7 +78,7 @@
                             </select>
                             <select name='luogo'>
                                 ");
-                                $luoghi = $connessione->query("SELECT * FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=2 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id iS NULL ORDER BY nome");
+                                $luoghi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=2 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id iS NULL ORDER BY nome");
                                 while($luogo = $luoghi->fetch_assoc()){
                                     echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
                                 }
@@ -114,12 +114,12 @@
                     <div>
                         <form action='sposta_aereo' method='post'>
                             <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
-                            <select name='azione' onchange='if(this.value==\"atterra\"){this.form.luogo.visibility=visible;this.form.luogo.disabled=false;}else{this.form.luogo.visibility=hidden;this.form.luogo.disabled=true;}'>
+                            <select name='azione' onchange='//if(this.value==\"atterra\"){this.form.luogo.visibility=visible;this.form.luogo.disabled=false;}else{this.form.luogo.visibility=hidden;this.form.luogo.disabled=true;}'>
                                 <option value='decolla'>Decolla</option>
                             </select>
                             <select name='luogo'>
                                 ");
-                                $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=2 AND aeroporto_id = '".$_SESSION['aeroporto_id']."' ORDER BY nome");
+                                $luoghi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=2 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id iS NULL ORDER BY nome");
                                 while($luogo = $luoghi->fetch_assoc()){
                                     echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
                                 }
@@ -176,23 +176,23 @@
                         <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
                     <div>
-                        <!--<form action='sposta_aereo' method='post'>
+                        <form action='sposta_aereo' method='post'>
                             <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
-                            <select name='azione' onchange='if(this.value==\"annulla_decollo\"){this.form.luogo.visibility=hidden;this.form.luogo.disabled=true;}else{this.form.luogo.visibility=visible;this.form.luogo.disabled=false;}'>
+                            <select name='azione' onchange='if(this.value==\"decollato\"){this.form.luogo.visibility=\"hidden\";this.form.luogo.disabled=true;}else{this.form.luogo.visibility=\"visible\";this.form.luogo.disabled=false;}'>
                                 <option value='decollato'>Decollato</option>
                                 <option value='annulla_decollo'>Annulla decollo</option>
                             </select>
-                            <select name='luogo'>
+                            <select name='luogo' disabled>
                                 ");
-                                $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=1 AND aeroporto_id = '".$_SESSION['aeroporto_id']."' ORDER BY nome");
+                                $luoghi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=1 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id iS NULL ORDER BY nome");
                                 while($luogo = $luoghi->fetch_assoc()){
                                     echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
                                 }
                                 echo("
                             </select>
                             <input type='submit' value='Sposta'>
-                        </form>-->
-                        <div style=display:inline-block;>
+                        </form>
+                        <!--<div style=display:inline-block;>
                             <form action='sposta_aereo' method='post' style=display:inline-block;>
                                 <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
                                 <input type='hidden' name='azione' value='Decollato'>
@@ -202,7 +202,7 @@
                                 <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
                                 <input type='hidden' name='azione' value='Annulla decollo'>
                                 <input type='submit' value='Annulla decollo'>
-                        </div>
+                        </div>-->
                     </div>
                 </div>");
             }
@@ -238,7 +238,7 @@
                             </select>-->
                             <select name='luogo'>
                                 ");
-                                $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=1 AND aeroporto_id = '".$_SESSION['aeroporto_id']."' ORDER BY nome");
+                                $luoghi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=1 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id iS NULL ORDER BY nome");
                                 while($luogo = $luoghi->fetch_assoc()){
                                     echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
                                 }
