@@ -115,7 +115,7 @@
                 echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['id']."> 
                     <div style=display:inline-block;>
                     <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
-                    <img src='../IMG/aereo.jpg' border=1 width='200px'><br>
+                    <img src='../IMG/aereoVola.jpg' border=1 width='200px'><br>
                 </div>
                     <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
@@ -157,7 +157,7 @@
                 echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['id']."> 
                     <div style=display:inline-block;>
                         <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
-                        <img src='../IMG/aereo.jpg' border=1 width='200px'><br>
+                        <img src='../IMG/aereoVola.jpg' border=1 width='200px'><br>
                     </div>
                     <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
@@ -189,29 +189,6 @@
             if($aerei->num_rows > 0){
                 echo("</div>");
             }
-            /*$aerei = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id FROM aerei INNER JOIN luoghi ON aerei.luogo=luoghi.id WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."' AND stato = 'in attesa'");
-            if($aerei->num_rows > 0){
-            echo("<div style=padding:10px><h3 style=padding:10px;
-            >In attesa</h3>");
-            }
-            while($aerei_row = $aerei->fetch_assoc()){
-                echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['id']."> 
-                    <div style=display:inline-block;>
-                        <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
-                        <img src='../IMG/aereo.jpg' border=1 width='200px'><br>
-                    </div>
-                    <div style=display:inline-block;padding:10px>
-                    <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
-                        <p>Modello: ".$aerei_row['modello']."</p>
-                        <p>Compagnia: ".$aerei_row['compagnia']."</p>
-                        <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
-                        <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
-                    </div>
-                </div>");
-            }
-            if($aerei->num_rows > 0){
-                echo("</div>");
-            }*/
             $aerei = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id FROM aerei INNER JOIN luoghi ON aerei.luogo=luoghi.id WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."' AND stato = 'decollando'");
             if($aerei->num_rows > 0){
             echo("<div style=padding:10px><h3 style=padding:10px;
@@ -221,7 +198,7 @@
                 echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['id']."> 
                     <div style=display:inline-block;>
                         <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
-                        <img src='../IMG/aereo.jpg' border=1 width='200px'><br>
+                        <img src='../IMG/aereoDecolla.jpg' border=1 width='200px'><br>
                     </div>
                     <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
@@ -274,7 +251,7 @@
                 echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['id']."> 
                     <div style=display:inline-block;>
                         <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
-                        <img src='../IMG/aereo.jpg' border=1 width='200px'><br>
+                        <img src='../IMG/aereoAtterra.jpg' border=1 width='200px'><br>
                     </div>
                     <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
