@@ -26,16 +26,14 @@ Alle torri di controllo di qualsiasi tipo di aereporto
     * Foto aereo
     * Foto bandiera (automatico in base all'immatricolazione)
     * Posizione
-    * Stato (automatico in base a posizione iniziale. Poi modificato in base alle azioni utente)
+    * Stato (modificato in base alle azioni utente)
   * Modifica
   * Eliminazione
   * Comandi
     * Decolla su pista XX
     * Atterra su pista XX
-    * Rulla verso pista XX
-    * Rulla verso parcheggio XX
-    * Rifornisciti di carburante
-    * Fai scendere/salire le persone
+    * Parcheggia in X
+    * Transita ad aeroporto XXXX
 * Controllori (utenti)
   * Accesso al profilo 
   * Uscita dal profilo
