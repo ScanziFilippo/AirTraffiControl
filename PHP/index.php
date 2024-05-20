@@ -48,6 +48,7 @@
                 <!--<h2><a href="Voli/visualizza">Cronologia Voli</a></h2>-->
                 <h2><a href="api">Api</a></h2>
                 <h2><a href="Voli/visualizza">Cronologia voli</a></h2>
+                <h2><a href="test">Test</a></h2>
             </div>
         </div>
         <?php
