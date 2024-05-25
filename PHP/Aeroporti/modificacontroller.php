@@ -9,6 +9,13 @@
         echo("Connessione fallita: ".$connessione->connect_error.".");
         exit();
     }
+    else if (!preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['icao']) || !preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['iata']) || !preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['nome']) || !preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['citta']) || !preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['nazione'])) {
+        $errorMessage = urlencode("Solo lettere, numeri e spazi sono ammessi");
+        header("location: modifica?err=$errorMessage");
+    }else if($_POST['icao'] == "" || $_POST['iata'] == "" || $_POST['nome'] == "" || $_POST['citta'] == "" || $_POST['nazione'] == ""){
+        $errorMessage = urlencode("Compila tutti i campi");
+        header("location: modifica?err=$errorMessage");
+    }
     else{
         $icao = strtoupper($_POST['icao']);
         $iata = strtoupper($_POST['iata']);

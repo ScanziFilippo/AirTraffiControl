@@ -13,10 +13,12 @@
         echo("Connessione fallita: ".$connessione->connect_error.".");
         exit();
     }else if($nome_utente_nuovo == "" || $nome_nuovo == "" || $cognome_nuovo == ""){
-        header("location: profilo?err=I campi non possono essere vuoti");
-    }else if($connessione->query("SELECT * FROM controllori WHERE nome_utente = '$nome_utente_nuovo'")->num_rows > 0 && $nome_utente_nuovo != $nome_utente_vecchio){
-        header("location: profilo?err=Nome utente già esistente");
-    }else{
+            $errorMessage = urlencode("I campi non possono essere vuoti");
+            header("location: modifica?err=$errorMessage");
+    } else if ($connessione->query("SELECT * FROM controllori WHERE nome_utente = '$nome_utente_nuovo'")->num_rows > 0 && $nome_utente_nuovo != $nome_utente_vecchio) {
+            $errorMessage = urlencode("Nome utente già esistente");
+            header("location: modifica?err=$errorMessage");
+        }else{
         try{
             $modifica = "UPDATE controllori SET nome_utente = '$nome_utente_nuovo', nome = '$nome_nuovo', cognome = '$cognome_nuovo' WHERE nome_utente = '$nome_utente_vecchio'";
             $risultato = $connessione->query($modifica);

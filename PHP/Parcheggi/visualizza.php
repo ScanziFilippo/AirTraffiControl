@@ -62,7 +62,12 @@
             ?>
         </form><br>
         <a href="../Controllori/profilo.php">Torna al profilo</a>
-
+        <?php
+            if(isset($_GET['err'])){?>
+                <p> <?php echo $_GET['err']; ?> </p>
+                <?php 
+            }
+        ?>
         <script>
             function elimina(e){
                 e.preventDefault();

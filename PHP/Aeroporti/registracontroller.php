@@ -10,11 +10,16 @@
     {
         echo("Connessione fallita: ".$connessione->connect_error.".");
         exit();
+    }else if (!preg_match('/^[a-zA-Z0-9\s]+$/', $icao) || !preg_match('/^[a-zA-Z0-9\s]+$/', $iata) || !preg_match('/^[a-zA-Z0-9\s]+$/', $nome) || !preg_match('/^[a-zA-Z0-9\s]+$/', $citta) || !preg_match('/^[a-zA-Z0-9\s]+$/', $nazione)) {
+            $errorMessage = urlencode("Solo lettere, numeri e spazi sono ammessi");
+            header("location: registra?err=$errorMessage");
     }else if($icao == "" || $nome == "" || $nome == "" || $citta == "" || $nazione == ""){
-        header("location: registra?err=Compila tutti i campi");
-    }else if($connessione->query("SELECT * FROM aeroporti WHERE icao = '$icao'")->num_rows > 0){
-        header("location: registra?err=ICAO già esistente");
-    }else{
+            $errorMessage = urlencode("Compila tutti i campi");
+            header("location: registra?err=$errorMessage");
+        } else if($connessione->query("SELECT * FROM aeroporti WHERE icao = '$icao'")->num_rows > 0){
+            $errorMessage = urlencode("ICAO già esistente");
+            header("location: registra?err=$errorMessage");
+        } else {
         try{
             $registra = "INSERT INTO aeroporti (icao, iata, nome, citta, nazione) VALUES ('$icao', '$iata', '$nome', '$citta', '$nazione')";
             $risultato = $connessione->query($registra);

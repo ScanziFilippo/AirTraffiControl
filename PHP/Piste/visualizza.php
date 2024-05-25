@@ -63,7 +63,13 @@
         </form>
         <br>
         <a href="../Controllori/profilo.php">Torna al profilo</a>
-
+        <br>
+        <?php
+            if(isset($_GET['err'])){?>
+                <p> <?php echo $_GET['err']; ?> </p>
+                <?php 
+            }
+        ?>
         <script>
             function elimina(e){
                 e.preventDefault();
@@ -85,7 +91,7 @@
             for(i=0; i<totali.length; i++){
                 if(totali[i] != undefined && totali[i].getElementsByTagName("td")[3] != undefined && totali[i].getElementsByTagName("td")[3].getElementsByTagName("button")[0] != undefined){
                     var idDaEliminare = totali[i].getElementsByTagName("td")[0].id;
-                    console.log(idDaEliminare);
+                    console.log("id2" + idDaEliminare);
                     totali[i].getElementsByTagName("td")[3].getElementsByTagName("button")[0].addEventListener("click", elimina);
                 }
             }

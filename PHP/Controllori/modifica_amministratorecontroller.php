@@ -13,10 +13,17 @@
     {
         echo("Connessione fallita: ".$connessione->connect_error.".");
         exit();
+    }
+    // check if contains only alphanumeric and whitespace
+    else if (!preg_match('/^[a-zA-Z0-9\s]+$/', $nome_utente_nuovo) || !preg_match('/^[a-zA-Z0-9\s]+$/', $nome_nuovo) || !preg_match('/^[a-zA-Z0-9\s]+$/', $cognome_nuovo)) {
+        $error_message = urlencode("Solo lettere, numeri e spazi sono ammessi");
+        header("location: modifica_amministratore?err=$error_message");
     }else if($nome_utente_nuovo == "" || $nome_nuovo == "" || $cognome_nuovo == ""){
-        header("location: profilo?err=I campi non possono essere vuoti");
-    }else if($connessione->query("SELECT * FROM controllori WHERE nome_utente = '$nome_utente_nuovo'")->num_rows > 0 && $nome_utente_nuovo != $nome_utente_vecchio){
-        header("location: profilo?err=Nome utente già esistente");
+        $error_message = urlencode("I campi non possono essere vuoti");
+        header("location: modifica_amministratore?err=$error_message");
+    } else if ($connessione->query("SELECT * FROM controllori WHERE nome_utente = '$nome_utente_nuovo'")->num_rows > 0 && $nome_utente_nuovo != $nome_utente_vecchio) {
+        $error_message = urlencode("Nome utente già esistente");
+        header("location: modifica_amministratore?err=$error_message");
     }else{
         try{
             $modifica = "UPDATE controllori SET nome_utente = '$nome_utente_nuovo', nome = '$nome_nuovo', cognome = '$cognome_nuovo' WHERE nome_utente = '$nome_utente_vecchio'";
@@ -29,4 +36,4 @@
         catch(Exception $e){
             echo("Errore nella query: ".$e->getMessage());
         }
-    }
+}
