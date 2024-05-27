@@ -87,10 +87,10 @@
             totali = document.getElementsByTagName("tr");
             console.log(totali.length);
             for(i=0; i<totali.length; i++){
-                if(totali[i] != undefined && totali[i].getElementsByTagName("td")[3] != undefined && totali[i].getElementsByTagName("td")[3].getElementsByTagName("button")[0] != undefined){
+                if(totali[i] != undefined && totali[i].getElementsByTagName("td")[3] != undefined){
                     var idDaEliminare = totali[i].getElementsByTagName("td")[0].id;
                     console.log(idDaEliminare);
-                    totali[i].getElementsByTagName("td")[3].getElementsByTagName("button")[0].addEventListener("click", elimina);
+                    totali[i].getElementsByTagName("td")[4].getElementsByTagName("button")[0].addEventListener("click", elimina);
                 }
             }
         </script>
