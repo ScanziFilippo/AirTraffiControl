@@ -18,7 +18,9 @@
         echo("Connessione fallita: ".$connessione->connect_error.".");
         exit();
     }else if($aeroporto_icao == "" || $nome_utente == "" || $nome == "" || $cognome == "" || $codice == ""){
-        header("location: registra?err=Compila tutti i campi");
+        header("location: registra?err=Compila%20tutti%20i%20campi");
+    }else if(!preg_match('/^[a-zA-Z0-9_]+$/', $aeroporto_icao) || !preg_match('/^[a-zA-Z0-9_]+$/', $nome_utente) || !preg_match('/^[a-zA-Z0-9_]+$/', $nome) || !preg_match('/^[a-zA-Z0-9_]+$/', $cognome) || !preg_match('/^[a-zA-Z0-9_]+$/', $codice)){
+        header("location: registra?err=I%20campi%20possono%20contenere%20solo%20lettere%20e%20numeri");
     }else if($connessione->query("SELECT * FROM aeroporti WHERE icao = '$aeroporto_icao'")->num_rows == 0){
         if($ruolo=="Base"){
             header("location: registra?err=Non%20esiste%20un%20aeroporto%20con%20questo%20icao.%20Devi%20essere%20amministratore%20per%20crearlo");

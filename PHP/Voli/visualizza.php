@@ -25,7 +25,7 @@
     <th>Orario arrivo</th>
 </tr>
 <?php
-    $query = "SELECT * FROM voli";
+    $query = "SELECT * FROM voli WHERE partenza = '".$_SESSION['aeroporto_id']."' OR destinazione = '".$_SESSION['aeroporto_id']."'";
     $risultato = $connessione->query($query);
     while($riga = $risultato->fetch_assoc()){
         echo "<tr>";

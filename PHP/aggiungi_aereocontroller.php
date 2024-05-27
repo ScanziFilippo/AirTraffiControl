@@ -10,6 +10,12 @@
     if($connessione->connect_errno){
         echo("Connessione fallita: ".$connessione->connect_error.".");
         exit();
+    }else if($_POST['immatricolazione'] == "" || $_POST['modello'] == "" || $_POST['compagnia'] == "" || $_POST['stato'] == ""){
+        $errorMessage = urlencode("Compila tutti i campi");
+        header("location: aggiungi_aereo?err=$errorMessage");
+    }else if (!preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['immatricolazione']) || !preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['modello']) || !preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['compagnia']) || !preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['stato'])) {
+        $errorMessage = urlencode("Solo lettere, numeri e spazi sono ammessi");
+        header("location: aggiungi_aereo?err=$errorMessage");
     }else{
         try{
             $immatricolazione = $_POST['immatricolazione'];
@@ -17,13 +23,22 @@
             $modello = $_POST['modello'];
             $compagnia = $_POST['compagnia'];
             $stato = $_POST['stato'];
-            $luogo = $_POST['luogo'];
-            if($luogo == '-') 
-                //header("location: aggiungi_aereo?err=Seleziona%20un%20parcheggio");
-                $luogo = $connessione->query("SELECT id FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='0'")->fetch_assoc()['id'];
-            if($luogo == ' ' or $luogo == '' or $luogo == NULL) 
+            $passa = 1;
+            if(isset($_POST['luogo']))
+                $luogo = $_POST['luogo'];
+            else
+                $luogo = '-';
+            if($luogo == '-' || $luogo == ' ' || $luogo == '' || $luogo == NULL) {
                 //header("location: aggiungi_aereo?err=Seleziona%20una%20pista");
-                $luogo = $connessione->query("SELECT id FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='0'")->fetch_assoc()['id'];
+                if($stato=="In volo"){
+                    $luogo = $connessione->query("SELECT id FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='0'")->fetch_assoc()['id'];
+                }else{
+                    $errorMessage = urlencode("Seleziona un parcheggio");
+                    header("location: aggiungi_aereo?err=$errorMessage");
+                    $passa = 0;
+                }
+            }
+            if($passa == 1){
             $aeroporto_id = $_SESSION['aeroporto_id'];
             $target_dir_aerei = "../IMG/Aerei/";
             $target_dir_compagnie = "../IMG/Compagnie/";
@@ -76,6 +91,7 @@
             }
 
             }
+        }
         }
         catch(Exception $e){
             echo("Errore nella query: ".$e->getMessage());

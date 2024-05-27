@@ -9,6 +9,12 @@
         if($connessione->connect_errno){
             echo("Connessione fallita: ".$connessione->connect_error.".");
             exit();
+        }else if($_POST['immatricolazione'] == "" || $_POST['modello'] == "" || $_POST['compagnia'] == ""){
+            $errorMessage = urlencode("Compila tutti i campi");
+            header("location: modifica_aereo?id=".$_POST['id']."&err=$errorMessage");
+        }else if (!preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['immatricolazione']) || !preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['modello']) || !preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['compagnia'])) {
+            $errorMessage = urlencode("Solo lettere, numeri e spazi sono ammessi");
+            header("location: modifica_aereo?id=".$_POST['id']."&err=$errorMessage");
         }else{
             $id = $_POST['id'];
             $immatricolazione = $_POST['immatricolazione'];

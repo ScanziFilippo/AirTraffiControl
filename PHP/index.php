@@ -8,7 +8,7 @@
         $query = "SELECT * FROM aeroporti WHERE icao = '".$_SESSION['aeroporto_icao']."'";
         $result = $connessione->query($query);
         if($result->num_rows == 0 || $result->fetch_assoc()['nome'] == null){
-            header("Location: Aeroporti/modifica");
+            header("Location: Aeroporti/registra");
         }
         if($connessione->query("SELECT * FROM luoghi WHERE aeroporto_id='". $_SESSION['aeroporto_id'] . "' AND tipo='0'")->num_rows == 0){
             $connessione->query("INSERT INTO luoghi (aeroporto_id, tipo, nome) VALUES ('". $_SESSION['aeroporto_id'] . "', '0', '". $_SESSION['aeroporto_icao'] ."')");
@@ -52,8 +52,8 @@
             </div>
         </div>
         <?php
-            $aerei = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id FROM aerei INNER JOIN voli ON aerei.id = voli.aereo_id WHERE luogo = 1 AND partenza = ".$_SESSION['aeroporto_id'] ." AND data_arrivo is NULL");
-            $aerei2 = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id FROM aerei INNER JOIN voli ON aerei.id = voli.aereo_id WHERE luogo = 1 AND destinazione = ".$_SESSION['aeroporto_id'] ." AND data_arrivo is NULL");
+            $aerei = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id, destinazione FROM aerei INNER JOIN voli ON aerei.id = voli.aereo_id WHERE luogo = 1 AND partenza = ".$_SESSION['aeroporto_id'] ." AND data_arrivo is NULL");
+            $aerei2 = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id, partenza FROM aerei INNER JOIN voli ON aerei.id = voli.aereo_id WHERE luogo = 1 AND destinazione = ".$_SESSION['aeroporto_id'] ." AND data_arrivo is NULL");
             if($aerei->num_rows > 0 || $aerei2->num_rows > 0){
             echo("<div style=padding:10px><h3 style=padding:10px;
             >In transito</h3>");
@@ -62,13 +62,13 @@
                 echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['id']."> 
                     <div style=display:inline-block;>
                     <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
-                    <img src='../IMG/aereo.jpg' border=1 width='200px'><br>
+                    <img src='../IMG/aereoVola.jpg' border=1 width='200px'><br>
                 </div>
                     <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
                         <p>Modello: ".$aerei_row['modello']."</p>
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>");
-                        echo("<p>Posizione: In volo</p>
+                        echo("<p>Posizione: In volo verso ".$connessione->query("SELECT icao FROM aeroporti WHERE id = '".$aerei_row['destinazione']."'")->fetch_assoc()['icao']."</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
                         <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
@@ -85,13 +85,13 @@
                 echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['id']."> 
                     <div style=display:inline-block;>
                     <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
-                    <img src='../IMG/aereo.jpg' border=1 width='200px'><br>
+                    <img src='../IMG/aereoVola.jpg' border=1 width='200px'><br>
                 </div>
                     <div style=display:inline-block;padding:10px>
                     <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
                         <p>Modello: ".$aerei_row['modello']."</p>
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>");
-                        echo("<p>Posizione: In volo</p>
+                        echo("<p>Posizione: In volo da ".$connessione->query("SELECT icao FROM aeroporti WHERE id = '".$aerei_row['partenza']."'")->fetch_assoc()['icao']."</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
                         <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
@@ -132,47 +132,6 @@
                             <select name='azione'>
                                 <option value='atterra'>Atterra</option>
                                 <option value='sposta'>Sposta</option>
-                            </select>
-                            <select name='luogo'>
-                                ");
-                                $luoghi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=2 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id iS NULL ORDER BY nome");
-                                while($luogo = $luoghi->fetch_assoc()){
-                                    echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
-                                }
-                                echo("
-                            </select>
-                            <input type='submit' value='Sposta'>
-                        </form>
-                    </div>
-                </div>");
-            }
-            if($aerei->num_rows > 0){
-                echo("</div>");
-            }
-            $aerei = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id FROM aerei INNER JOIN luoghi ON aerei.luogo=luoghi.id WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."' AND stato = 'fermo'");
-            if($aerei->num_rows > 0){
-            echo("<div style=padding:10px><h3 style=padding:10px;
-            >Fermo</h3>");
-            }
-            while($aerei_row = $aerei->fetch_assoc()){
-                echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['id']."> 
-                    <div style=display:inline-block;>
-                        <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
-                        <img src='../IMG/aereoVola.jpg' border=1 width='200px'><br>
-                    </div>
-                    <div style=display:inline-block;padding:10px>
-                    <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
-                        <p>Modello: ".$aerei_row['modello']."</p>
-                        <p>Compagnia: ".$aerei_row['compagnia']."</p>");
-                        echo("<p>Posizione: Parcheggio ".$connessione->query("SELECT nome FROM luoghi WHERE id = '".$aerei_row['luogo']."'")->fetch_assoc()['nome']."</p>
-                        <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
-                        <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
-                    </div>
-                    <div>
-                        <form action='sposta_aereo' method='post'>
-                            <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
-                            <select name='azione' onchange='//if(this.value==\"atterra\"){this.form.luogo.visibility=visible;this.form.luogo.disabled=false;}else{this.form.luogo.visibility=hidden;this.form.luogo.disabled=true;}'>
-                                <option value='decolla'>Decolla</option>
                             </select>
                             <select name='luogo'>
                                 ");
@@ -291,7 +250,47 @@
             if($aerei->num_rows > 0){
                 echo("</div>");
             }
-
+            $aerei = $connessione->query("SELECT immatricolazione, modello, compagnia, luogo, stato, aerei.id FROM aerei INNER JOIN luoghi ON aerei.luogo=luoghi.id WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."' AND stato = 'fermo'");
+            if($aerei->num_rows > 0){
+            echo("<div style=padding:10px><h3 style=padding:10px;
+            >Fermo</h3>");
+            }
+            while($aerei_row = $aerei->fetch_assoc()){
+                echo("<div style=display:inline-block;padding:10px; class='aereo' id=". $aerei_row['id']."> 
+                    <div style=display:inline-block;>
+                        <!--<img src='../IMG/Aerei/".$aerei_row['modello']."' width='200px'><br>-->
+                        <img src='../IMG/aereoVola.jpg' border=1 width='200px'><br>
+                    </div>
+                    <div style=display:inline-block;padding:10px>
+                    <p>Immatricolazione: ".$aerei_row['immatricolazione']."</p>
+                        <p>Modello: ".$aerei_row['modello']."</p>
+                        <p>Compagnia: ".$aerei_row['compagnia']."</p>");
+                        echo("<p>Posizione: Parcheggio ".$connessione->query("SELECT nome FROM luoghi WHERE id = '".$aerei_row['luogo']."'")->fetch_assoc()['nome']."</p>
+                        <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
+                        <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
+                    </div>
+                    <div>
+                        <form action='sposta_aereo' method='post'>
+                            <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
+                            <select name='azione' onchange='//if(this.value==\"atterra\"){this.form.luogo.visibility=visible;this.form.luogo.disabled=false;}else{this.form.luogo.visibility=hidden;this.form.luogo.disabled=true;}'>
+                                <option value='decolla'>Decolla</option>
+                            </select>
+                            <select name='luogo'>
+                                ");
+                                $luoghi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=2 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id iS NULL ORDER BY nome");
+                                while($luogo = $luoghi->fetch_assoc()){
+                                    echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
+                                }
+                                echo("
+                            </select>
+                            <input type='submit' value='Sposta'>
+                        </form>
+                    </div>
+                </div>");
+            }
+            if($aerei->num_rows > 0){
+                echo("</div>");
+            }
             ?>
         <!--</table>-->
         <script>

@@ -72,6 +72,12 @@
         <a href="elimina_aereo.php?id=<?php echo $id;?>" style="color: red">Elimina aereo</a>
         <br>
         <br>
+        <?php
+        if(isset($_GET['err'])){?>
+        <p style="color: red"> <?php echo $_GET['err']; ?> </p> 
+        <?php
+            }
+        ?>
         <a href="index">Torna alla home</a>
         <script>
             /*function aggiornaConStato(){
