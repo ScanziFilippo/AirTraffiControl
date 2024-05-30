@@ -30,7 +30,7 @@
                 else if($tabella == 'aeroporti')
                     $query = "SELECT * FROM ".$tabella." WHERE icao = '".$id."'";
                 else if($tabella == 'controllori')
-                    $query = "SELECT * FROM ".$tabella." WHERE codice_fiscale = '".$id."'";
+                    $query = "SELECT * FROM ".$tabella." WHERE nome_utente = '".$id."'";
             }else{
                 $query = "SELECT * FROM ".$tabella;
             }
@@ -66,9 +66,8 @@
                         <h3><a href='api/aeroporti'>Aeroporti</a></h3>
                         <h3><a href='api/compagnie'>Compagnie</a></h3>
                         <h3><a href='api/controllori'>Controllori</a></h3>
+                        <h3><a href='api/luoghi'>Luoghi</a></h3>
                         <h3><a href='api/voli'>Voli</a></h3>
-                        <h3><a href='api/parcheggi'>Parcheggi</a></h3>
-                        <h3><a href='api/piste'>Piste</a></h3><br>
                     </div>
                         <!--
                         <form action='api' method='post' style='background-color: #f1f1f1; padding: 20px;'>
