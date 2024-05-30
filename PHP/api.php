@@ -19,20 +19,44 @@
         header('Location: api');
     }else
     if(isset($_SESSION['token'])){
+        $token = $_SESSION['token'];
+                try{
+                    //$decoded = JWT::decode($token, $chiave_segreta, array('HS256'));
+                    //$decoded = JWT::decode($token, new Key($chiave_segreta, 'HS256'), $headers = new stdClass());
+                    //$decoded = JWT::decode($token, $chiave_segreta, ['HS256', 'headers' => $headers]);
+                    $decoded = JWT::decode($token, new Key($chiave_segreta, 'HS256'));
+                    $json_payload = json_encode($decoded);
+                    //header('Content-Type: application/json');
+                    //echo $json_payload;
+                }catch(Exception $e){
+                    //echo json_encode($e->getMessage(), JSON_PRETTY_PRINT);
+                }
+                $id = $decoded->id;
+                $nome_utente = $decoded->nome_utente;
+                $profilo = $decoded->profilo;
+                $aeroporto_id = $decoded->aeroporto_id;
+                $nome = $profilo->nome;
+                $cognome = $profilo->cognome;
+                $ruolo = $profilo->ruolo;
         if(isset($_REQUEST['tabella']) && $_REQUEST['tabella']!=""){
             $tabella = $_REQUEST['tabella'];
             if(isset($_REQUEST['id'])){
                 $id = $_REQUEST['id'];
-                if($tabella == 'compagnie' || $tabella == 'piste' || $tabella == 'parcheggi' || $tabella == 'voli')
+                if($tabella == 'compagnie' || $tabella == 'luoghi' || $tabella == 'voli')
                     $query = "SELECT * FROM ".$tabella." WHERE id = ".$id;
                 else if($tabella == 'aerei')
                     $query = "SELECT * FROM ".$tabella." WHERE immatricolazione = '".$id."'";
                 else if($tabella == 'aeroporti')
                     $query = "SELECT * FROM ".$tabella." WHERE icao = '".$id."'";
                 else if($tabella == 'controllori')
-                    $query = "SELECT * FROM ".$tabella." WHERE nome_utente = '".$id."'";
+                    $query = "SELECT * FROM ".$tabella." WHERE nome_utente = '".$id."' AND aeroporto_id = '".$aeroporto_id."'";
             }else{
-                $query = "SELECT * FROM ".$tabella;
+                if($tabella == 'controllori')
+                    $query = "SELECT * FROM ".$tabella." WHERE aeroporto_id = '".$aeroporto_id."'";
+                else if($tabella == 'voli')
+                    $query = "SELECT * FROM ".$tabella." WHERE partenza = '".$aeroporto_id."' OR destinazione = '".$aeroporto_id."'";
+                else
+                    $query = "SELECT * FROM ".$tabella;
             }
             $risultato = $connessione->query($query);
             header('Content-Type: application/json');
@@ -98,6 +122,7 @@
                     [
                         'id' => $id,
                         'nome_utente' => $nome_utente, 
+                        'aeroporto_id' => $aeroporto_id,
                         'profilo' => 
                             [
                                 'nome' => $nome,
