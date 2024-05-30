@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente'])){
-        header("Location: login");
+        header("Location: ../login");
     }
     if($_SESSION['ruolo'] == "Amministratore"){
         $nome_utente = $_SESSION['nome_utente'];
@@ -38,9 +38,9 @@
             $target_dir_compagnie = $target_dir_compagnie . $compagnia . ".jpeg";  */
             $connessione->query("UPDATE aerei SET immatricolazione = '".$immatricolazione."' WHERE id = '".$id."'");
             $connessione->query("UPDATE aerei SET modello = '".$modello."', compagnia = '".$compagnia."' WHERE id = '".$id."'");
-            header("Location: index");
+            header("Location: ../index");
         }
     }else{
-        header("Location: index");
+        header("Location: ../index");
     }
 ?>

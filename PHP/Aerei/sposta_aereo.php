@@ -67,5 +67,5 @@
             echo("Errore nella query: ".$e->getMessage());
         }
     }
-    header("location: index");
+    header("location: ../index");
 ?>

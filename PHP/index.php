@@ -37,7 +37,7 @@
                     ?>
                     」
                 </h1>
-                <a href="aggiungi_aereo"><h2>Aggiungi aereo (totali: 
+                <a href="Aerei/aggiungi_aereo"><h2>Aggiungi aereo (totali: 
                     <?php
                         echo($connessione->query("SELECT * FROM aerei INNER JOIN luoghi ON aerei.luogo=luoghi.id WHERE aeroporto_id = '".$_SESSION['aeroporto_id']."'")->num_rows);
                     ?>
@@ -70,10 +70,10 @@
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>");
                         echo("<p>Posizione: In volo verso ".$connessione->query("SELECT icao FROM aeroporti WHERE id = '".$aerei_row['destinazione']."'")->fetch_assoc()['icao']."</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
-                        <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
+                        <a href='Aerei/modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
                     <div>
-                        <form action='sposta_aereo' method='post'>
+                        <form action='Aerei/sposta_aereo' method='post'>
                             <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
                             <input type='hidden' name='azione' value='annulla_transito'>
                             <input type='submit' value='Annulla'>
@@ -93,10 +93,10 @@
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>");
                         echo("<p>Posizione: In volo da ".$connessione->query("SELECT icao FROM aeroporti WHERE id = '".$aerei_row['partenza']."'")->fetch_assoc()['icao']."</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
-                        <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
+                        <a href='Aerei/modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
                     <div>
-                        <form action='sposta_aereo' method='post'>
+                        <form action='Aerei/sposta_aereo' method='post'>
                             <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
                             <input type='hidden' name='azione' value='accetta_transito'>
                             <input type='submit' value='Accetta'>
@@ -124,10 +124,10 @@
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>");
                         echo("<p>Posizione: In volo</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
-                        <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
+                        <a href='Aerei/modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
                     <div>
-                        <form action='sposta_aereo' method='post'>
+                        <form action='Aerei/sposta_aereo' method='post'>
                             <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
                             <select name='azione'>
                                 <option value='atterra'>Atterra</option>
@@ -166,10 +166,10 @@
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>");
                         echo("<p>Posizione: Pista ".$connessione->query("SELECT nome FROM luoghi WHERE id = '".$aerei_row['luogo']."'")->fetch_assoc()['nome']."</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
-                        <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
+                        <a href='Aerei/modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
                     <div>
-                        <form action='sposta_aereo' method='post'>
+                        <form action='Aerei/sposta_aereo' method='post'>
                             <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
                             <select name='azione' onchange='if(this.value==\"decollato\"){this.form.luogo.visibility=\"hidden\";this.form.luogo.disabled=true;}else{this.form.luogo.visibility=\"visible\";this.form.luogo.disabled=false;}'>
                                 <option value='decollato'>Decollato</option>
@@ -186,12 +186,12 @@
                             <input type='submit' value='Sposta'>
                         </form>
                         <!--<div style=display:inline-block;>
-                            <form action='sposta_aereo' method='post' style=display:inline-block;>
+                            <form action='Aerei/sposta_aereo' method='post' style=display:inline-block;>
                                 <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
                                 <input type='hidden' name='azione' value='Decollato'>
                                 <input type='submit' value='Decollato'>
                             </form>
-                            <form action='sposta_aereo' method='post' style=display:inline-block;>
+                            <form action='Aerei/sposta_aereo' method='post' style=display:inline-block;>
                                 <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
                                 <input type='hidden' name='azione' value='Annulla decollo'>
                                 <input type='submit' value='Annulla decollo'>
@@ -219,10 +219,10 @@
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>");
                         echo("<p>Posizione: Pista ".$connessione->query("SELECT nome FROM luoghi WHERE id = '".$aerei_row['luogo']."'")->fetch_assoc()['nome']."</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
-                        <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
+                        <a href='Aerei/modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
                     <div>
-                        <form action='sposta_aereo' method='post' style=display:inline-block;>
+                        <form action='Aerei/sposta_aereo' method='post' style=display:inline-block;>
                             <input type='hidden' name='id' value='" . $aerei_row['id'] . "'> Parcheggia
                             <input type='hidden' name='azione' value='Parcheggia'>
                             <!--<select name='azione' onchange='//if(this.value==\"annulla_atterraggio\"){this.form.luogo.visibility=hidden;this.form.luogo.disabled=true;}else{this.form.luogo.visibility=visible;this.form.luogo.disabled=false;}'>
@@ -239,7 +239,7 @@
                             </select>
                             <input type='submit' value='Sposta'>
                         </form>
-                        <form action='sposta_aereo' method='post' style=display:inline-block;>
+                        <form action='Aerei/sposta_aereo' method='post' style=display:inline-block;>
                             <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
                             <input type='hidden' name='azione' value='annulla_atterraggio'>
                             <input type='submit' value='Annulla atterraggio'>
@@ -267,10 +267,10 @@
                         <p>Compagnia: ".$aerei_row['compagnia']."</p>");
                         echo("<p>Posizione: Parcheggio ".$connessione->query("SELECT nome FROM luoghi WHERE id = '".$aerei_row['luogo']."'")->fetch_assoc()['nome']."</p>
                         <img src='https://flagsapi.com/". strtoupper(substr($aerei_row['immatricolazione'], 0, 2)) . "/flat/64.png' width='32px'><br><br>
-                        <a href='modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
+                        <a href='Aerei/modifica_aereo?id=".$aerei_row['id']."'>Modifica</a>
                     </div>
                     <div>
-                        <form action='sposta_aereo' method='post'>
+                        <form action='Aerei/sposta_aereo' method='post'>
                             <input type='hidden' name='id' value='" . $aerei_row['id'] . "'>
                             <select name='azione' onchange='//if(this.value==\"atterra\"){this.form.luogo.visibility=visible;this.form.luogo.disabled=false;}else{this.form.luogo.visibility=hidden;this.form.luogo.disabled=true;}'>
                                 <option value='decolla'>Decolla</option>
@@ -296,7 +296,7 @@
         <script>
             for(var i = 0; i < document.getElementsByClassName("aereo").length; i++){
                 //document.getElementsByClassName("aereo")[i].getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";
-                //document.getElementsByClassName("aereo")[i].appendChild(document.createElement("div")).innerHTML = "<form action='sposta_aereo' method='post'><input type='hidden' name='id' value='" + document.getElementsByClassName("aereo")[i].id + "'><select name='azione' onchange='if(this.value==\"atterra\"){this.form.luogo.visibility=\"hidden\";this.form.luogo.disabled=\"true\";}else{this.form.luogo.visibility=\"visible\";this.form.luogo.disabled=\"false\";}'><option value='atterra'>Atterra</option><option value='decollo'>Sposta</option><select name='luogo'><?php $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=2 AND aeroporto_id = '".$_SESSION['aeroporto_id']."'"); while($luogo = $luoghi->fetch_assoc()){ echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");}?></select><input type='submit' value='Sposta'></form>";
+                //document.getElementsByClassName("aereo")[i].appendChild(document.createElement("div")).innerHTML = "<form action='Aerei/sposta_aereo' method='post'><input type='hidden' name='id' value='" + document.getElementsByClassName("aereo")[i].id + "'><select name='azione' onchange='if(this.value==\"atterra\"){this.form.luogo.visibility=\"hidden\";this.form.luogo.disabled=\"true\";}else{this.form.luogo.visibility=\"visible\";this.form.luogo.disabled=\"false\";}'><option value='atterra'>Atterra</option><option value='decollo'>Sposta</option><select name='luogo'><?php $luoghi = $connessione->query("SELECT * FROM luoghi WHERE tipo=2 AND aeroporto_id = '".$_SESSION['aeroporto_id']."'"); while($luogo = $luoghi->fetch_assoc()){ echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");}?></select><input type='submit' value='Sposta'></form>";
                 /*document.getElementsByClassName("aereo")[i].addEventListener("mouseover", function(){
                     //document.getElementsByClassName("aereo")[i].getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";
                     //this.getElementsByTagName("div")[1].appendChild(document.createElement("button")).innerHTML = "Sposta";

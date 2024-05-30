@@ -13,7 +13,7 @@
 <html>
     <head>
         <title>modifica aereo</title>
-        <link rel="stylesheet" href="../CSS/index.css">
+        <link rel="stylesheet" href="../../CSS/index.css">
     </head>
     <body style="padding-left:20px; padding-top:20px">
         modifica un aereo<br><br>
@@ -78,7 +78,7 @@
         <?php
             }
         ?>
-        <a href="index">Torna alla home</a>
+        <a href="../index">Torna alla home</a>
         <script>
             /*function aggiornaConStato(){
                 var stato = document.getElementsByName("stato")[0].value;

@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['nome_utente'])){
-        header("Location: login");
+        header("Location: ../login");
     }
     $nome_utente = $_SESSION['nome_utente'];
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
@@ -13,7 +13,7 @@
 <html>
     <head>
         <title>Aggiungi aereo</title>
-        <link rel="stylesheet" href="../CSS/index.css">
+        <link rel="stylesheet" href="../../CSS/index.css">
     </head>
     <body style="padding-left:20px; padding-top:20px">
         Aggiungi un aereo<br><br>
@@ -113,7 +113,7 @@
         <?php
             }
         ?>
-        <a href="index">Torna alla home</a>
+        <a href="../index">Torna alla home</a>
         <script>
             function aggiornaConStato(){
                 var stato = document.getElementsByTagName("select")[0].value;

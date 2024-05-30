@@ -10,7 +10,7 @@
         try{
             $cancella = "DELETE FROM aerei WHERE id = '$id'";
             $risultato = $connessione->query($cancella);
-            header ("location: index");
+            header ("location: ../index");
         }
         catch(Exception $e){
             echo("Errore nella query: ".$e->getMessage());
