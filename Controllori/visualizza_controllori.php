@@ -14,8 +14,7 @@
 <html>
     <head>
         <title>Visualizza controllori</title>
-        <link rel="stylesheet" href="../../CSS/index.css">
-    </head>
+<link rel="stylesheet" href="../CSS/index.css">    </head>
     <body style="padding-left:20px; padding-top:20px">
         <h3>Visualizza controllori</h3>
         <input type="text" id="valore" name="name" placeholder="ricerca nome" />

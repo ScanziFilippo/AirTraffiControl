@@ -1,19 +1,18 @@
 <?php
     session_start();
-    if(!isset($_SESSION['nome_utente']) || $_SESSION['ruolo'] != "Amministratore"){
+    if(!isset($_SESSION['nome_utente'])){
         header("Location: login");
     }
+    $nome_utente = $_SESSION['nome_utente'];
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Modifica Amministratore</title>
-        <link rel="stylesheet" href="../../CSS/index.css">
-    </head>
+        <title>Modifica profilo</title>
+<link rel="stylesheet" href="../CSS/index.css">    </head>
     <body style="padding-left:20px; padding-top:20px">
         Modifica del profilo<br><br>
-        <form action="modifica_amministratorecontroller" method="post">
-            <!--<input type="text" name="aeroporto_icao" placeholder="aeroporto_icao" value="<?php echo $_SESSION['aeroporto_icao']; ?>">-->
+        <form action="modificacontroller" method="post">
             <input type="text" name="nome_utente" placeholder="nome_utente" value="<?php echo $_SESSION['nome_utente']; ?>">
             <input type="text" name="nome" placeholder="nome" value="<?php echo $_SESSION['nome']; ?>">
             <input type="text" name="cognome" placeholder="cognome" value="<?php echo $_SESSION['cognome']; ?>">

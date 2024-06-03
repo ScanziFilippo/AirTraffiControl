@@ -16,8 +16,7 @@
 <html>
     <head>
         <title>Modifica aeroporto</title>
-        <link rel="stylesheet" href="../../CSS/index.css">
-    </head>
+<link rel="stylesheet" href="../CSS/index.css">    </head>
     <body style="padding-left:20px; padding-top:20px">
         Modifica dell'aeroporto<br><br>
         <form action="modificacontroller" method="post">

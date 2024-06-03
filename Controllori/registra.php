@@ -2,8 +2,7 @@
 <html>
     <head>
         <title>Registrazione</title>
-        <link rel="stylesheet" href="../../CSS/index.css">
-    </head>
+<link rel="stylesheet" href="../CSS/index.css">    </head>
     <body style="padding-left:20px; padding-top:20px">
         Registrazione del profilo<br><br>
         <form action="registracontroller" method="post">

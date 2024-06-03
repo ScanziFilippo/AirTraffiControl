@@ -9,8 +9,7 @@
 <html>
     <head>
         <title>Visualizza Parcheggi</title>
-        <link rel="stylesheet" href="../../CSS/index.css">
-    </head>
+<link rel="stylesheet" href="../CSS/index.css">    </head>
     <body style="padding-left:20px; padding-top:20px">
         Visualizza parcheggi<br><br>
         <table>

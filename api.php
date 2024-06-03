@@ -1,5 +1,5 @@
 <?php
-    require __DIR__ . '/../vendor/autoload.php';
+    require __DIR__ . '/vendor/autoload.php';
 
     use Firebase\JWT\JWT;
     use Firebase\JWT\Key;
@@ -83,7 +83,7 @@
             <html>
                 <head>
                     <title>Api</title>
-                    <link rel='stylesheet' href='../CSS/index.css'>
+                    <link rel='stylesheet' href='CSS/index.css'>
                 </head>
                 <body>
                     <div style='padding-left: 20px; padding-top:10px;'>
@@ -140,7 +140,7 @@
         echo "<html>
         <head>
             <title>Api</title>
-            <link rel='stylesheet' href='../CSS/index.css'>
+            <link rel='stylesheet' href='CSS/index.css'>
         </head>
         <body>
             <form action='api' method='post' style='background-color: #f1f1f1; padding: 20px;'>

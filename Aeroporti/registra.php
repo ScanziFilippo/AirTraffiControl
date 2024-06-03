@@ -8,8 +8,7 @@
 <html>
     <head>
         <title>Registra aeroporto</title>
-        <link rel="stylesheet" href="../../CSS/index.css">
-    </head>
+<link rel="stylesheet" href="../CSS/index.css">    </head>
     <body style="padding-left:20px; padding-top:20px">
         Registrazione dell'aeroporto<br><br>
         <form action="registracontroller" method="post">

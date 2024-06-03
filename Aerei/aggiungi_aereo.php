@@ -13,8 +13,7 @@
 <html>
     <head>
         <title>Aggiungi aereo</title>
-        <link rel="stylesheet" href="../../CSS/index.css">
-    </head>
+<link rel="stylesheet" href="../CSS/index.css">    </head>
     <body style="padding-left:20px; padding-top:20px">
         Aggiungi un aereo<br><br>
         <form action="aggiungi_aereocontroller" method="post" enctype="multipart/form-data">

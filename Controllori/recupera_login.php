@@ -1,8 +1,7 @@
 <html>
     <head>
         <title>Recupera login</title>
-        <link rel="stylesheet" href="../../CSS/index.css">
-    </head>
+<link rel="stylesheet" href="../CSS/index.css">    </head>
     <body>
         Recupera login<br><br>
         <form action="recupera_logincontroller" method="post">

@@ -6,8 +6,7 @@
 <html>
     <head>
         <title>Visualizza voli</title>
-        <link rel="stylesheet" href="../../CSS/index.css">
-    </head>
+<link rel="stylesheet" href="../CSS/index.css">    </head>
     <body>
     <div style='padding-left: 20px; padding-top:10px;'>
         <h1>Visualizza voli</h1>
