@@ -55,6 +55,8 @@
                     $query = "SELECT * FROM ".$tabella." WHERE aeroporto_id = '".$aeroporto_id."'";
                 else if($tabella == 'voli')
                     $query = "SELECT * FROM ".$tabella." WHERE partenza = '".$aeroporto_id."' OR destinazione = '".$aeroporto_id."'";
+                else if($tabella == 'luoghi')
+                    $query = "SELECT * FROM ".$tabella." WHERE aeroporto_id = '".$aeroporto_id."'";
                 else
                     $query = "SELECT * FROM ".$tabella;
             }

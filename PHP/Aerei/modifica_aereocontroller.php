@@ -3,7 +3,7 @@
     if(!isset($_SESSION['nome_utente'])){
         header("Location: ../login");
     }
-    if($_SESSION['ruolo'] == "Amministratore"){
+    //if($_SESSION['ruolo'] == "Amministratore"){
         $nome_utente = $_SESSION['nome_utente'];
         $connessione = new mysqli('localhost', 'root', '', 'progetto');
         if($connessione->connect_errno){
@@ -40,7 +40,7 @@
             $connessione->query("UPDATE aerei SET modello = '".$modello."', compagnia = '".$compagnia."' WHERE id = '".$id."'");
             header("Location: ../index");
         }
-    }else{
+    /*}else{
         header("Location: ../index");
-    }
+    }*/
 ?>

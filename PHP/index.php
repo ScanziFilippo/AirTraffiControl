@@ -137,7 +137,7 @@
                                 ");
                                 $luoghi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=2 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id iS NULL ORDER BY nome");
                                 while($luogo = $luoghi->fetch_assoc()){
-                                    echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
+                                    echo("<option value='".$luogo['id']."'>Pista ".$luogo['nome']."</option>");
                                 }
                                 echo("
                             </select>
@@ -179,7 +179,7 @@
                                 ");
                                 $luoghi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=1 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id iS NULL ORDER BY nome");
                                 while($luogo = $luoghi->fetch_assoc()){
-                                    echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
+                                    echo("<option value='".$luogo['id']."'>Parcheggio ".$luogo['nome']."</option>");
                                 }
                                 echo("
                             </select>
@@ -279,7 +279,7 @@
                                 ");
                                 $luoghi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi LEFT JOIN aerei ON luoghi.id = aerei.luogo WHERE tipo=2 AND aeroporto_id ='". $_SESSION["aeroporto_id"]."' AND aerei.id iS NULL ORDER BY nome");
                                 while($luogo = $luoghi->fetch_assoc()){
-                                    echo("<option value='".$luogo['id']."'>".$luogo['nome']."</option>");
+                                    echo("<option value='".$luogo['id']."'>Pista ".$luogo['nome']."</option>");
                                 }
                                 echo("
                             </select>
@@ -314,7 +314,7 @@
                                 this.parentNode.getElementsByTagName('input')[0].visibility = "visible";
                                 <?php
                                 while($luogo = $luoghi->fetch_assoc()){
-                                    echo("this.parentNode.getElementsByTagName('select')[1].innerHTML += '<option value=\"".$luogo['id']."\">".$luogo['nome']."</option>';");
+                                    echo("this.parentNode.getElementsByTagName('select')[1].innerHTML += '<option value=\"".$luogo['id']."\">Pista ".$luogo['nome']."</option>';");
                                 }
                             ?>
                         }else if(this.value == "sposta"){
@@ -329,7 +329,7 @@
                                 <?php
                                 }else{
                                     while($luogo = $luoghi->fetch_assoc()){
-                                        echo("this.parentNode.getElementsByTagName('select')[1].innerHTML += '<option value=\"".$luogo['id']."\">".$luogo['nome']."</option>';");
+                                        echo("this.parentNode.getElementsByTagName('select')[1].innerHTML += '<option value=\"".$luogo['id']."\">Aeroporto ".$luogo['nome']."</option>';");
                                     }
                                 }
                             ?>

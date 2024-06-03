@@ -30,8 +30,13 @@
     while($riga = $risultato->fetch_assoc()){
         echo "<tr>";
         echo "<td>".$riga["id"]."</td>";
+        echo "<td>".$connessione->query("SELECT immatricolazione FROM aerei WHERE id='".$riga["aereo_id"]."'")->fetch_assoc()["immatricolazione"]."</td>";
         echo "<td>".$connessione->query("SELECT icao FROM aeroporti WHERE id='".$riga["partenza"]."'")->fetch_assoc()["icao"]."</td>";
-        echo "<td>".$connessione->query("SELECT icao FROM aeroporti WHERE id='".$riga["destinazione"]."'")->fetch_assoc()["icao"]."</td>";
+        //echo "<td>".$connessione->query("SELECT icao FROM aeroporti WHERE id='".$riga["destinazione"]."'")->fetch_assoc()["icao"]."</td>";
+        if($riga["destinazione"] == NULL)
+            echo "<td>-</td>";
+        else
+            echo "<td>".$connessione->query("SELECT icao FROM aeroporti WHERE id='".$riga["destinazione"]."'")->fetch_assoc()["icao"]."</td>";
         echo "<td>".$riga["data_partenza"]."</td>";
         echo "<td>".$riga["data_arrivo"]."</td>";
         echo "</tr>";
