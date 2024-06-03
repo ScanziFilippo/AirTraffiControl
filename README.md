@@ -229,4 +229,4 @@ docker start myXampp
 ```
 Collegarsi aprendo il link della porta 41062:80 
 Accedere alla pagina di phpmyadmin, crea una nuova base di dati di nome "progetto" e inserire il codice SQL della sezione precedente per creare le tabelle.
-Ora aggiungere alla fine dell'URL della porta la stringa "/www/PHP" per accedere all'index (esempio: https://esempio.app.github.dev/www/PHP)
+Ora aggiungere alla fine dell'URL della porta la stringa "/www/" per accedere all'index (esempio: https://esempio.app.github.dev/www/)
