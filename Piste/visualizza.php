@@ -38,15 +38,17 @@
                     }
                     echo("<td>");
                     if($connessione->query("SELECT * FROM luoghi INNER JOIN aerei ON luoghi.id = aerei.luogo WHERE luoghi.id = ". $piste_row['id'])->num_rows>0){
-                        echo("Occupato");
+                        echo("Occupata");
                     }else{
-                        echo("Libero");
+                        echo("Libera");
                     }
                     echo("</td>");
                     //TODO Metti stato
                     if($_SESSION['ruolo'] == "Amministratore"){
-                        echo("<td><input type='submit'></input></td>");
-                        echo("<td><button>Elimina</button></td>");
+                        echo("<td><input type='submit' value='Rinomina'></input></td>");
+                        if($connessione->query("SELECT * FROM luoghi INNER JOIN aerei ON luoghi.id = aerei.luogo WHERE luoghi.id = ". $piste_row['id'])->num_rows==0){
+                            echo("<td><button>Elimina</button></td>");
+                        }
                         echo("</tr>");
                     }
                     echo("</form>");
