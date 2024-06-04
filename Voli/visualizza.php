@@ -1,6 +1,9 @@
 <?php
     session_start();
     $connessione = new mysqli('localhost', 'root', '', 'progetto');
+    if(!isset($_SESSION['aeroporto_id'])){
+        header("location: ../");
+    }
 ?>
 <!DOCTYPE html>
 <html>

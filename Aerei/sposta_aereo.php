@@ -46,7 +46,6 @@
             $connessione->query("UPDATE voli SET destinazione = '$_SESSION[aeroporto_id]' WHERE aereo_id = '$id' AND data_arrivo is NULL");
             $luogo = $connessione->query("SELECT id FROM luoghi WHERE aeroporto_id = '$_SESSION[aeroporto_id]' AND tipo = 0")->fetch_assoc()["id"];
         }
-    
         $connessione = new mysqli('localhost', 'root', '', 'progetto');
         if ($connessione->connect_errno)
         {
@@ -56,6 +55,7 @@
     /*else if($id == "" || $stato == "" || $luogo == ""){
         header("location: sposta_aereo?err=Compila tutti i campi");
     }*/
+    if($luogo != "" && $stato != "" && $id != ""){
         try{
             echo $luogo;
             //if($stato != "sposta"){
@@ -66,6 +66,7 @@
         catch(Exception $e){
             echo("Errore nella query: ".$e->getMessage());
         }
+    }
     }
     header("location: ../index");
 ?>

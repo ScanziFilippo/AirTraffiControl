@@ -21,9 +21,9 @@
         <p>(Puoi vedere solo i controllori del tuo aeroporto)</p>
         <table id="tabella">
             <tr>
-                <th>Nome utente</th>
-                <th>Nome</th>
-                <th>Cognome</th>
+                <th style="padding:10px">Nome utente</th>
+                <th style="padding:10px">Nome</th>
+                <th style="padding:10px">Cognome</th>
                 <!--<th>Modifica</th>
                 <th>Cancella</th>-->
             </tr>
@@ -36,10 +36,10 @@
                     echo("<td>".$controllori_row['cognome']."</td>");
                     /*echo("<td><a href='modifica_controllori?nome_utente=".$controllori_row['nome_utente']."'>Modifica</a></td>");
                     echo("<td><a href='cancella_controllori?nome_utente=".$controllori_row['nome_utente']."'>Cancella</a></td>");*/
-                    if($_SESSION['ruolo'] == "Amministratore" && $controllori_row['nome_utente'] != $_SESSION['nome_utente']){
+                    /*if($_SESSION['ruolo'] == "Amministratore" && $controllori_row['nome_utente'] != $_SESSION['nome_utente']){
                         echo("<td><button>Elimina</button></td>");
                         echo("</tr>");
-                    }
+                    }*/
                     echo("</tr>");
                 }
             ?>
