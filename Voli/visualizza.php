@@ -18,6 +18,7 @@
 </style>
 <tr>
     <th>Codice</th>
+    <th>Immatricolazione</th>
     <th>Partenza</th>
     <th>Destinazione</th>
     <th>Orario partenza</th>

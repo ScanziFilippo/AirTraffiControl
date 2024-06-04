@@ -322,7 +322,7 @@
                             this.parentNode.getElementsByTagName("select")[1].innerHTML = "";
                             //add options
                             <?php
-                                $luoghi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi WHERE tipo=0 AND luoghi.id!='".$_SESSION['aeroporto_id']."' AND luoghi.id!=1 ORDER BY nome");
+                                $luoghi = $connessione->query("SELECT luoghi.id, luoghi.nome FROM luoghi WHERE tipo=0 AND luoghi.aeroporto_id!='".$_SESSION['aeroporto_id']."' AND luoghi.id!=1 ORDER BY nome");
                                 if($luoghi->num_rows == 0){?>
                                     this.parentNode.getElementsByTagName('input')[1].display = "none";
                                     this.parentNode.innerHTML += "Non ci sono altri aeroporti";
